@@ -13,8 +13,8 @@
     "audit:pdf": "pandoc docs/audit-gialloorofirenze-it.md -o docs/audit-gialloorofirenze-it.pdf --pdf-engine=xelatex -V geometry:margin=2cm -V mainfont='DejaVu Serif' -V monofont='DejaVu Sans Mono' --toc --highlight-style=tango"
   },
   "dependencies": {
-    "@astrojs/sitemap": "^3.2.1",
     "@astrojs/mdx": "^4.0.3",
+    "@astrojs/sitemap": "^3.2.1",
     "@tailwindcss/vite": "^4.0.0",
     "astro": "^5.1.5",
     "sharp": "^0.33.5",
@@ -22,6 +22,7 @@
   },
   "devDependencies": {
     "@types/node": "^22.10.5",
+    "playwright": "^1.59.1",
     "typescript": "^5.7.2"
   }
 }
