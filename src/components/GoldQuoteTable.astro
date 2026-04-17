@@ -49,7 +49,7 @@ const datasetSchema = goldQuotesDatasetSchema(
   locale === 'it' ? 'https://gialloorofirenze.it/quotazioni' : 'https://gialloorofirenze.it/en/live-price',
 );
 ---
-<div class:list={['overflow-hidden border border-ink-200 rounded-sm bg-white', compact && 'max-w-3xl mx-auto']}>
+<div id="gold-quote-table" data-base-24kt="71.20" class:list={['overflow-hidden border border-ink-200 rounded-sm bg-white', compact && 'max-w-3xl mx-auto']}>
   <div class="bg-ink-900 text-gold-500 px-5 py-3 flex items-center justify-between">
     <div class="flex items-center gap-2.5">
       <span class="w-2 h-2 rounded-full bg-gold-500 animate-pulse"></span>
@@ -69,13 +69,17 @@ const datasetSchema = goldQuotesDatasetSchema(
       </tr>
     </thead>
     <tbody>
-      {rows.map((r, i) => (
-        <tr class:list={['border-b border-ink-100 last:border-b-0 transition-colors hover:bg-gold-50/50', i % 2 && 'bg-ivory-50/40']}>
-          <td class="px-5 py-3.5 font-medium text-ink-900">{r.type}</td>
-          <td class="px-5 py-3.5 text-ink-700 tabular">{r.purity}</td>
-          <td class="px-5 py-3.5 text-right serif text-xl font-semibold text-gold-700 tabular">€ {r.price}</td>
-        </tr>
-      ))}
+      {rows.map((r, i) => {
+        const q = QUOTES[i];
+        const ratio = q.pricePerGram / 71.20;
+        return (
+          <tr class:list={['border-b border-ink-100 last:border-b-0 transition-colors hover:bg-gold-50/50', i % 2 && 'bg-ivory-50/40']}>
+            <td class="px-5 py-3.5 font-medium text-ink-900">{r.type}</td>
+            <td class="px-5 py-3.5 text-ink-700 tabular">{r.purity}</td>
+            <td class="px-5 py-3.5 text-right serif text-xl font-semibold text-gold-700 tabular price-cell" data-ratio={ratio.toFixed(4)} data-locale={locale}>€ {r.price}</td>
+          </tr>
+        );
+      })}
     </tbody>
   </table>
 
@@ -85,3 +89,26 @@ const datasetSchema = goldQuotesDatasetSchema(
 </div>
 
 <script type="application/ld+json" set:html={serialize(datasetSchema)} />
+
+<script is:inline>
+  (function() {
+    const table = document.getElementById('gold-quote-table');
+    if (!table) return;
+    const cells = table.querySelectorAll('.price-cell');
+    table.addEventListener('price-update', (e) => {
+      const live24kt = e.detail && e.detail.price;
+      if (typeof live24kt !== 'number') return;
+      // Apply commercial margin (buy price ~80% of fixing)
+      const buyBase = live24kt * 0.806;
+      cells.forEach(cell => {
+        const ratio = parseFloat(cell.dataset.ratio || '1');
+        const locale = cell.dataset.locale === 'en' ? 'en-US' : 'it-IT';
+        const price = buyBase * ratio;
+        cell.textContent = '€ ' + price.toLocaleString(locale, { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+        cell.classList.remove('updated');
+        void cell.offsetWidth;
+        cell.classList.add('updated');
+      });
+    });
+  })();
+</script>
