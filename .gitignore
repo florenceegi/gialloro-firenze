@@ -27,3 +27,4 @@ docs/*.log
 # scraping temp
 .cache/
 public/images/_tmp/
+CLAUDE.md
