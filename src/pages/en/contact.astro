@@ -1,0 +1,113 @@
+---
+/**
+ * @package GIALLORO-FIRENZE — Contact EN
+ * @author Padmin D. Curtis (AI Partner OS3.0) for Fabio Cherici
+ * @version 1.0.0 (FlorenceEGI — GIALLORO-FIRENZE)
+ * @date 2026-04-17
+ * @purpose EN contact page. Form + NAP + hours + map.
+ */
+import Base from '@layouts/Base.astro';
+import SectionHeading from '@components/SectionHeading.astro';
+import ContactForm from '@components/ContactForm.astro';
+import { t, hrefFor } from '@i18n/index';
+import { breadcrumbSchema, BUSINESS } from '@lib/schema';
+
+const locale = 'en' as const;
+const path = '/en/contact';
+
+const schemas = [
+  breadcrumbSchema([
+    { name: t(locale, 'nav.home'), url: 'https://gialloorofirenze.it/en' },
+    { name: t(locale, 'nav.contatti'), url: 'https://gialloorofirenze.it/en/contact' },
+  ]),
+];
+
+const title = 'Contact · Giallo Oro Firenze';
+const description = 'Contact Giallo Oro Firenze: Via del Ponte Sospeso 31, Florence. Phone +39 055 2335573, WhatsApp, email info@gialloorofirenze.it. Free in-store appraisal.';
+
+const mapsUrl = `https://www.google.com/maps/search/?api=1&query=${BUSINESS.geo.latitude},${BUSINESS.geo.longitude}`;
+const mapsEmbed = `https://maps.google.com/maps?q=${BUSINESS.geo.latitude},${BUSINESS.geo.longitude}&z=16&output=embed`;
+---
+<Base locale={locale} path={path} title={title} description={description} schema={schemas}>
+  <section class="pt-20 md:pt-28 pb-12 bg-gradient-to-br from-ivory-50 to-gold-50/30">
+    <div class="max-w-6xl mx-auto px-4 md:px-8">
+      <nav aria-label="Breadcrumb" class="mb-8 text-sm text-ink-500">
+        <ol class="flex items-center gap-2">
+          <li><a href={hrefFor(locale, '')} class="hover:text-gold-700">{t(locale, 'nav.home')}</a></li>
+          <li aria-hidden="true">/</li>
+          <li class="text-ink-800 font-medium">{t(locale, 'nav.contatti')}</li>
+        </ol>
+      </nav>
+      <SectionHeading as="h1" eyebrow="Contact" title="Visit the shop, call or write" subtitle="Free, no-obligation appraisal. We respond within 4 business hours." />
+    </div>
+  </section>
+
+  <section class="py-16 md:py-20 bg-white">
+    <div class="max-w-6xl mx-auto px-4 md:px-8 grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16">
+
+      <div class="space-y-10">
+        <div>
+          <h3 class="serif text-xl font-semibold text-ink-900 mb-4">{t(locale, 'contact.address_title')}</h3>
+          <address class="not-italic text-ink-600 text-[17px] leading-relaxed mb-3">
+            <strong class="text-ink-900 block">{BUSINESS.legalName}</strong>
+            {BUSINESS.address.streetAddress}<br/>
+            {BUSINESS.address.postalCode} {BUSINESS.address.addressLocality}<br/>
+            VAT ID {BUSINESS.vatId}
+          </address>
+          <a href={mapsUrl} target="_blank" rel="noopener" class="inline-flex items-center gap-2 text-gold-700 font-semibold text-sm uppercase tracking-wider hover:text-gold-800">
+            {t(locale, 'cta.directions')}
+          </a>
+        </div>
+
+        <div>
+          <h3 class="serif text-xl font-semibold text-ink-900 mb-4">{t(locale, 'contact.hours_title')}</h3>
+          <ul class="space-y-2 text-ink-600 text-[16px]">
+            <li class="flex gap-4"><span class="text-ink-400 font-mono text-sm w-14 flex-shrink-0 pt-0.5">Mon-Fri</span><span>{t(locale, 'contact.hours_week')}</span></li>
+            <li class="flex gap-4"><span class="text-ink-400 font-mono text-sm w-14 flex-shrink-0 pt-0.5">Thu</span><span>{t(locale, 'contact.hours_thu')}</span></li>
+            <li class="flex gap-4"><span class="text-ink-400 font-mono text-sm w-14 flex-shrink-0 pt-0.5">Sat-Sun</span><span class="text-ink-500">{t(locale, 'contact.hours_sat')}</span></li>
+          </ul>
+        </div>
+
+        <div>
+          <h3 class="serif text-xl font-semibold text-ink-900 mb-4">Direct contact</h3>
+          <div class="space-y-3">
+            <a href="tel:+390552335573" class="flex items-center gap-3 text-ink-700 hover:text-gold-700">
+              <span class="text-ink-400 text-xs uppercase tracking-wider w-24">Phone</span>
+              <span class="font-mono font-semibold">+39 055 2335573</span>
+            </a>
+            <a href="tel:+393917792818" class="flex items-center gap-3 text-ink-700 hover:text-gold-700">
+              <span class="text-ink-400 text-xs uppercase tracking-wider w-24">Mobile</span>
+              <span class="font-mono font-semibold">+39 391 7792818</span>
+            </a>
+            <a href={`mailto:${BUSINESS.email}`} class="flex items-center gap-3 text-ink-700 hover:text-gold-700">
+              <span class="text-ink-400 text-xs uppercase tracking-wider w-24">Email</span>
+              <span class="font-mono font-semibold">{BUSINESS.email}</span>
+            </a>
+            <a href="https://wa.me/393917792818" target="_blank" rel="noopener" class="flex items-center gap-3 text-emerald-700 hover:text-emerald-800">
+              <span class="text-ink-400 text-xs uppercase tracking-wider w-24">WhatsApp</span>
+              <span class="font-semibold">Message on WhatsApp</span>
+            </a>
+          </div>
+        </div>
+
+        <div>
+          <h3 class="serif text-xl font-semibold text-ink-900 mb-4">{t(locale, 'contact.parking_title')}</h3>
+          <p class="text-ink-600 text-[16px] leading-relaxed">{t(locale, 'contact.parking_text')}</p>
+        </div>
+      </div>
+
+      <div class="lg:sticky lg:top-24 lg:self-start">
+        <ContactForm locale={locale} />
+      </div>
+
+    </div>
+  </section>
+
+  <section class="bg-ink-900">
+    <div class="max-w-7xl mx-auto">
+      <div class="aspect-[21/9] md:aspect-[21/7]">
+        <iframe src={mapsEmbed} class="w-full h-full border-0 grayscale-[30%]" loading="lazy" referrerpolicy="no-referrer-when-downgrade" title="Giallo Oro Firenze shop map" aria-label="Map — Via del Ponte Sospeso 31, Florence" />
+      </div>
+    </div>
+  </section>
+</Base>

@@ -1,0 +1,96 @@
+---
+/**
+ * @package GIALLORO-FIRENZE — Investimento IT
+ * @author Padmin D. Curtis (AI Partner OS3.0) for Fabio Cherici
+ * @version 1.0.0 (FlorenceEGI — GIALLORO-FIRENZE)
+ * @date 2026-04-17
+ * @purpose Pagina investimento oro fisico: sterline + lingotti LBMA.
+ *          Answer-first per AEO, Service schema, CTA diretto.
+ */
+import Base from '@layouts/Base.astro';
+import SectionHeading from '@components/SectionHeading.astro';
+import { t, hrefFor } from '@i18n/index';
+import { breadcrumbSchema, serviceSchema } from '@lib/schema';
+
+const locale = 'it' as const;
+const path = '/investimento';
+
+const schemas = [
+  breadcrumbSchema([
+    { name: t(locale, 'nav.home'), url: 'https://gialloorofirenze.it/' },
+    { name: t(locale, 'nav.investimento'), url: 'https://gialloorofirenze.it/investimento' },
+  ]),
+  serviceSchema({
+    name: 'Vendita oro da investimento',
+    description: t(locale, 'investimento.answer'),
+    serviceType: 'Investment Gold Sales',
+    areaServed: 'Firenze, Toscana, Italia',
+  }),
+];
+
+const title = 'Investimento oro fisico · Sterline + Lingotti LBMA a Firenze';
+const description = t(locale, 'investimento.answer');
+---
+<Base locale={locale} path={path} title={title} description={description} schema={schemas}>
+
+  <section class="pt-20 md:pt-28 pb-12 bg-gradient-to-br from-ivory-50 to-gold-50/30">
+    <div class="max-w-5xl mx-auto px-4 md:px-8">
+      <nav aria-label="Breadcrumb" class="mb-8 text-sm text-ink-500">
+        <ol class="flex items-center gap-2">
+          <li><a href={hrefFor(locale, '')} class="hover:text-gold-700">{t(locale, 'nav.home')}</a></li>
+          <li aria-hidden="true">/</li>
+          <li class="text-ink-800 font-medium">{t(locale, 'nav.investimento')}</li>
+        </ol>
+      </nav>
+      <SectionHeading as="h1" eyebrow="Oro da investimento" title={t(locale, 'investimento.title')} />
+      <p class="text-xl text-ink-700 leading-relaxed max-w-3xl mx-auto text-center -mt-4">
+        {t(locale, 'investimento.answer')}
+      </p>
+    </div>
+  </section>
+
+  <section class="py-16 md:py-20 bg-white">
+    <div class="max-w-6xl mx-auto px-4 md:px-8 grid md:grid-cols-2 gap-8 lg:gap-12">
+
+      <article class="card-lux p-8 md:p-10 group">
+        <div class="w-16 h-16 rounded-full bg-gold-500/10 border border-gold-400 flex items-center justify-center mb-6 text-gold-700">
+          <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M8 14c.9.9 2 1.5 4 1.5s3.1-.6 4-1.5M8 10c.9-.9 2-1.5 4-1.5s3.1.6 4 1.5"/></svg>
+        </div>
+        <h2 class="serif text-3xl text-ink-900 mb-4">{t(locale, 'investimento.sterline_title')}</h2>
+        <p class="text-ink-600 text-[16px] leading-relaxed mb-6">{t(locale, 'investimento.sterline_text')}</p>
+        <div class="flex flex-wrap gap-2 text-xs">
+          <span class="px-2.5 py-1 bg-gold-50 text-gold-800 rounded-sm border border-gold-200">Vittoria</span>
+          <span class="px-2.5 py-1 bg-gold-50 text-gold-800 rounded-sm border border-gold-200">Edoardo VII</span>
+          <span class="px-2.5 py-1 bg-gold-50 text-gold-800 rounded-sm border border-gold-200">Giorgio V</span>
+          <span class="px-2.5 py-1 bg-gold-50 text-gold-800 rounded-sm border border-gold-200">Elisabetta II</span>
+        </div>
+      </article>
+
+      <article class="card-lux p-8 md:p-10 group">
+        <div class="w-16 h-16 rounded-sm bg-gold-500/10 border border-gold-400 flex items-center justify-center mb-6 text-gold-700">
+          <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" aria-hidden="true"><rect x="3" y="10" width="18" height="8" rx="1"/><path d="M6 10V7a2 2 0 012-2h8a2 2 0 012 2v3"/><path d="M8 14h8"/></svg>
+        </div>
+        <h2 class="serif text-3xl text-ink-900 mb-4">{t(locale, 'investimento.lingotti_title')}</h2>
+        <p class="text-ink-600 text-[16px] leading-relaxed mb-6">{t(locale, 'investimento.lingotti_text')}</p>
+        <div class="flex flex-wrap gap-2 text-xs">
+          {['1g','5g','10g','20g','50g','100g','250g','500g','1kg','5kg'].map((t) => (
+            <span class="px-2.5 py-1 bg-ink-50 text-ink-800 rounded-sm border border-ink-200 font-mono font-semibold">{t}</span>
+          ))}
+        </div>
+      </article>
+
+    </div>
+  </section>
+
+  <section class="py-16 bg-ivory-50 text-center">
+    <div class="max-w-2xl mx-auto px-4 md:px-8">
+      <h2 class="serif text-3xl text-ink-900 mb-4">Prenota il ritiro in negozio</h2>
+      <p class="text-ink-600 mb-8">Disponibilità verificata al momento, consegna in tutta Italia su richiesta con trasporto assicurato.</p>
+      <div class="flex flex-col sm:flex-row justify-center gap-3">
+        <a href={hrefFor(locale, 'contatti')} class="btn-gold">{t(locale, 'cta.appointment')}</a>
+        <a href="tel:+390552335573" class="btn-ghost">{t(locale, 'cta.call')}</a>
+      </div>
+    </div>
+  </section>
+
+</Base>

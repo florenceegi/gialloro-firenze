@@ -172,6 +172,16 @@ a.lux-link:hover::after { right: 0; }
   border-color: var(--color-gold-400);
 }
 
+/* Prose content luxury (pagine legali + lunghe) */
+.prose-lux { color: var(--color-ink-700); line-height: 1.7; font-size: 17px; }
+.prose-lux p { margin-bottom: 1.25em; }
+.prose-lux h2 { margin-top: 2.25em; margin-bottom: 0.75em; }
+.prose-lux ul { margin-bottom: 1.25em; padding-left: 1.5em; }
+.prose-lux li { margin-bottom: 0.5em; }
+.prose-lux a { color: var(--color-gold-700); text-decoration: underline; text-decoration-color: var(--color-gold-300); text-underline-offset: 3px; }
+.prose-lux a:hover { color: var(--color-gold-800); text-decoration-color: var(--color-gold-500); }
+.prose-lux strong { color: var(--color-ink-900); font-weight: 600; }
+
 /* Focus a11y (WCAG AA) */
 *:focus-visible {
   outline: 2px solid var(--color-gold-500);

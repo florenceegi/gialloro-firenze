@@ -1,0 +1,38 @@
+---
+/**
+ * @package GIALLORO-FIRENZE — Cookie IT
+ * @author Padmin D. Curtis (AI Partner OS3.0) for Fabio Cherici
+ * @version 1.0.0 (FlorenceEGI — GIALLORO-FIRENZE)
+ * @date 2026-04-17
+ * @purpose Cookie Policy. Attualmente solo cookie tecnici (nessun tracker third-party).
+ */
+import Base from '@layouts/Base.astro';
+import SectionHeading from '@components/SectionHeading.astro';
+import { hrefFor } from '@i18n/index';
+
+const locale = 'it' as const;
+const path = '/cookie';
+const title = 'Cookie Policy · Giallo Oro Firenze';
+const description = 'Informativa sui cookie utilizzati dal sito. Solo cookie tecnici strettamente necessari.';
+---
+<Base locale={locale} path={path} title={title} description={description} noindex={true}>
+  <article class="prose-lux py-20 md:py-24 max-w-3xl mx-auto px-4 md:px-8">
+    <SectionHeading as="h1" eyebrow="Informativa" title="Cookie Policy" center={false} />
+
+    <p>Questo sito utilizza esclusivamente <strong>cookie tecnici strettamente necessari</strong> al funzionamento. Non utilizziamo cookie di profilazione, marketing o tracking di terze parti.</p>
+
+    <h2 class="serif text-2xl text-ink-900 mt-10 mb-4">Cookie tecnici</h2>
+    <ul class="list-disc pl-6 space-y-2">
+      <li><strong>session_id</strong> — cookie di sessione per la validazione del modulo di contatto (CSRF). Scadenza: fine sessione browser.</li>
+      <li><strong>csrf_token</strong> — token anti-CSRF per il modulo di contatto. Scadenza: 1 ora.</li>
+    </ul>
+
+    <h2 class="serif text-2xl text-ink-900 mt-10 mb-4">Disabilitare i cookie</h2>
+    <p>Puoi disabilitare i cookie nelle impostazioni del tuo browser. Disabilitando i cookie tecnici il modulo di contatto non funzionerà; puoi comunque contattarci via email, telefono o WhatsApp.</p>
+
+    <h2 class="serif text-2xl text-ink-900 mt-10 mb-4">Altri strumenti di navigazione</h2>
+    <p>Il sito integra una mappa Google Maps via iframe. Google può rilasciare propri cookie al caricamento dell'iframe (policy: <a href="https://policies.google.com/privacy" class="text-gold-700" target="_blank" rel="noopener">policies.google.com/privacy</a>).</p>
+
+    <p class="text-sm text-ink-500 mt-12">Per dettagli sul trattamento dati consulta la <a href={hrefFor(locale, 'privacy')} class="text-gold-700">Privacy Policy</a>. Ultimo aggiornamento: 2026-04-17</p>
+  </article>
+</Base>

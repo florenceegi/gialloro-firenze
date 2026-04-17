@@ -1,0 +1,80 @@
+---
+/**
+ * @package GIALLORO-FIRENZE — Chi siamo IT
+ * @author Padmin D. Curtis (AI Partner OS3.0) for Fabio Cherici
+ * @version 1.0.0 (FlorenceEGI — GIALLORO-FIRENZE)
+ * @date 2026-04-17
+ * @purpose Storia, valori e team. E-E-A-T (Experience, Expertise, Authority, Trust).
+ */
+import Base from '@layouts/Base.astro';
+import SectionHeading from '@components/SectionHeading.astro';
+import { t, hrefFor } from '@i18n/index';
+import { breadcrumbSchema } from '@lib/schema';
+
+const locale = 'it' as const;
+const path = '/chi-siamo';
+
+const schemas = [
+  breadcrumbSchema([
+    { name: t(locale, 'nav.home'), url: 'https://gialloorofirenze.it/' },
+    { name: t(locale, 'nav.chi_siamo'), url: 'https://gialloorofirenze.it/chi-siamo' },
+  ]),
+];
+
+const title = 'Chi siamo · Giallo Oro Firenze · Banco metalli iscritto OAM';
+const description = t(locale, 'chi_siamo.answer');
+---
+<Base locale={locale} path={path} title={title} description={description} schema={schemas}>
+
+  <section class="pt-20 md:pt-28 pb-12 bg-gradient-to-br from-ivory-50 to-gold-50/30">
+    <div class="max-w-5xl mx-auto px-4 md:px-8">
+      <nav aria-label="Breadcrumb" class="mb-8 text-sm text-ink-500">
+        <ol class="flex items-center gap-2">
+          <li><a href={hrefFor(locale, '')} class="hover:text-gold-700">{t(locale, 'nav.home')}</a></li>
+          <li aria-hidden="true">/</li>
+          <li class="text-ink-800 font-medium">{t(locale, 'nav.chi_siamo')}</li>
+        </ol>
+      </nav>
+      <SectionHeading as="h1" eyebrow="Chi siamo" title={t(locale, 'chi_siamo.title')} />
+      <p class="text-xl text-ink-700 leading-relaxed max-w-3xl mx-auto text-center -mt-4">
+        {t(locale, 'chi_siamo.answer')}
+      </p>
+    </div>
+  </section>
+
+  <section class="py-16 md:py-20 bg-white">
+    <div class="max-w-4xl mx-auto px-4 md:px-8 grid md:grid-cols-2 gap-10">
+      <div>
+        <h2 class="serif text-3xl text-ink-900 mb-5">La nostra storia</h2>
+        <p class="text-ink-600 leading-relaxed mb-4">
+          Giallo Oro Firenze nasce nel 2008 dalla passione per il metallo prezioso di Edoardo Boccherini.
+          In una città dove l'oro è parte della storia — dal Ponte Vecchio alle botteghe rinascimentali —
+          abbiamo scelto di unire tradizione orafa e trasparenza moderna.
+        </p>
+        <p class="text-ink-600 leading-relaxed">
+          Oggi siamo un punto di riferimento per chi vende oro a Firenze: iscritti OAM, quotazione
+          pubblica, perizia gratuita, pagamento sempre tracciato.
+        </p>
+      </div>
+      <div>
+        <h2 class="serif text-3xl text-ink-900 mb-5">I nostri valori</h2>
+        <ul class="space-y-4 text-ink-700">
+          <li class="flex gap-3"><span class="text-gold-600 font-bold flex-shrink-0">·</span><div><strong class="text-ink-900">Trasparenza.</strong> Prezzo alla luce del sole, calcolato davanti al cliente.</div></li>
+          <li class="flex gap-3"><span class="text-gold-600 font-bold flex-shrink-0">·</span><div><strong class="text-ink-900">Competenza.</strong> Perito gemmologo abilitato, laboratorio orafo interno.</div></li>
+          <li class="flex gap-3"><span class="text-gold-600 font-bold flex-shrink-0">·</span><div><strong class="text-ink-900">Legalità.</strong> Iscrizione OAM, antiriciclaggio, pagamenti tracciati.</div></li>
+          <li class="flex gap-3"><span class="text-gold-600 font-bold flex-shrink-0">·</span><div><strong class="text-ink-900">Rispetto.</strong> Nessuna pressione a vendere, nessun costo per la valutazione orale.</div></li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section class="py-16 bg-ink-900 text-ivory-50 relative overflow-hidden">
+    <div class="absolute inset-0 opacity-[0.04]" aria-hidden="true" style="background-image: radial-gradient(circle at 1px 1px, #d4af37 1px, transparent 0); background-size: 32px 32px;"></div>
+    <div class="max-w-4xl mx-auto px-4 md:px-8 text-center relative">
+      <h2 class="serif text-3xl md:text-4xl mb-4 text-ivory-50">Passa a conoscerci</h2>
+      <p class="text-ivory-200/90 mb-8 max-w-xl mx-auto">Siamo in Via del Ponte Sospeso 31, a 400 metri dalla fermata tramvia Cascine. Un caffè lo offriamo noi.</p>
+      <a href={hrefFor(locale, 'contatti')} class="btn-gold">{t(locale, 'cta.directions')}</a>
+    </div>
+  </section>
+
+</Base>

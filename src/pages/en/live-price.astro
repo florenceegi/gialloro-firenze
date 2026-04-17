@@ -1,0 +1,73 @@
+---
+/**
+ * @package GIALLORO-FIRENZE — Live Price EN
+ * @author Padmin D. Curtis (AI Partner OS3.0) for Fabio Cherici
+ * @version 1.0.0 (FlorenceEGI — GIALLORO-FIRENZE)
+ * @date 2026-04-17
+ * @purpose EN mirror of /quotazioni. Gold and silver prices today.
+ */
+import Base from '@layouts/Base.astro';
+import SectionHeading from '@components/SectionHeading.astro';
+import GoldQuoteTable from '@components/GoldQuoteTable.astro';
+import { t, hrefFor } from '@i18n/index';
+import { breadcrumbSchema } from '@lib/schema';
+
+const locale = 'en' as const;
+const path = '/en/live-price';
+
+const schemas = [
+  breadcrumbSchema([
+    { name: t(locale, 'nav.home'), url: 'https://gialloorofirenze.it/en' },
+    { name: t(locale, 'nav.quotazioni'), url: 'https://gialloorofirenze.it/en/live-price' },
+  ]),
+];
+
+const title = 'Gold Price Florence Today · Per gram live quote';
+const description = 'Gold price per gram today in Florence: 24kt, 22kt, 18kt, 14kt, 9kt. Silver 925/800. Prices updated daily on London Gold Fixing.';
+---
+<Base locale={locale} path={path} title={title} description={description} schema={schemas}>
+  <section class="pt-20 md:pt-28 pb-12 bg-gradient-to-br from-ivory-50 to-gold-50/30">
+    <div class="max-w-5xl mx-auto px-4 md:px-8">
+      <nav aria-label="Breadcrumb" class="mb-8 text-sm text-ink-500">
+        <ol class="flex items-center gap-2">
+          <li><a href={hrefFor(locale, '')} class="hover:text-gold-700">{t(locale, 'nav.home')}</a></li>
+          <li aria-hidden="true">/</li>
+          <li class="text-ink-800 font-medium">{t(locale, 'nav.quotazioni')}</li>
+        </ol>
+      </nav>
+      <SectionHeading as="h1" eyebrow="Today's price" title={t(locale, 'quotes.title')} subtitle={t(locale, 'quotes.subtitle')} />
+    </div>
+  </section>
+
+  <section class="py-12 md:py-16 bg-white">
+    <div class="max-w-5xl mx-auto px-4 md:px-8">
+      <GoldQuoteTable locale={locale} />
+    </div>
+  </section>
+
+  <section class="py-16 bg-ivory-50">
+    <div class="max-w-3xl mx-auto px-4 md:px-8">
+      <div class="p-8 border border-gold-200 rounded-sm bg-white shadow-gold-sm">
+        <h2 class="serif text-2xl font-semibold text-ink-900 mb-4">How the price is calculated</h2>
+        <ol class="space-y-3 text-ink-700 text-[16px] leading-relaxed list-decimal list-inside">
+          <li>Daily London Gold Fixing quote (USD/oz)</li>
+          <li>Conversion to EUR at current ECB rate</li>
+          <li>Price per gram by purity (24kt / 22kt / 18kt / 14kt / 9kt)</li>
+          <li>Transparent commercial margin deducted</li>
+          <li>In-store verification of weight and purity (acid test + certified scale)</li>
+        </ol>
+      </div>
+    </div>
+  </section>
+
+  <section class="py-16 bg-white text-center">
+    <div class="max-w-2xl mx-auto px-4 md:px-8">
+      <h2 class="serif text-3xl text-ink-900 mb-4">Want a personalized valuation?</h2>
+      <p class="text-ink-600 mb-8">Bring your gold to the shop or send us a photo on WhatsApp for a live estimate.</p>
+      <div class="flex flex-col sm:flex-row justify-center gap-3">
+        <a href={hrefFor(locale, 'contact')} class="btn-gold">{t(locale, 'hero.cta_primary')}</a>
+        <a href="https://wa.me/393917792818" class="btn-ghost">{t(locale, 'cta.whatsapp')}</a>
+      </div>
+    </div>
+  </section>
+</Base>

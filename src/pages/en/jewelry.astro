@@ -1,0 +1,68 @@
+---
+/**
+ * @package GIALLORO-FIRENZE — Jewelry EN
+ * @author Padmin D. Curtis (AI Partner OS3.0) for Fabio Cherici
+ * @version 1.0.0 (FlorenceEGI — GIALLORO-FIRENZE)
+ * @date 2026-04-17
+ * @purpose EN mirror of /gioielleria. Bespoke + upcycling.
+ */
+import Base from '@layouts/Base.astro';
+import SectionHeading from '@components/SectionHeading.astro';
+import { t, hrefFor } from '@i18n/index';
+import { breadcrumbSchema, serviceSchema } from '@lib/schema';
+
+const locale = 'en' as const;
+const path = '/en/jewelry';
+
+const schemas = [
+  breadcrumbSchema([
+    { name: t(locale, 'nav.home'), url: 'https://gialloorofirenze.it/en' },
+    { name: t(locale, 'nav.gioielleria'), url: 'https://gialloorofirenze.it/en/jewelry' },
+  ]),
+  serviceSchema({
+    name: 'Custom jewelry and heirloom upcycling',
+    description: t(locale, 'gioielleria.answer'),
+    serviceType: 'Custom Jewelry',
+    areaServed: 'Italy',
+  }),
+];
+
+const title = 'Custom Jewelry Florence · Bespoke + heirloom upcycling';
+const description = t(locale, 'gioielleria.answer');
+---
+<Base locale={locale} path={path} title={title} description={description} schema={schemas}>
+  <section class="pt-20 md:pt-28 pb-12 bg-gradient-to-br from-ivory-50 to-gold-50/30">
+    <div class="max-w-5xl mx-auto px-4 md:px-8">
+      <nav aria-label="Breadcrumb" class="mb-8 text-sm text-ink-500">
+        <ol class="flex items-center gap-2">
+          <li><a href={hrefFor(locale, '')} class="hover:text-gold-700">{t(locale, 'nav.home')}</a></li>
+          <li aria-hidden="true">/</li>
+          <li class="text-ink-800 font-medium">{t(locale, 'nav.gioielleria')}</li>
+        </ol>
+      </nav>
+      <SectionHeading as="h1" eyebrow="Jewelry" title={t(locale, 'gioielleria.title')} />
+      <p class="text-xl text-ink-700 leading-relaxed max-w-3xl mx-auto text-center -mt-4">{t(locale, 'gioielleria.answer')}</p>
+    </div>
+  </section>
+
+  <section class="py-16 md:py-20 bg-white">
+    <div class="max-w-6xl mx-auto px-4 md:px-8 grid md:grid-cols-2 gap-8 lg:gap-12">
+      <article class="card-lux p-8 md:p-10">
+        <h2 class="serif text-3xl text-ink-900 mb-4">{t(locale, 'gioielleria.custom_title')}</h2>
+        <p class="text-ink-600 text-[16px] leading-relaxed">{t(locale, 'gioielleria.custom_text')}</p>
+      </article>
+      <article class="card-lux p-8 md:p-10">
+        <h2 class="serif text-3xl text-ink-900 mb-4">{t(locale, 'gioielleria.upcycling_title')}</h2>
+        <p class="text-ink-600 text-[16px] leading-relaxed">{t(locale, 'gioielleria.upcycling_text')}</p>
+      </article>
+    </div>
+  </section>
+
+  <section class="py-16 bg-ivory-50 text-center">
+    <div class="max-w-2xl mx-auto px-4 md:px-8">
+      <h2 class="serif text-3xl text-ink-900 mb-4">Request a personalized quote</h2>
+      <p class="text-ink-600 mb-8">Bring an idea, a sketch or a jewel to transform. First consultation is free.</p>
+      <a href={hrefFor(locale, 'contact')} class="btn-gold">{t(locale, 'cta.appointment')}</a>
+    </div>
+  </section>
+</Base>

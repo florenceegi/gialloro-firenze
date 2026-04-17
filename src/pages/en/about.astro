@@ -1,0 +1,76 @@
+---
+/**
+ * @package GIALLORO-FIRENZE — About EN
+ * @author Padmin D. Curtis (AI Partner OS3.0) for Fabio Cherici
+ * @version 1.0.0 (FlorenceEGI — GIALLORO-FIRENZE)
+ * @date 2026-04-17
+ * @purpose EN mirror of /chi-siamo. E-E-A-T: story + values.
+ */
+import Base from '@layouts/Base.astro';
+import SectionHeading from '@components/SectionHeading.astro';
+import { t, hrefFor } from '@i18n/index';
+import { breadcrumbSchema } from '@lib/schema';
+
+const locale = 'en' as const;
+const path = '/en/about';
+
+const schemas = [
+  breadcrumbSchema([
+    { name: t(locale, 'nav.home'), url: 'https://gialloorofirenze.it/en' },
+    { name: t(locale, 'nav.chi_siamo'), url: 'https://gialloorofirenze.it/en/about' },
+  ]),
+];
+
+const title = 'About · Giallo Oro Firenze · OAM-registered gold dealer';
+const description = t(locale, 'chi_siamo.answer');
+---
+<Base locale={locale} path={path} title={title} description={description} schema={schemas}>
+  <section class="pt-20 md:pt-28 pb-12 bg-gradient-to-br from-ivory-50 to-gold-50/30">
+    <div class="max-w-5xl mx-auto px-4 md:px-8">
+      <nav aria-label="Breadcrumb" class="mb-8 text-sm text-ink-500">
+        <ol class="flex items-center gap-2">
+          <li><a href={hrefFor(locale, '')} class="hover:text-gold-700">{t(locale, 'nav.home')}</a></li>
+          <li aria-hidden="true">/</li>
+          <li class="text-ink-800 font-medium">{t(locale, 'nav.chi_siamo')}</li>
+        </ol>
+      </nav>
+      <SectionHeading as="h1" eyebrow="About us" title={t(locale, 'chi_siamo.title')} />
+      <p class="text-xl text-ink-700 leading-relaxed max-w-3xl mx-auto text-center -mt-4">{t(locale, 'chi_siamo.answer')}</p>
+    </div>
+  </section>
+
+  <section class="py-16 md:py-20 bg-white">
+    <div class="max-w-4xl mx-auto px-4 md:px-8 grid md:grid-cols-2 gap-10">
+      <div>
+        <h2 class="serif text-3xl text-ink-900 mb-5">Our story</h2>
+        <p class="text-ink-600 leading-relaxed mb-4">
+          Giallo Oro Firenze was founded in 2008 by Edoardo Boccherini out of passion for precious metal.
+          In a city where gold is part of history — from Ponte Vecchio to Renaissance workshops —
+          we chose to merge traditional goldsmithing with modern transparency.
+        </p>
+        <p class="text-ink-600 leading-relaxed">
+          Today we are a reference point for gold-sellers in Florence: OAM-registered, public price,
+          free appraisal, always traceable payment.
+        </p>
+      </div>
+      <div>
+        <h2 class="serif text-3xl text-ink-900 mb-5">Our values</h2>
+        <ul class="space-y-4 text-ink-700">
+          <li class="flex gap-3"><span class="text-gold-600 font-bold flex-shrink-0">·</span><div><strong class="text-ink-900">Transparency.</strong> Price in the open, calculated in front of the customer.</div></li>
+          <li class="flex gap-3"><span class="text-gold-600 font-bold flex-shrink-0">·</span><div><strong class="text-ink-900">Expertise.</strong> Certified gemologist, in-house goldsmith workshop.</div></li>
+          <li class="flex gap-3"><span class="text-gold-600 font-bold flex-shrink-0">·</span><div><strong class="text-ink-900">Compliance.</strong> OAM registration, AML, traceable payments.</div></li>
+          <li class="flex gap-3"><span class="text-gold-600 font-bold flex-shrink-0">·</span><div><strong class="text-ink-900">Respect.</strong> No pressure to sell, no fee for verbal appraisal.</div></li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section class="py-16 bg-ink-900 text-ivory-50 relative overflow-hidden">
+    <div class="absolute inset-0 opacity-[0.04]" aria-hidden="true" style="background-image: radial-gradient(circle at 1px 1px, #d4af37 1px, transparent 0); background-size: 32px 32px;"></div>
+    <div class="max-w-4xl mx-auto px-4 md:px-8 text-center relative">
+      <h2 class="serif text-3xl md:text-4xl mb-4 text-ivory-50">Come meet us</h2>
+      <p class="text-ivory-200/90 mb-8 max-w-xl mx-auto">Via del Ponte Sospeso 31, 400m from the Cascine tram stop. Coffee is on us.</p>
+      <a href={hrefFor(locale, 'contact')} class="btn-gold">{t(locale, 'cta.directions')}</a>
+    </div>
+  </section>
+</Base>

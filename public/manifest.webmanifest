@@ -1,0 +1,14 @@
+{
+  "name": "Giallo Oro Firenze",
+  "short_name": "Giallo Oro",
+  "description": "Banco metalli, compro oro, gioielleria e perizie a Firenze dal 2008.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#fdfbf5",
+  "theme_color": "#d4af37",
+  "lang": "it-IT",
+  "dir": "ltr",
+  "icons": [
+    { "src": "/favicon.svg", "sizes": "any", "type": "image/svg+xml", "purpose": "any maskable" }
+  ]
+}

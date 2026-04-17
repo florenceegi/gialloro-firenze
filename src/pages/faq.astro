@@ -1,0 +1,105 @@
+---
+/**
+ * @package GIALLORO-FIRENZE — FAQ IT
+ * @author Padmin D. Curtis (AI Partner OS3.0) for Fabio Cherici
+ * @version 1.0.0 (FlorenceEGI — GIALLORO-FIRENZE)
+ * @date 2026-04-17
+ * @purpose Pagina FAQ IT. Raggruppa per categoria, FAQPage JSON-LD completo
+ *          per massima citazione Google SGE / AI Overviews / ChatGPT.
+ */
+import Base from '@layouts/Base.astro';
+import SectionHeading from '@components/SectionHeading.astro';
+import FAQItem from '@components/FAQItem.astro';
+import { t, hrefFor } from '@i18n/index';
+import { breadcrumbSchema, faqPageSchema } from '@lib/schema';
+import { getCollection } from 'astro:content';
+
+const locale = 'it' as const;
+const path = '/faq';
+
+const all = await getCollection('faq');
+const sorted = all.sort((a, b) => a.data.order - b.data.order);
+
+const CATEGORY_LABELS: Record<string, string> = {
+  generale: 'Generale',
+  vendita: 'Vendita oro',
+  acquisto: 'Acquisto e investimento',
+  perizie: 'Perizie e valutazioni',
+  gioielleria: 'Gioielleria',
+  legale: 'Aspetti legali',
+};
+
+const grouped = sorted.reduce<Record<string, typeof sorted>>((acc, item) => {
+  const k = item.data.category;
+  if (!acc[k]) acc[k] = [];
+  acc[k].push(item);
+  return acc;
+}, {});
+
+const faqForSchema = sorted.map((f) => ({
+  question: f.data.question_it,
+  answer: f.data.answer_it,
+}));
+
+const schemas = [
+  breadcrumbSchema([
+    { name: t(locale, 'nav.home'), url: 'https://gialloorofirenze.it/' },
+    { name: t(locale, 'faq.title'), url: 'https://gialloorofirenze.it/faq' },
+  ]),
+  faqPageSchema(faqForSchema),
+];
+
+const title = `${t(locale, 'faq.title')} · Compro Oro Firenze`;
+const description = t(locale, 'faq.subtitle') + ' Perizie, quotazioni, documenti, tempi di pagamento.';
+---
+<Base locale={locale} path={path} title={title} description={description} schema={schemas}>
+
+  <section class="pt-20 md:pt-28 pb-12 bg-gradient-to-br from-ivory-50 to-gold-50/30">
+    <div class="max-w-4xl mx-auto px-4 md:px-8">
+      <nav aria-label="Breadcrumb" class="mb-8 text-sm text-ink-500">
+        <ol class="flex items-center gap-2">
+          <li><a href={hrefFor(locale, '')} class="hover:text-gold-700">{t(locale, 'nav.home')}</a></li>
+          <li aria-hidden="true">/</li>
+          <li class="text-ink-800 font-medium">{t(locale, 'faq.title')}</li>
+        </ol>
+      </nav>
+      <SectionHeading
+        as="h1"
+        eyebrow="Domande frequenti"
+        title={t(locale, 'faq.title')}
+        subtitle={t(locale, 'faq.subtitle')}
+      />
+    </div>
+  </section>
+
+  <section class="py-16 md:py-20 bg-white">
+    <div class="max-w-4xl mx-auto px-4 md:px-8 space-y-14">
+      {Object.entries(grouped).map(([cat, items]) => (
+        <div>
+          <h2 class="serif text-2xl md:text-3xl text-gold-700 mb-6 pb-3 border-b border-gold-200/70">
+            {CATEGORY_LABELS[cat] ?? cat}
+          </h2>
+          <div class="space-y-2">
+            {items.map((f) => (
+              <FAQItem question={f.data.question_it}>
+                {f.data.answer_it}
+              </FAQItem>
+            ))}
+          </div>
+        </div>
+      ))}
+    </div>
+  </section>
+
+  <section class="py-16 bg-ivory-50 text-center">
+    <div class="max-w-2xl mx-auto px-4 md:px-8">
+      <h2 class="serif text-3xl text-ink-900 mb-4">Non hai trovato la tua domanda?</h2>
+      <p class="text-ink-600 mb-8">Scrivici o chiamaci: rispondiamo entro 4 ore in orario di ufficio.</p>
+      <div class="flex flex-col sm:flex-row justify-center gap-3">
+        <a href={hrefFor(locale, 'contatti')} class="btn-gold">{t(locale, 'cta.appointment')}</a>
+        <a href="https://wa.me/393917792818" class="btn-ghost">{t(locale, 'cta.whatsapp')}</a>
+      </div>
+    </div>
+  </section>
+
+</Base>

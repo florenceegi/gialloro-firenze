@@ -1,0 +1,101 @@
+---
+/**
+ * @package GIALLORO-FIRENZE — Compro Oro IT
+ * @author Padmin D. Curtis (AI Partner OS3.0) for Fabio Cherici
+ * @version 1.0.0 (FlorenceEGI — GIALLORO-FIRENZE)
+ * @date 2026-04-17
+ * @purpose Pagina vendita oro usato. Answer-first per AEO, Service schema,
+ *          lista chiara cosa acquistiamo/non acquistiamo, documenti richiesti.
+ */
+import Base from '@layouts/Base.astro';
+import SectionHeading from '@components/SectionHeading.astro';
+import GoldQuoteTable from '@components/GoldQuoteTable.astro';
+import { t, hrefFor } from '@i18n/index';
+import { breadcrumbSchema, serviceSchema } from '@lib/schema';
+
+const locale = 'it' as const;
+const path = '/compro-oro';
+
+const schemas = [
+  breadcrumbSchema([
+    { name: t(locale, 'nav.home'), url: 'https://gialloorofirenze.it/' },
+    { name: t(locale, 'nav.compro_oro'), url: 'https://gialloorofirenze.it/compro-oro' },
+  ]),
+  serviceSchema({
+    name: 'Compro Oro Firenze',
+    description: t(locale, 'compro_oro.answer'),
+    serviceType: 'Gold Buying',
+    areaServed: 'Firenze, Toscana, Italia',
+  }),
+];
+
+const title = 'Compro Oro Firenze · Valutazione gratuita, pagamento immediato';
+const description = t(locale, 'compro_oro.answer');
+---
+<Base locale={locale} path={path} title={title} description={description} schema={schemas}>
+
+  <section class="pt-20 md:pt-28 pb-12 bg-gradient-to-br from-ivory-50 to-gold-50/30">
+    <div class="max-w-5xl mx-auto px-4 md:px-8">
+      <nav aria-label="Breadcrumb" class="mb-8 text-sm text-ink-500">
+        <ol class="flex items-center gap-2">
+          <li><a href={hrefFor(locale, '')} class="hover:text-gold-700">{t(locale, 'nav.home')}</a></li>
+          <li aria-hidden="true">/</li>
+          <li class="text-ink-800 font-medium">{t(locale, 'nav.compro_oro')}</li>
+        </ol>
+      </nav>
+      <SectionHeading
+        as="h1"
+        eyebrow="Vendi il tuo oro"
+        title={t(locale, 'compro_oro.title')}
+      />
+      <p class="text-xl text-ink-700 leading-relaxed max-w-3xl mx-auto text-center -mt-4">
+        {t(locale, 'compro_oro.answer')}
+      </p>
+      <div class="mt-10 flex flex-col sm:flex-row justify-center gap-3">
+        <a href={hrefFor(locale, 'contatti')} class="btn-gold">{t(locale, 'hero.cta_primary')}</a>
+        <a href="https://wa.me/393917792818" class="btn-ghost">{t(locale, 'cta.whatsapp')}</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="py-16 md:py-20 bg-white">
+    <div class="max-w-5xl mx-auto px-4 md:px-8 grid md:grid-cols-2 gap-10">
+      <div class="p-8 border border-gold-200 rounded-sm bg-gold-50/40">
+        <h2 class="serif text-2xl font-semibold text-ink-900 mb-5 flex items-center gap-3">
+          <svg class="text-gold-600" width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M9 11l3 3L22 4M21 12v7a2 2 0 01-2 2H5a2 2 0 01-2-2V5a2 2 0 012-2h11"/></svg>
+          {t(locale, 'compro_oro.what_title')}
+        </h2>
+        <ul class="space-y-3 text-ink-700 text-[16px] leading-relaxed">
+          <li class="pl-5 relative before:content-['✓'] before:absolute before:left-0 before:text-gold-600 before:font-bold">{t(locale, 'compro_oro.what_gold')}</li>
+          <li class="pl-5 relative before:content-['✓'] before:absolute before:left-0 before:text-gold-600 before:font-bold">{t(locale, 'compro_oro.what_silver')}</li>
+          <li class="pl-5 relative before:content-['✓'] before:absolute before:left-0 before:text-gold-600 before:font-bold">{t(locale, 'compro_oro.what_coins')}</li>
+          <li class="pl-5 relative before:content-['✓'] before:absolute before:left-0 before:text-gold-600 before:font-bold">{t(locale, 'compro_oro.what_scrap')}</li>
+        </ul>
+      </div>
+      <div class="p-8 border border-ink-200 rounded-sm bg-ivory-50">
+        <h2 class="serif text-2xl font-semibold text-ink-900 mb-5 flex items-center gap-3">
+          <svg class="text-ink-500" width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M4.93 4.93l14.14 14.14"/></svg>
+          {t(locale, 'compro_oro.what_not_title')}
+        </h2>
+        <p class="text-ink-600 text-[16px] leading-relaxed">{t(locale, 'compro_oro.what_not_list')}</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="py-16 md:py-20 bg-ivory-50">
+    <div class="max-w-4xl mx-auto px-4 md:px-8">
+      <SectionHeading eyebrow="Documenti" title={t(locale, 'compro_oro.doc_title')} center />
+      <div class="p-8 border border-gold-200 rounded-sm bg-white shadow-gold-sm max-w-2xl mx-auto">
+        <p class="text-ink-700 leading-relaxed text-[16px]">{t(locale, 'compro_oro.doc_list')}</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="py-16 md:py-20 bg-white">
+    <div class="max-w-5xl mx-auto px-4 md:px-8">
+      <SectionHeading eyebrow="Quotazione oggi" title={t(locale, 'quotes.title')} subtitle={t(locale, 'quotes.subtitle')} />
+      <GoldQuoteTable locale={locale} />
+    </div>
+  </section>
+
+</Base>

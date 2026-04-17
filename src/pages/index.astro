@@ -1,0 +1,212 @@
+---
+/**
+ * @package GIALLORO-FIRENZE — Home IT
+ * @author Padmin D. Curtis (AI Partner OS3.0) for Fabio Cherici
+ * @version 1.0.0 (FlorenceEGI — GIALLORO-FIRENZE)
+ * @date 2026-04-17
+ * @purpose Pagina home IT. Killer editorial luxury. Answer-first + schema
+ *          LocalBusiness (ereditato da Base) + BreadcrumbList + FAQPage teaser.
+ *          Mobile-first, zero JS runtime, Lighthouse target 98+.
+ */
+import Base from '@layouts/Base.astro';
+import Hero from '@components/Hero.astro';
+import SectionHeading from '@components/SectionHeading.astro';
+import ServiceCard from '@components/ServiceCard.astro';
+import FAQItem from '@components/FAQItem.astro';
+import GoldQuoteTable from '@components/GoldQuoteTable.astro';
+import ContactForm from '@components/ContactForm.astro';
+import { t, hrefFor } from '@i18n/index';
+import { breadcrumbSchema, faqPageSchema } from '@lib/schema';
+import { getCollection } from 'astro:content';
+
+const locale = 'it' as const;
+const path = '/';
+
+const faqEntries = await getCollection('faq');
+const faqSorted = faqEntries.sort((a, b) => a.data.order - b.data.order);
+const faqTeaser = faqSorted.slice(0, 4);
+
+const faqForSchema = faqSorted.map((f) => ({
+  question: f.data.question_it,
+  answer: f.data.answer_it,
+}));
+
+const schemas = [
+  breadcrumbSchema([{ name: t(locale, 'nav.home'), url: 'https://gialloorofirenze.it/' }]),
+  faqPageSchema(faqForSchema),
+];
+
+const title = `${t(locale, 'meta.brand')} — ${t(locale, 'meta.tagline')}`;
+const description = t(locale, 'meta.description_default');
+---
+<Base locale={locale} path={path} title={title} description={description} schema={schemas}>
+
+  <Hero locale={locale} />
+
+  {/* ━━━ VALUE PROPS ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */}
+  <section class="py-20 md:py-28 bg-white">
+    <div class="max-w-7xl mx-auto px-4 md:px-8">
+      <SectionHeading
+        eyebrow="Valore"
+        title={t(locale, 'home.value.title')}
+        subtitle={t(locale, 'home.value.subtitle')}
+      />
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5 md:gap-6 mt-14">
+        {[
+          { t: 'home.value.item1_t', d: 'home.value.item1_d', icon: 'M3 6h18M3 12h18M3 18h18' },
+          { t: 'home.value.item2_t', d: 'home.value.item2_d', icon: 'M9 11l3 3L22 4M21 12v7a2 2 0 01-2 2H5a2 2 0 01-2-2V5a2 2 0 012-2h11' },
+          { t: 'home.value.item3_t', d: 'home.value.item3_d', icon: 'M12 6v6l4 2M12 22a10 10 0 100-20 10 10 0 000 20z' },
+          { t: 'home.value.item4_t', d: 'home.value.item4_d', icon: 'M12 2l3 6 7 1-5 5 1 7-6-3-6 3 1-7-5-5 7-1z' },
+        ].map((it) => (
+          <div class="card-lux p-6 md:p-7 group">
+            <div class="w-12 h-12 rounded-sm bg-gold-50 border border-gold-200 text-gold-700 flex items-center justify-center mb-5 group-hover:bg-gold-500 group-hover:text-ink-900 transition-colors">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" set:html={`<path d="${it.icon}"/>`} />
+            </div>
+            <h3 class="serif text-xl font-semibold text-ink-900 mb-2">{t(locale, it.t)}</h3>
+            <p class="text-ink-600 text-[15px] leading-relaxed">{t(locale, it.d)}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  {/* ━━━ SERVICES ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */}
+  <section class="py-20 md:py-28 bg-ivory-50">
+    <div class="max-w-7xl mx-auto px-4 md:px-8">
+      <SectionHeading
+        eyebrow="Servizi"
+        title={t(locale, 'home.services.title')}
+        subtitle={t(locale, 'home.services.subtitle')}
+      />
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5 md:gap-6 mt-14">
+        <ServiceCard icon="scale"
+          title={t(locale, 'home.services.s1_t')}
+          description={t(locale, 'home.services.s1_d')}
+          ctaLabel={t(locale, 'home.services.s1_cta')}
+          href={hrefFor(locale, 'compro-oro')} />
+        <ServiceCard icon="bar"
+          title={t(locale, 'home.services.s2_t')}
+          description={t(locale, 'home.services.s2_d')}
+          ctaLabel={t(locale, 'home.services.s2_cta')}
+          href={hrefFor(locale, 'investimento')} />
+        <ServiceCard icon="gem"
+          title={t(locale, 'home.services.s3_t')}
+          description={t(locale, 'home.services.s3_d')}
+          ctaLabel={t(locale, 'home.services.s3_cta')}
+          href={hrefFor(locale, 'gioielleria')} />
+        <ServiceCard icon="stamp"
+          title={t(locale, 'home.services.s4_t')}
+          description={t(locale, 'home.services.s4_d')}
+          ctaLabel={t(locale, 'home.services.s4_cta')}
+          href={hrefFor(locale, 'perizie')} />
+      </div>
+    </div>
+  </section>
+
+  {/* ━━━ NUMBERS STRIP (dark/gold) ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */}
+  <section class="py-16 md:py-20 bg-ink-900 text-ivory-50 relative overflow-hidden">
+    <div class="absolute inset-0 opacity-[0.04]" aria-hidden="true" style="background-image: radial-gradient(circle at 1px 1px, #d4af37 1px, transparent 0); background-size: 32px 32px;"></div>
+    <div class="max-w-7xl mx-auto px-4 md:px-8 relative">
+      <h2 class="serif text-3xl md:text-4xl text-center mb-14 text-ivory-50">
+        {t(locale, 'home.numbers.title')}
+      </h2>
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-8 md:gap-6">
+        {[
+          { v: 'home.numbers.n1_v', l: 'home.numbers.n1_l' },
+          { v: 'home.numbers.n2_v', l: 'home.numbers.n2_l' },
+          { v: 'home.numbers.n3_v', l: 'home.numbers.n3_l' },
+          { v: 'home.numbers.n4_v', l: 'home.numbers.n4_l' },
+        ].map((n) => (
+          <div class="text-center">
+            <div class="serif text-5xl md:text-6xl text-gold-500 font-semibold mb-2 tracking-tight">{t(locale, n.v)}</div>
+            <div class="text-sm md:text-base text-ivory-200 uppercase tracking-wider">{t(locale, n.l)}</div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  {/* ━━━ HOW IT WORKS ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */}
+  <section class="py-20 md:py-28 bg-white">
+    <div class="max-w-7xl mx-auto px-4 md:px-8">
+      <SectionHeading
+        eyebrow="Processo"
+        title={t(locale, 'home.how.title')}
+        subtitle={t(locale, 'home.how.subtitle')}
+      />
+      <ol class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5 md:gap-6 mt-14">
+        {[
+          { t: 'home.how.s1_t', d: 'home.how.s1_d', n: '01' },
+          { t: 'home.how.s2_t', d: 'home.how.s2_d', n: '02' },
+          { t: 'home.how.s3_t', d: 'home.how.s3_d', n: '03' },
+          { t: 'home.how.s4_t', d: 'home.how.s4_d', n: '04' },
+        ].map((s) => (
+          <li class="relative p-6 md:p-7 border border-ink-200/80 rounded-sm bg-ivory-50/40 hover:border-gold-500/60 transition-colors">
+            <span class="absolute -top-3 left-6 bg-gold-500 text-ink-900 font-bold text-xs tracking-wider px-2.5 py-1 rounded-sm">{s.n}</span>
+            <h3 class="serif text-xl font-semibold text-ink-900 mb-2 mt-2">{t(locale, s.t)}</h3>
+            <p class="text-ink-600 text-[14.5px] leading-relaxed">{t(locale, s.d)}</p>
+          </li>
+        ))}
+      </ol>
+    </div>
+  </section>
+
+  {/* ━━━ QUOTE TABLE ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */}
+  <section class="py-20 md:py-28 bg-ivory-100/70">
+    <div class="max-w-5xl mx-auto px-4 md:px-8">
+      <SectionHeading
+        eyebrow="Quotazione oggi"
+        title={t(locale, 'quotes.title')}
+        subtitle={t(locale, 'quotes.subtitle')}
+      />
+      <div class="mt-12">
+        <GoldQuoteTable locale={locale} />
+      </div>
+      <div class="mt-8 text-center">
+        <a href={hrefFor(locale, 'quotazioni')} class="btn-ghost">
+          {t(locale, 'hero.cta_secondary')}
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  {/* ━━━ FAQ TEASER ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */}
+  <section class="py-20 md:py-28 bg-white">
+    <div class="max-w-4xl mx-auto px-4 md:px-8">
+      <SectionHeading
+        eyebrow="FAQ"
+        title={t(locale, 'faq.title')}
+        subtitle={t(locale, 'faq.subtitle')}
+      />
+      <div class="mt-12 space-y-3">
+        {faqTeaser.map((f) => (
+          <FAQItem question={f.data.question_it}>
+            {f.data.answer_it}
+          </FAQItem>
+        ))}
+      </div>
+      <div class="mt-10 text-center">
+        <a href={hrefFor(locale, 'faq')} class="btn-ghost">
+          {t(locale, 'faq.title')}
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  {/* ━━━ CONTACT FORM ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */}
+  <section class="py-20 md:py-28 bg-gradient-to-br from-ivory-50 to-gold-50/40">
+    <div class="max-w-3xl mx-auto px-4 md:px-8">
+      <SectionHeading
+        eyebrow="Contatti"
+        title={t(locale, 'form.title')}
+        subtitle={t(locale, 'form.subtitle')}
+      />
+      <div class="mt-12">
+        <ContactForm locale={locale} />
+      </div>
+    </div>
+  </section>
+
+</Base>

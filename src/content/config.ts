@@ -12,7 +12,7 @@ const faq = defineCollection({
   type: 'data',
   schema: z.object({
     order: z.number(),
-    category: z.enum(['generale', 'vendita', 'acquisto', 'perizie', 'legale']),
+    category: z.enum(['generale', 'vendita', 'acquisto', 'perizie', 'gioielleria', 'legale']),
     question_it: z.string().min(10),
     answer_it: z.string().min(30),
     question_en: z.string().min(10),
