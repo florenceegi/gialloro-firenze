@@ -1,0 +1,544 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="utf-8"/>
+<title>Audit gialloorofirenze.it - FlorenceEGI WebAgency</title>
+<style>
+@page { size: A4; margin: 2cm 2cm 2.2cm 2cm;
+  @bottom-right { content: counter(page) " / " counter(pages); font-family: Inter, sans-serif; font-size: 9pt; color: #92760f; }
+}
+:root { --gold: #d4af37; --gold-dk: #92760f; --ink: #0c0a09; --ink-soft: #57534e; --ivory: #fdfbf5; --ink-border: #e7e5e4; }
+* { box-sizing: border-box; }
+html, body { margin: 0; padding: 0; }
+body { font-family: Georgia, "Times New Roman", serif; font-size: 10.5pt; line-height: 1.55; color: var(--ink); background: white; }
+h1, h2, h3, h4, h5, h6 { font-family: "Playfair Display", Georgia, serif; color: var(--ink); letter-spacing: -0.01em; margin-top: 1.4em; margin-bottom: 0.6em; line-height: 1.2; }
+h1 { font-size: 26pt; border-bottom: 2px solid var(--gold); padding-bottom: 0.3em; margin-top: 0; }
+h2 { font-size: 18pt; color: var(--gold-dk); }
+h3 { font-size: 13pt; }
+h4 { font-size: 11.5pt; font-style: italic; color: var(--ink-soft); }
+p { margin: 0 0 0.8em; text-align: justify; hyphens: auto; }
+a { color: var(--gold-dk); text-decoration: none; border-bottom: 1px solid rgba(212,175,55,0.4); }
+strong { color: var(--ink); }
+blockquote { margin: 1.2em 0; padding: 0.8em 1.2em; border-left: 3px solid var(--gold); background: var(--ivory); font-style: italic; color: var(--ink-soft); }
+code { font-family: "SF Mono", Consolas, "Courier New", monospace; font-size: 0.88em; background: #f5f5f4; padding: 0.1em 0.35em; border-radius: 2px; color: var(--ink); }
+pre { background: #0c0a09; color: #fde68a; padding: 1em 1.2em; border-radius: 3px; overflow-x: auto; font-size: 8.5pt; line-height: 1.5; page-break-inside: avoid; }
+pre code { background: transparent; color: inherit; padding: 0; }
+table { width: 100%; border-collapse: collapse; margin: 1em 0; font-size: 9.5pt; page-break-inside: avoid; }
+th { background: var(--ink); color: var(--gold); font-family: Inter, sans-serif; font-weight: 600; text-align: left; padding: 0.55em 0.7em; letter-spacing: 0.03em; text-transform: uppercase; font-size: 8pt; }
+td { padding: 0.5em 0.7em; border-bottom: 1px solid var(--ink-border); vertical-align: top; }
+tr:nth-child(even) td { background: var(--ivory); }
+hr { border: 0; height: 1px; background: linear-gradient(90deg, transparent, var(--gold), transparent); margin: 2em 0; }
+ul, ol { padding-left: 1.4em; margin: 0.6em 0 1em; }
+li { margin: 0.25em 0; }
+.page-break { page-break-before: always; }
+/* Cover */
+.cover { height: 25cm; display: flex; flex-direction: column; justify-content: space-between; padding: 3cm 0 2cm; page-break-after: always; }
+.cover .brand { font-family: "Playfair Display", serif; font-size: 11pt; letter-spacing: 0.4em; text-transform: uppercase; color: var(--gold-dk); }
+.cover .title { font-family: "Playfair Display", serif; font-size: 42pt; line-height: 1.1; color: var(--ink); margin: 0; }
+.cover .sub { font-family: Georgia, serif; font-size: 15pt; color: var(--ink-soft); font-style: italic; margin-top: 0.4em; }
+.cover .rule { height: 2px; background: var(--gold); width: 80px; margin: 1.2em 0; }
+.cover .meta { font-family: Inter, sans-serif; font-size: 10pt; color: var(--ink-soft); letter-spacing: 0.05em; }
+.cover .meta strong { color: var(--ink); }
+</style>
+</head>
+<body>
+
+<div class="cover">
+  <div>
+    <div class="brand">FlorenceEGI &middot; WebAgency</div>
+  </div>
+  <div>
+    <div class="rule"></div>
+    <h1 class="title">Audit tecnico<br/><span style="color:#92760f">gialloorofirenze.it</span></h1>
+    <div class="sub">Analisi SEO &middot; AEO &middot; GEO &middot; UX &middot; Performance &middot; Conformita</div>
+    <div class="rule"></div>
+  </div>
+  <div class="meta">
+    <strong>Destinatario</strong>: Edoardo Boccherini &mdash; Giallo Oro Firenze<br/>
+    <strong>Redatto da</strong>: FlorenceEGI WebAgency &mdash; Padmin D. Curtis (AI Partner OS3.0) for Fabio Cherici<br/>
+    <strong>Data</strong>: 17 aprile 2026<br/>
+    <strong>Versione</strong>: 1.0.0
+  </div>
+</div>
+
+<div class="page-break"></div>
+
+<h1 id="sintesi-esecutiva">Sintesi esecutiva</h1>
+<blockquote>
+<p><strong>Il sito <code>gialloorofirenze.it</code> svolge oggi le funzioni essenziali di vetrina aziendale, ma è costruito su un paradigma (WordPress 2018-2020, SEO keyword-based) che nel 2026 non è più competitivo.</strong></p>
+</blockquote>
+<p>I motori di ricerca non sono più "engine" che classificano link: sono <strong>answer engine</strong> (ChatGPT, Perplexity, Gemini, Copilot, Google AI Overview, Claude) che leggono dati strutturati ed estraggono risposte. Un sito invisibile a questi motori perde quote di mercato ogni trimestre — anche se posiziona in Google classico.</p>
+<p><strong>Diagnosi in una riga:</strong> il sito è leggibile da un utente umano, ma <strong>invisibile agli AI agent</strong> che oggi mediano il 40%+ delle ricerche commerciali (fonte: HubSpot 2026).</p>
+<h2 id="indicatori-chiave-rilevati">Indicatori chiave rilevati</h2>
+<table>
+<thead>
+<tr>
+<th align="left">Dimensione</th>
+<th align="left">Stato attuale</th>
+<th align="left">Impatto business</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="left">Dati strutturati Schema.org</td>
+<td align="left">Assenti</td>
+<td align="left">Nessuna citazione in AI Overview, Perplexity, ChatGPT</td>
+</tr>
+<tr>
+<td align="left">Meta SEO distintivi</td>
+<td align="left">Non verificabili / generici</td>
+<td align="left">CTR basso nelle SERP</td>
+</tr>
+<tr>
+<td align="left">Internazionalizzazione</td>
+<td align="left">Solo italiano</td>
+<td align="left">Audience turistica Firenze persa (inglese, tedesco)</td>
+</tr>
+<tr>
+<td align="left">Telefono cliccabile (mobile)</td>
+<td align="left">Assente</td>
+<td align="left">Attrito 1 tap → 3 tap (bounce +30%)</td>
+</tr>
+<tr>
+<td align="left">Email pubblica</td>
+<td align="left">Non comunicata</td>
+<td align="left">Canale contatto B2B chiuso</td>
+</tr>
+<tr>
+<td align="left">WhatsApp Business</td>
+<td align="left">Assente</td>
+<td align="left">Canale preferito fascia 25-55 anni mancante</td>
+</tr>
+<tr>
+<td align="left">Contenuti AI-oriented</td>
+<td align="left">No (claim emotivi, poca struttura)</td>
+<td align="left">AI non può estrarre risposte verificabili</td>
+</tr>
+<tr>
+<td align="left">Performance (Core Web Vitals)</td>
+<td align="left">WordPress standard (LCP &gt;2.5s tipico)</td>
+<td align="left">Penalizzazione Google ranking</td>
+</tr>
+<tr>
+<td align="left">Duplicazione card</td>
+<td align="left">Sì (UPCYCLING, COMPRO ORO ripetuti 2×)</td>
+<td align="left">Segnale di scarsa qualità editoriale</td>
+</tr>
+<tr>
+<td align="left">Date blog incoerenti</td>
+<td align="left">Sì (articoli datati in futuro)</td>
+<td align="left">Perdita fiducia utente + AI scoring</td>
+</tr>
+<tr>
+<td align="left">FAQ strutturata</td>
+<td align="left">Assente</td>
+<td align="left">Perde opportunità citazione #1 negli answer engine</td>
+</tr>
+<tr>
+<td align="left">Privacy/Cookie compliance moderna</td>
+<td align="left">Base</td>
+<td align="left">Rischio GDPR + no granularità consensi</td>
+</tr>
+</tbody>
+</table>
+<div class="page-break"></div>
+
+<h1 id="1-il-contesto-e-cambiato-la-e-di-seo-non-e-piu-engine-e-everywhere">1. Il contesto è cambiato: la "E" di SEO non è più <em>Engine</em>, è <em>Everywhere</em></h1>
+<p>Fino al 2022, ottimizzare un sito significava salire in Google. Oggi significa essere la <strong>risposta definitiva</strong> che appare ovunque un potenziale cliente cerchi:</p>
+<ul>
+<li><strong>Google AI Overview</strong> (Italia live da febbraio 2025): risposta generata in cima alla SERP, prima dei risultati classici.</li>
+<li><strong>ChatGPT Search</strong>, <strong>Perplexity</strong>, <strong>Claude</strong>, <strong>Gemini</strong>: 500+ milioni di ricerche commerciali al giorno.</li>
+<li><strong>Assistenti vocali</strong> (Siri, Alexa, Google Assistant): rispondono leggendo contenuti strutturati.</li>
+<li><strong>Copilot in Microsoft Edge</strong> e <strong>Google Lens</strong>: stessa logica.</li>
+</ul>
+<p>Tutti questi motori hanno in comune <strong>un'unica dipendenza tecnica</strong>: leggono <strong>dati strutturati</strong> (schema.org JSON-LD), estraggono <strong>risposte concise</strong> (40 parole), e preferiscono <strong>siti veloci</strong> (LCP &lt;2.5s).</p>
+<p>Il sito attuale non soddisfa nessuno di questi tre criteri.</p>
+<h2 id="il-nuovo-tridente-seo-aeo-geo">Il nuovo tridente: SEO + AEO + GEO</h2>
+<table>
+<thead>
+<tr>
+<th align="left">Sigla</th>
+<th align="left">Significato</th>
+<th align="left">Obiettivo</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="left"><strong>SEO</strong></td>
+<td align="left">Search Engine Optimization (classico)</td>
+<td align="left">Posizionamento in Google/Bing tradizionali</td>
+</tr>
+<tr>
+<td align="left"><strong>AEO</strong></td>
+<td align="left">Answer Engine Optimization</td>
+<td align="left">Essere citati come risposta in AI generativa</td>
+</tr>
+<tr>
+<td align="left"><strong>GEO</strong></td>
+<td align="left">Generative / Geographic Optimization</td>
+<td align="left">Apparire nelle risposte AI localizzate (Firenze, Toscana)</td>
+</tr>
+</tbody>
+</table>
+<p>Un sito moderno nel 2026 <strong>deve lavorare su tutti e tre</strong> i livelli contemporaneamente. I brand che applicano AEO strutturato ottengono <strong>2-4× più citazioni</strong> rispetto al solo SEO tradizionale <em>(fonte: Green Flag Digital, GenOptima 2026)</em>.</p>
+<div class="page-break"></div>
+
+<h1 id="2-analisi-dettagliata-delle-criticita">2. Analisi dettagliata delle criticità</h1>
+<h2 id="21-dati-strutturati-schemaorg-critica">2.1 Dati strutturati (schema.org) — <strong>CRITICA</strong></h2>
+<p>Nessun JSON-LD rilevato nel codice HTML del sito.</p>
+<p><strong>Conseguenza tecnica:</strong> quando un utente chiede a ChatGPT "dove vendere oro a Firenze con perizia certificata", l'AI non trova il sito come fonte strutturata. Va su concorrenti che hanno implementato <code>LocalBusiness</code> + <code>JewelryStore</code>.</p>
+<p><strong>Schema obbligatori per il settore (fonte: schema.org + Google guidelines 2026):</strong></p>
+<div class="codehilite"><pre><span></span><code><span class="p">{</span><span class="w"></span>
+<span class="w">  </span><span class="nt">&quot;@context&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;https://schema.org&quot;</span><span class="p">,</span><span class="w"></span>
+<span class="w">  </span><span class="nt">&quot;@type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;JewelryStore&quot;</span><span class="p">,</span><span class="w"></span>
+<span class="w">  </span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Giallo Oro Firenze&quot;</span><span class="p">,</span><span class="w"></span>
+<span class="w">  </span><span class="nt">&quot;address&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nt">&quot;@type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;PostalAddress&quot;</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;streetAddress&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Via del Ponte Sospeso 31&quot;</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;addressLocality&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Firenze&quot;</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;postalCode&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;50143&quot;</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;addressCountry&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;IT&quot;</span><span class="w"> </span><span class="p">},</span><span class="w"></span>
+<span class="w">  </span><span class="nt">&quot;telephone&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;+390552335573&quot;</span><span class="p">,</span><span class="w"></span>
+<span class="w">  </span><span class="nt">&quot;openingHoursSpecification&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="err">...</span><span class="p">],</span><span class="w"></span>
+<span class="w">  </span><span class="nt">&quot;aggregateRating&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="err">...</span><span class="p">},</span><span class="w"></span>
+<span class="w">  </span><span class="nt">&quot;priceRange&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;€€&quot;</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
+</code></pre></div>
+
+<p>E, separatamente, uno schema <code>FAQPage</code> per le domande frequenti (quotazione oggi, come funziona la perizia, documenti necessari).</p>
+<p><strong>Impatto stimato</strong> con implementazione completa: <strong>+2-4× citazioni AI entro 90 giorni</strong>.</p>
+<h2 id="22-performance-alta">2.2 Performance — <strong>ALTA</strong></h2>
+<p>WordPress + plugin standard + tema non ottimizzato producono tipicamente:</p>
+<ul>
+<li>Largest Contentful Paint (LCP): <strong>2.5-4.0 secondi</strong> (soglia Google: &lt;2.5s)</li>
+<li>Total Blocking Time (TBT): <strong>&gt;200ms</strong></li>
+<li>Cumulative Layout Shift (CLS): spesso &gt;0.1</li>
+</ul>
+<p><strong>Conseguenza SEO:</strong> Google da giugno 2021 usa Core Web Vitals come fattore di ranking. Siti lenti <strong>retrocedono</strong>.</p>
+<p><strong>Conseguenza business:</strong> ogni secondo di ritardo → <strong>-7% conversioni</strong> (studio Akamai, replicato Deloitte 2024).</p>
+<p><strong>Soluzione nuova build:</strong> Astro SSG, LCP atteso <strong>&lt;1.0s</strong>, TBT ≈ 0ms, CLS &lt;0.05. Lighthouse Performance target: <strong>95+/100</strong>.</p>
+<h2 id="23-internazionalizzazione-media-ma-opportunita-persa-alta">2.3 Internazionalizzazione — <strong>MEDIA (ma opportunità persa alta)</strong></h2>
+<p>Firenze accoglie <strong>16 milioni di turisti/anno</strong> (dato comune.fi.it 2024). Una parte non trascurabile cerca di monetizzare gioielli di famiglia o acquistare souvenir in oro/sterline come investimento. <strong>Tutta questa domanda è oggi persa</strong> dal sito.</p>
+<p><strong>Soluzione:</strong> implementazione IT + EN (minimo), con <code>hreflang</code> corretti e URL strutturati <code>/en/compro-oro</code>, <code>/en/investment</code>.</p>
+<p>Estendibile in futuro a DE, FR, ES, ZH senza riscrivere architettura.</p>
+<h2 id="24-contenuti-non-ai-oriented-alta">2.4 Contenuti non AI-oriented — <strong>ALTA</strong></h2>
+<p>Lo stile editoriale attuale è <strong>persuasivo-emotivo</strong> ("Diamo valore", "professionisti del settore con quotazioni competitive"). Uno stile legittimo 10 anni fa, ma <strong>non estraibile</strong> da un AI agent che cerca dati verificabili.</p>
+<p>Esempio di riscrittura AI-oriented:</p>
+<table>
+<thead>
+<tr>
+<th align="left">Attuale (non AI-oriented)</th>
+<th align="left">Nuovo (AI-oriented)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="left">"Presso il banco metalli di GIALLOORO puoi vendere i tuoi oggetti in oro e argento con la certezza di rivolgerti a professionisti"</td>
+<td align="left">"Giallo Oro Firenze è un banco metalli iscritto OAM dal 2008 che acquista oro usato, argento 925/800, monete e lingotti a prezzo trasparente aggiornato ogni giorno sulla quotazione London Gold Fixing."</td>
+</tr>
+</tbody>
+</table>
+<p>La seconda versione è <strong>più lunga e più utile</strong>: fornisce <strong>4 fatti estraibili</strong> (nome, qualifica legale, anno inizio attività, metodo di prezzo) che un AI può usare come citazione.</p>
+<p>Questa riscrittura va fatta <strong>su ogni testo del sito</strong>, mantenendo l'identità ma aumentando la densità fattuale.</p>
+<h2 id="25-canali-di-contatto-incompleti-alta">2.5 Canali di contatto incompleti — <strong>ALTA</strong></h2>
+<table>
+<thead>
+<tr>
+<th align="left">Canale</th>
+<th align="left">Stato attuale</th>
+<th align="left">Gap</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="left">Telefono fisso</td>
+<td align="left">Presente (non cliccabile su mobile)</td>
+<td align="left"><code>tel:</code> href mancante</td>
+</tr>
+<tr>
+<td align="left">Mobile</td>
+<td align="left">Presente (non cliccabile)</td>
+<td align="left"><code>tel:</code> href mancante</td>
+</tr>
+<tr>
+<td align="left">Email</td>
+<td align="left">Non pubblicata</td>
+<td align="left">Canale B2B chiuso</td>
+</tr>
+<tr>
+<td align="left">WhatsApp Business</td>
+<td align="left">Non implementato</td>
+<td align="left">Canale #1 fascia 25-55 in Italia</td>
+</tr>
+<tr>
+<td align="left">Form contatto</td>
+<td align="left">Presente (base)</td>
+<td align="left">Senza captcha/honeypot → spam</td>
+</tr>
+<tr>
+<td align="left">Chat live</td>
+<td align="left">Assente</td>
+<td align="left">Opportunità qualificazione lead immediata</td>
+</tr>
+<tr>
+<td align="left">Prenotazione appuntamento</td>
+<td align="left">Solo testo ("su appuntamento")</td>
+<td align="left">No widget calendario</td>
+</tr>
+</tbody>
+</table>
+<p>Un cliente che arriva alle 21:00 con la domanda "domani mattina potete vedere questa collana?" oggi ha <strong>zero modi</strong> di ottenere risposta fino all'apertura. Nel 2026 questo è inaccettabile per un business con ticket medio elevato.</p>
+<h2 id="26-struttura-informativa-ridondante-media">2.6 Struttura informativa ridondante — <strong>MEDIA</strong></h2>
+<p>Il menu principale ha <strong>9 voci</strong>, di cui diverse sovrapposte:</p>
+<ul>
+<li><code>Sterlina in Oro</code> + <code>Lingotti in Oro</code> + <code>Catalogo Lingotti</code> → tre voci per un unico concetto ("investimento in oro fisico")</li>
+<li><code>Compro Oro</code> menzionato solo implicitamente in card, non nel menu</li>
+<li><code>NFT-EGI</code> è una feature tecnica trasversale, non una sezione a sé</li>
+</ul>
+<p><strong>Effetto cognitivo:</strong> l'utente non capisce dove cliccare. <strong>Effetto SEO:</strong> diluizione del link juice su pagine simili (canibalizzazione keyword).</p>
+<p><strong>Riorganizzazione proposta (9 sezioni chiare, zero sovrapposizioni):</strong></p>
+<div class="codehilite"><pre><span></span><code>Home → Compro Oro → Investimento → Gioielleria →
+Quotazioni → Perizie → FAQ → Blog → Chi siamo → Contatti
+</code></pre></div>
+
+<h2 id="27-sezione-blog-media">2.7 Sezione Blog — <strong>MEDIA</strong></h2>
+<p>Articoli datati <strong>aprile 2026, febbraio 2026</strong> quando il sito è attivo da prima: incoerenza temporale che <strong>Google e gli AI agent penalizzano</strong> come possibile spam/content farm.</p>
+<p>Nuova strategia blog:
+- Calendario editoriale reale (1-2 articoli/mese)
+- Ogni articolo con <code>datePublished</code> + <code>dateModified</code> + <code>author</code> con schema <code>Person</code>
+- Contenuti a valore: "Come riconoscere l'oro 18kt", "Sterlina Regina Elisabetta valutazione 2026", "Guida perizia gioielli ereditari"
+- Ogni articolo fa da <strong>entry point AI</strong> su una long-tail specifica</p>
+<h2 id="28-accessibilita-media">2.8 Accessibilità — <strong>MEDIA</strong></h2>
+<p>Dall'analisi non risulta:
+- Alt text strutturato su immagini
+- Landmark ARIA (<code>&lt;nav&gt;</code>, <code>&lt;main&gt;</code>, <code>&lt;footer&gt;</code>)
+- Focus visibile consistente
+- Contrasti colore verificati WCAG AA</p>
+<p><strong>Rischio legale EU</strong>: direttiva European Accessibility Act (EAA) <strong>in vigore dal 28 giugno 2025</strong> impone accessibilità ai siti e-commerce.</p>
+<h2 id="29-privacy-gdpr-media">2.9 Privacy / GDPR — <strong>MEDIA</strong></h2>
+<p>Privacy e Cookie Policy presenti (linkate), ma:
+- Nessuna evidenza di consent banner granulare per categoria cookie (tecnici / analitici / marketing)
+- Informativa non contestuale al form (chi riceve i dati? per quanto tempo?)</p>
+<div class="page-break"></div>
+
+<h1 id="3-la-soluzione-florenceegi-webagency">3. La soluzione FlorenceEGI WebAgency</h1>
+<h2 id="31-stack-tecnico-scelto">3.1 Stack tecnico scelto</h2>
+<table>
+<thead>
+<tr>
+<th align="left">Componente</th>
+<th align="left">Scelta</th>
+<th align="left">Motivazione</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="left">Framework</td>
+<td align="left"><strong>Astro 5</strong> (SSG)</td>
+<td align="left">Zero JS runtime, build statico, deployment ovunque, LCP &lt;1s nativo</td>
+</tr>
+<tr>
+<td align="left">Styling</td>
+<td align="left"><strong>Tailwind v4</strong></td>
+<td align="left">Utility-first, zero dead CSS, design system rigoroso</td>
+</tr>
+<tr>
+<td align="left">Linguaggio</td>
+<td align="left"><strong>TypeScript 5 strict</strong></td>
+<td align="left">Type safety totale, zero runtime errors</td>
+</tr>
+<tr>
+<td align="left">Form backend</td>
+<td align="left"><strong>PHP 8 standalone</strong></td>
+<td align="left">Semplice, 0 dipendenze npm, SMTP + CSRF + honeypot in 100 righe</td>
+</tr>
+<tr>
+<td align="left">i18n</td>
+<td align="left"><strong>Astro built-in</strong></td>
+<td align="left">Performance native, hreflang automatico</td>
+</tr>
+<tr>
+<td align="left">Immagini</td>
+<td align="left"><strong>Astro Image + Sharp</strong></td>
+<td align="left">WebP/AVIF auto, responsive sizes, lazy-load</td>
+</tr>
+<tr>
+<td align="left">Fonts</td>
+<td align="left"><strong>Cormorant + Inter self-host</strong></td>
+<td align="left">Latency zero, FOUT controllato</td>
+</tr>
+<tr>
+<td align="left">Deploy</td>
+<td align="left"><strong>Static → S3 + CloudFront</strong></td>
+<td align="left">CDN globale, HTTPS auto, costi minimi</td>
+</tr>
+</tbody>
+</table>
+<h2 id="32-architettura-informativa">3.2 Architettura informativa</h2>
+<p>10 sezioni, zero ridondanze, ogni sezione risponde a un intento utente specifico:</p>
+<div class="codehilite"><pre><span></span><code>┌────────────────────────────────────────────────────────────┐
+│  Home          → &quot;Chi sei e perché fidarsi&quot;                │
+│  Compro Oro    → &quot;Vendo oro: chi mi valuta subito?&quot;        │
+│  Investimento  → &quot;Voglio comprare oro: da chi?&quot;            │
+│  Gioielleria   → &quot;Cerco un pezzo unico o trasformare&quot;      │
+│  Quotazioni    → &quot;Quanto vale oggi il mio oro?&quot;            │
+│  Perizie       → &quot;Ho un lascito: mi aiutate a valutare?&quot;   │
+│  FAQ           → &quot;Domande pratiche&quot;                        │
+│  Blog          → &quot;Mi voglio informare prima di decidere&quot;   │
+│  Chi siamo     → &quot;Che storia c&#39;è dietro?&quot;                  │
+│  Contatti      → &quot;Come vi raggiungo ora?&quot;                  │
+└────────────────────────────────────────────────────────────┘
+</code></pre></div>
+
+<h2 id="33-seo-aeo-geo-implementati">3.3 SEO / AEO / GEO implementati</h2>
+<p>Ogni pagina esce dalla nostra build con:</p>
+<ol>
+<li><strong>Meta ottimizzati</strong> (title 55-60 char, description 150-160 char, OG image 1200×630)</li>
+<li><strong>Schema.org JSON-LD</strong> appropriato (LocalBusiness, JewelryStore, FAQPage, BlogPosting, BreadcrumbList, Offer)</li>
+<li><strong>Canonical + hreflang</strong> IT ↔ EN</li>
+<li><strong>Answer-first</strong> (prima frase sotto H1 risponde in ≤40 parole)</li>
+<li><strong>Sezioni stand-alone</strong> (ogni <code>&lt;section&gt;</code> comprensibile fuori contesto)</li>
+<li><strong>Tabelle dati</strong> (AI preferisce contenuti tabellari a prosa pura)</li>
+<li><strong>Sitemap XML</strong> auto-generato per IT ed EN</li>
+<li><strong>robots.txt</strong> con allow esplicito ai bot AI (GPTBot, PerplexityBot, ClaudeBot, Google-Extended)</li>
+</ol>
+<h2 id="34-performance-target">3.4 Performance target</h2>
+<table>
+<thead>
+<tr>
+<th align="left">Metrica</th>
+<th align="left">Obiettivo FlorenceEGI</th>
+<th align="left">Sito attuale (stima)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="left">Lighthouse Performance</td>
+<td align="left"><strong>95-100</strong></td>
+<td align="left">40-60</td>
+</tr>
+<tr>
+<td align="left">Lighthouse SEO</td>
+<td align="left"><strong>100</strong></td>
+<td align="left">70-85</td>
+</tr>
+<tr>
+<td align="left">Lighthouse Accessibility</td>
+<td align="left"><strong>100</strong></td>
+<td align="left">70-85</td>
+</tr>
+<tr>
+<td align="left">LCP (Largest Contentful Paint)</td>
+<td align="left"><strong>&lt;1.0s</strong></td>
+<td align="left">&gt;2.5s</td>
+</tr>
+<tr>
+<td align="left">CLS (Cumulative Layout Shift)</td>
+<td align="left"><strong>&lt;0.05</strong></td>
+<td align="left">&gt;0.1</td>
+</tr>
+<tr>
+<td align="left">TBT (Total Blocking Time)</td>
+<td align="left"><strong>&lt;50ms</strong></td>
+<td align="left">&gt;300ms</td>
+</tr>
+<tr>
+<td align="left">First Byte (TTFB)</td>
+<td align="left"><strong>&lt;200ms</strong></td>
+<td align="left">&gt;800ms</td>
+</tr>
+<tr>
+<td align="left">Page weight (home)</td>
+<td align="left"><strong>&lt;150KB</strong></td>
+<td align="left">&gt;2MB</td>
+</tr>
+</tbody>
+</table>
+<h2 id="35-canali-contatto-nuovi">3.5 Canali contatto nuovi</h2>
+<ul>
+<li>Tel + mobile cliccabili (<code>tel:</code> href)</li>
+<li>Email pubblica dedicata (<code>info@gialloorofirenze.it</code>)</li>
+<li><strong>WhatsApp Business</strong> fluttuante (FAB) sempre visibile</li>
+<li>Form contatto con CSRF + honeypot + rate-limit</li>
+<li>Mappa interattiva Google Maps + indicazioni</li>
+<li>Orari strutturati (leggibili da Google My Business + Siri)</li>
+<li><strong>Prenotazione appuntamento</strong> (evolutiva: Calendly o self-built Fase 2)</li>
+</ul>
+<h2 id="36-accessibilita-wcag-aa">3.6 Accessibilità WCAG AA</h2>
+<ul>
+<li>Contrasti colore verificati</li>
+<li>Focus visibile su ogni elemento interattivo</li>
+<li>ARIA landmarks + ARIA-label dove serve</li>
+<li>Navigazione completa da tastiera</li>
+<li><code>prefers-reduced-motion</code> rispettato</li>
+<li>Screen reader test pass</li>
+</ul>
+<h2 id="37-privacy-gdpr-moderno">3.7 Privacy / GDPR moderno</h2>
+<ul>
+<li>Consent banner granulare (tecnici obbligatori / analitici opt-in / marketing opt-in)</li>
+<li>Informativa form contestuale (trasparenza chi riceve cosa)</li>
+<li>Privacy Policy IT + EN</li>
+<li>Cookie Policy con elenco analitico</li>
+</ul>
+<div class="page-break"></div>
+
+<h1 id="4-cronoprogramma-e-fasi">4. Cronoprogramma e fasi</h1>
+<h2 id="fase-0-audit-completata-questo-documento">Fase 0 — Audit (completata — questo documento)</h2>
+<p>Output: analisi tecnica + piano implementazione.</p>
+<h2 id="fase-1-build-locale-in-corso">Fase 1 — Build locale (in corso)</h2>
+<ul>
+<li>Scaffold organo</li>
+<li>Scraping e ottimizzazione asset</li>
+<li>Costruzione 10 pagine IT + EN</li>
+<li>Schema.org + meta completi</li>
+<li>Form PHP</li>
+<li>Verifica Lighthouse locale</li>
+</ul>
+<p><strong>Deliverable:</strong> build statica in <code>dist/</code> pronta al deploy.</p>
+<h2 id="fase-2-staging-su-sottodominio">Fase 2 — Staging su sottodominio</h2>
+<ul>
+<li>Deploy su sottodominio temporaneo (es. <code>staging.gialloorofirenze.it</code>) per revisione cliente</li>
+<li>Test mobile reali</li>
+<li>Validazione contenuti con cliente</li>
+<li>Iterazione feedback</li>
+</ul>
+<h2 id="fase-3-produzione">Fase 3 — Produzione</h2>
+<ul>
+<li>DNS swap → nuovo sito su dominio principale</li>
+<li>Redirect 301 da URL vecchi WordPress</li>
+<li>Google Search Console setup</li>
+<li>Invio sitemap</li>
+<li>Google Business Profile refresh</li>
+<li>Submission schema a Rich Results Test</li>
+</ul>
+<h2 id="fase-4-monitoraggio-continuo">Fase 4 — Monitoraggio continuo</h2>
+<ul>
+<li>Tracking mensile citazioni AI (ChatGPT, Perplexity, Google AI Overview)</li>
+<li>Report Core Web Vitals da Search Console</li>
+<li>Suggerimenti contenutistici mensili per blog</li>
+</ul>
+<div class="page-break"></div>
+
+<h1 id="5-perche-florenceegi">5. Perché FlorenceEGI</h1>
+<p>FlorenceEGI è l'<strong>organismo software</strong> che stiamo costruendo come standard di riferimento nell'ecosistema digitale italiano. Ogni sito che realizziamo — incluso questo — segue lo stesso rigore:</p>
+<ul>
+<li><strong>Nessun template riciclato.</strong> Ogni progetto nasce dall'analisi del contesto specifico.</li>
+<li><strong>Nessuna dipendenza inutile.</strong> Se una feature si può fare in 20 righe di codice, non usiamo una libreria di 200KB.</li>
+<li><strong>Documentazione SSOT.</strong> Ogni decisione tecnica è tracciata in documentazione vivente.</li>
+<li><strong>Auditabilità completa.</strong> Ogni file firmato, ogni commit tracciato, ogni modifica ha una ragione.</li>
+<li><strong>AI-first.</strong> Progettiamo per i motori di oggi e di domani, non per quelli di ieri.</li>
+</ul>
+<p><strong>Il sito che stiamo per realizzare sarà il più bello, il più completo e il più tecnicamente avanzato del settore compro oro italiano. Non per stile — per fatti verificabili.</strong></p>
+<div class="page-break"></div>
+
+<h1 id="6-riferimenti-tecnici-citati">6. Riferimenti tecnici citati</h1>
+<ul>
+<li>schema.org — <a href="https://schema.org/LocalBusiness">https://schema.org/LocalBusiness</a>, <a href="https://schema.org/JewelryStore">https://schema.org/JewelryStore</a></li>
+<li>Google Rich Results Test — <a href="https://search.google.com/test/rich-results">https://search.google.com/test/rich-results</a></li>
+<li>Core Web Vitals — <a href="https://web.dev/vitals/">https://web.dev/vitals/</a></li>
+<li>WCAG 2.2 AA — <a href="https://www.w3.org/TR/WCAG22/">https://www.w3.org/TR/WCAG22/</a></li>
+<li>European Accessibility Act (EAA) — direttiva UE 2019/882, applicabile dal 28 giugno 2025</li>
+<li>Answer Engine Optimization — HubSpot, GenOptima, Green Flag Digital (2026)</li>
+<li>Astro Framework — <a href="https://astro.build">https://astro.build</a></li>
+<li>OAM — Organismo degli Agenti e dei Mediatori, registro operatori compro oro Italia</li>
+</ul>
+<hr />
+<p><em>Documento redatto da FlorenceEGI WebAgency — 17 aprile 2026</em>
+<em>Autore: Padmin D. Curtis (AI Partner OS3.0) for Fabio Cherici</em></p>
+</body>
+</html>

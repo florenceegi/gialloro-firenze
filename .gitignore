@@ -1,0 +1,29 @@
+# build
+dist/
+.astro/
+node_modules/
+
+# env
+.env
+.env.*.local
+.env.production
+
+# editor
+.vscode/
+.idea/
+*.swp
+.DS_Store
+
+# logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+
+# pdf build artifacts
+docs/audit-gialloorofirenze-it.pdf
+docs/*.aux
+docs/*.log
+
+# scraping temp
+.cache/
+public/images/_tmp/

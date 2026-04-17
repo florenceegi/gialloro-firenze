@@ -1,0 +1,143 @@
+---
+/**
+ * @package GIALLORO-FIRENZE — Base Layout
+ * @author Padmin D. Curtis (AI Partner OS3.0) for Fabio Cherici
+ * @version 1.0.0 (FlorenceEGI — GIALLORO-FIRENZE)
+ * @date 2026-04-17
+ * @purpose Master layout: meta SEO completi + OG + Twitter + canonical + hreflang
+ *          + schema.org JSON-LD (LocalBusiness + WebSite sempre, opzionali per pagina)
+ *          + fonts preload + Tailwind. A11y landmarks.
+ */
+import '~/styles/global.css';
+import { localBusinessSchema, webSiteSchema, serialize, type SchemaObject } from '@lib/schema';
+import { t, type Locale, alternateUrl } from '@i18n/index';
+import Nav from '@components/Nav.astro';
+import Footer from '@components/Footer.astro';
+import WhatsAppFab from '@components/WhatsAppFab.astro';
+
+export interface Props {
+  locale: Locale;
+  title: string;
+  description: string;
+  path: string;
+  ogImage?: string;
+  ogImageAlt?: string;
+  schema?: SchemaObject | SchemaObject[];
+  noindex?: boolean;
+}
+
+const {
+  locale,
+  title,
+  description,
+  path,
+  ogImage = '/og-default.jpg',
+  ogImageAlt,
+  schema,
+  noindex = false,
+} = Astro.props;
+
+const site = Astro.site?.toString().replace(/\/$/, '') ?? 'https://gialloorofirenze.it';
+const canonical = `${site}${path}`;
+const altPath = alternateUrl(locale, path);
+const altUrl = `${site}${altPath}`;
+const altHreflang = locale === 'it' ? 'en-US' : 'it-IT';
+const imageAbs = ogImage.startsWith('http') ? ogImage : `${site}${ogImage}`;
+const imageAltText = ogImageAlt ?? t(locale, 'meta.og_image_alt');
+
+const brand = t(locale, 'meta.brand');
+const fullTitle = title.includes(brand) ? title : `${title} — ${brand}`;
+
+const baseSchemas: SchemaObject[] = [localBusinessSchema(), webSiteSchema(locale)];
+const pageSchemas = schema ? (Array.isArray(schema) ? schema : [schema]) : [];
+const allSchemas = [...baseSchemas, ...pageSchemas];
+---
+<!DOCTYPE html>
+<html lang={locale === 'it' ? 'it-IT' : 'en-US'} prefix="og: https://ogp.me/ns#">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+
+  <title>{fullTitle}</title>
+  <meta name="description" content={description} />
+  {noindex && <meta name="robots" content="noindex, nofollow" />}
+
+  <link rel="canonical" href={canonical} />
+  <link rel="alternate" hreflang={locale === 'it' ? 'it-IT' : 'en-US'} href={canonical} />
+  <link rel="alternate" hreflang={altHreflang} href={altUrl} />
+  <link rel="alternate" hreflang="x-default" href={site} />
+
+  {/* Open Graph */}
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content={brand} />
+  <meta property="og:locale" content={locale === 'it' ? 'it_IT' : 'en_US'} />
+  <meta property="og:locale:alternate" content={locale === 'it' ? 'en_US' : 'it_IT'} />
+  <meta property="og:title" content={fullTitle} />
+  <meta property="og:description" content={description} />
+  <meta property="og:url" content={canonical} />
+  <meta property="og:image" content={imageAbs} />
+  <meta property="og:image:alt" content={imageAltText} />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+
+  {/* Twitter */}
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content={fullTitle} />
+  <meta name="twitter:description" content={description} />
+  <meta name="twitter:image" content={imageAbs} />
+  <meta name="twitter:image:alt" content={imageAltText} />
+
+  {/* Theme */}
+  <meta name="theme-color" content="#d4af37" />
+  <meta name="color-scheme" content="light" />
+
+  {/* Favicon */}
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+  <link rel="manifest" href="/manifest.webmanifest" />
+
+  {/* Preconnect fonts — self-hosted quindi preload WOFF2 invece che preconnect */}
+  <link rel="preload" as="font" type="font/woff2" href="https://fonts.gstatic.com/s/cormorantgaramond/v16/co3YmX5slCNuHLi8bLeY9MK7whWMhyjYrEPjmVQl.woff2" crossorigin />
+  <link rel="preload" as="font" type="font/woff2" href="https://fonts.gstatic.com/s/inter/v18/UcC73FwrK3iLTeHuS_nVMrMxCp50SjIa2JL7SUc.woff2" crossorigin />
+
+  {/* Schema.org JSON-LD (array) */}
+  {allSchemas.map((s) => (
+    <script type="application/ld+json" set:html={serialize(s)} />
+  ))}
+
+  {/* Generator */}
+  <meta name="generator" content={Astro.generator} />
+</head>
+<body class="min-h-screen flex flex-col">
+  <a href="#main" class="sr-only focus:not-sr-only focus:absolute focus:top-2 focus:left-2 focus:z-[999] focus:bg-gold-500 focus:text-ink-900 focus:px-4 focus:py-2 focus:rounded">
+    {t(locale, 'a11y.skip_to_content')}
+  </a>
+
+  <Nav locale={locale} path={path} />
+
+  <main id="main" class="flex-1">
+    <slot />
+  </main>
+
+  <Footer locale={locale} />
+
+  <WhatsAppFab locale={locale} />
+
+  {/* Back-to-top — micro script inline, no framework */}
+  <script is:inline>
+    (function() {
+      const back = document.createElement('button');
+      back.setAttribute('aria-label', 'Top');
+      back.className = 'fixed bottom-20 right-4 z-40 opacity-0 pointer-events-none transition-opacity duration-300 w-11 h-11 rounded-full bg-ink-900 text-gold-500 shadow-gold-md hover:bg-ink-800 flex items-center justify-center no-print';
+      back.innerHTML = '<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 19V5M5 12l7-7 7 7"/></svg>';
+      back.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
+      document.body.appendChild(back);
+      const toggle = () => {
+        if (window.scrollY > 600) { back.style.opacity = '1'; back.style.pointerEvents = 'auto'; }
+        else { back.style.opacity = '0'; back.style.pointerEvents = 'none'; }
+      };
+      window.addEventListener('scroll', toggle, { passive: true });
+    })();
+  </script>
+</body>
+</html>

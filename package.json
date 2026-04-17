@@ -1,0 +1,27 @@
+{
+  "name": "gialloro-firenze",
+  "type": "module",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Sito Edoardo Boccherini — Giallo Oro Firenze (compro oro, investimento, gioielleria). Organo WebAgency FlorenceEGI.",
+  "scripts": {
+    "dev": "astro dev --host 0.0.0.0 --port 4330",
+    "build": "astro build",
+    "preview": "astro preview --host 0.0.0.0 --port 4330",
+    "astro": "astro",
+    "scrape": "node scripts/scrape-assets.mjs",
+    "audit:pdf": "pandoc docs/audit-gialloorofirenze-it.md -o docs/audit-gialloorofirenze-it.pdf --pdf-engine=xelatex -V geometry:margin=2cm -V mainfont='DejaVu Serif' -V monofont='DejaVu Sans Mono' --toc --highlight-style=tango"
+  },
+  "dependencies": {
+    "@astrojs/sitemap": "^3.2.1",
+    "@astrojs/mdx": "^4.0.3",
+    "@tailwindcss/vite": "^4.0.0",
+    "astro": "^5.1.5",
+    "sharp": "^0.33.5",
+    "tailwindcss": "^4.0.0"
+  },
+  "devDependencies": {
+    "@types/node": "^22.10.5",
+    "typescript": "^5.7.2"
+  }
+}

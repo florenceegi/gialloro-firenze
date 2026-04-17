@@ -1,0 +1,8 @@
+{
+  "order": 5,
+  "category": "vendita",
+  "question_it": "In quanto tempo ricevo il pagamento?",
+  "answer_it": "Il pagamento è contestuale alla firma del contratto di acquisto. Per obbligo normativo OAM tutti i pagamenti sopra soglie definite avvengono via bonifico bancario tracciato, accreditato sul tuo IBAN entro la stessa giornata lavorativa (se la firma è prima delle 16:00) o il giorno lavorativo successivo. Non trattiamo contanti per importi significativi: è una garanzia di legalità per entrambe le parti.",
+  "question_en": "How quickly do I receive payment?",
+  "answer_en": "Payment is simultaneous with the signing of the purchase contract. By Italian OAM law all payments above defined thresholds are made by traceable bank transfer, credited to your IBAN on the same business day (if signed before 4pm) or the next business day. We do not handle cash for significant amounts: it's a guarantee of legality for both parties."
+}

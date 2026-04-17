@@ -1,0 +1,8 @@
+{
+  "order": 1,
+  "category": "vendita",
+  "question_it": "Come viene calcolato il prezzo del mio oro?",
+  "answer_it": "Il prezzo di acquisto è calcolato sulla quotazione London Gold Fixing del giorno, sul titolo verificato del tuo oggetto (9kt/14kt/18kt/22kt/24kt) e sul peso misurato con bilancia certificata in tua presenza. La cifra finale è il valore del metallo prezioso al netto del margine commerciale, mostrato per iscritto prima di ogni trattativa.",
+  "question_en": "How is the price of my gold calculated?",
+  "answer_en": "The buying price is calculated on today's London Gold Fixing quote, on your item's verified purity (9kt/14kt/18kt/22kt/24kt) and on the weight measured on a certified scale in front of you. The final figure is the precious metal value net of commercial margin, shown in writing before any negotiation."
+}

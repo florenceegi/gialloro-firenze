@@ -1,0 +1,195 @@
+/*
+ * @package GIALLORO-FIRENZE — Global Styles
+ * @author Padmin D. Curtis (AI Partner OS3.0) for Fabio Cherici
+ * @version 1.0.0 (FlorenceEGI — GIALLORO-FIRENZE)
+ * @date 2026-04-17
+ * @purpose Tailwind v4 base + design tokens gold luxury + typography Italian premium.
+ */
+@import "tailwindcss";
+
+@theme {
+  /* Palette: Giallo Oro + Nero Firenze + Avorio + Bronzo patina */
+  --color-gold-50:  #fffbeb;
+  --color-gold-100: #fef3c7;
+  --color-gold-200: #fde68a;
+  --color-gold-300: #fcd34d;
+  --color-gold-400: #fbbf24;
+  --color-gold-500: #d4af37;  /* gold signature */
+  --color-gold-600: #b8941f;
+  --color-gold-700: #92760f;
+  --color-gold-800: #6b5608;
+  --color-gold-900: #3f3405;
+
+  --color-ink-50:   #fafaf9;
+  --color-ink-100:  #f5f5f4;
+  --color-ink-200:  #e7e5e4;
+  --color-ink-400:  #a8a29e;
+  --color-ink-600:  #57534e;
+  --color-ink-800:  #292524;
+  --color-ink-900:  #0c0a09;
+
+  --color-ivory-50: #fdfbf5;
+  --color-ivory-100:#f9f3e3;
+  --color-ivory-200:#f0e5c8;
+
+  --color-bronze-500:#8b6f3d;
+  --color-bronze-700:#5c4729;
+
+  /* Typography: Cormorant Garamond (headlines, luxury editorial) + Inter (body, data) */
+  --font-serif: "Cormorant Garamond", "Playfair Display", Georgia, "Times New Roman", serif;
+  --font-sans: "Inter", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  --font-mono: "JetBrains Mono", "SF Mono", Menlo, monospace;
+
+  /* Motion */
+  --ease-luxury: cubic-bezier(0.22, 1, 0.36, 1);
+  --ease-soft:   cubic-bezier(0.4, 0, 0.2, 1);
+
+  /* Shadows (gold-tinted) */
+  --shadow-gold-sm: 0 1px 2px rgb(212 175 55 / 0.08);
+  --shadow-gold-md: 0 4px 16px -2px rgb(212 175 55 / 0.18), 0 2px 6px -1px rgb(0 0 0 / 0.06);
+  --shadow-gold-lg: 0 24px 48px -12px rgb(212 175 55 / 0.28), 0 8px 16px -4px rgb(0 0 0 / 0.08);
+
+  /* Radii */
+  --radius-brand: 2px;
+}
+
+/* Fonts self-host via Google Fonts (preload in Base layout) */
+@font-face {
+  font-family: "Cormorant Garamond";
+  font-style: normal;
+  font-weight: 300 700;
+  font-display: swap;
+  src: url("https://fonts.gstatic.com/s/cormorantgaramond/v16/co3YmX5slCNuHLi8bLeY9MK7whWMhyjYrEPjmVQl.woff2") format("woff2");
+}
+@font-face {
+  font-family: "Inter";
+  font-style: normal;
+  font-weight: 100 900;
+  font-display: swap;
+  src: url("https://fonts.gstatic.com/s/inter/v18/UcC73FwrK3iLTeHuS_nVMrMxCp50SjIa2JL7SUc.woff2") format("woff2");
+}
+
+/* Base reset luxury */
+html {
+  font-family: var(--font-sans);
+  color: var(--color-ink-900);
+  background: var(--color-ivory-50);
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  scroll-behavior: smooth;
+}
+
+body {
+  font-feature-settings: "ss01", "cv01", "cv02";
+  line-height: 1.6;
+}
+
+h1, h2, h3, h4, .serif {
+  font-family: var(--font-serif);
+  font-weight: 500;
+  letter-spacing: -0.01em;
+  line-height: 1.15;
+}
+
+.tabular {
+  font-variant-numeric: tabular-nums;
+  font-feature-settings: "tnum";
+}
+
+/* Gold rule divider — signature FlorenceEGI */
+.gold-rule {
+  height: 1px;
+  background: linear-gradient(90deg, transparent 0%, var(--color-gold-500) 50%, transparent 100%);
+}
+
+/* Luxury underline on link hover */
+a.lux-link {
+  position: relative;
+  text-decoration: none;
+  transition: color 200ms var(--ease-soft);
+}
+a.lux-link::after {
+  content: "";
+  position: absolute;
+  left: 0; right: 100%; bottom: -2px;
+  height: 1px;
+  background: var(--color-gold-500);
+  transition: right 400ms var(--ease-luxury);
+}
+a.lux-link:hover::after { right: 0; }
+
+/* Button gold primary */
+.btn-gold {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 0.875rem 1.75rem;
+  background: var(--color-gold-500);
+  color: var(--color-ink-900);
+  font-weight: 600;
+  font-size: 0.9375rem;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  border: 1px solid var(--color-gold-600);
+  border-radius: var(--radius-brand);
+  box-shadow: var(--shadow-gold-md);
+  transition: transform 300ms var(--ease-luxury), box-shadow 300ms var(--ease-luxury), background 200ms;
+  cursor: pointer;
+}
+.btn-gold:hover { transform: translateY(-1px); box-shadow: var(--shadow-gold-lg); background: var(--color-gold-400); }
+.btn-gold:active { transform: translateY(0); }
+
+.btn-ghost {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 0.875rem 1.75rem;
+  background: transparent;
+  color: var(--color-ink-900);
+  font-weight: 600;
+  font-size: 0.9375rem;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  border: 1px solid var(--color-ink-900);
+  border-radius: var(--radius-brand);
+  transition: background 200ms var(--ease-soft), color 200ms;
+}
+.btn-ghost:hover { background: var(--color-ink-900); color: var(--color-gold-500); }
+
+/* Card premium */
+.card-lux {
+  background: white;
+  border: 1px solid var(--color-ink-200);
+  border-radius: var(--radius-brand);
+  transition: transform 400ms var(--ease-luxury), box-shadow 400ms var(--ease-luxury), border-color 300ms;
+}
+.card-lux:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-gold-lg);
+  border-color: var(--color-gold-400);
+}
+
+/* Focus a11y (WCAG AA) */
+*:focus-visible {
+  outline: 2px solid var(--color-gold-500);
+  outline-offset: 3px;
+  border-radius: 2px;
+}
+
+/* Reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* Print optimized (per scheda prezzi/quotazioni stampabile) */
+@media print {
+  .no-print { display: none !important; }
+  body { background: white; color: black; }
+}

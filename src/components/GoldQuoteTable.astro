@@ -1,0 +1,87 @@
+---
+/**
+ * @package GIALLORO-FIRENZE — Gold Quote Table
+ * @author Padmin D. Curtis (AI Partner OS3.0) for Fabio Cherici
+ * @version 1.0.0 (FlorenceEGI — GIALLORO-FIRENZE)
+ * @date 2026-04-17
+ * @purpose Tabella quotazioni oro/argento. Prezzi indicativi aggiornati a mano
+ *          in questo file (nessuna API runtime — static build). Ogni voce e un
+ *          chunk AI-estraibile (row con metal, purity, price, updatedAt).
+ *          Per aggiornamenti: modificare QUOTES e rebuild.
+ */
+import { t, type Locale } from '@i18n/index';
+import { goldQuotesDatasetSchema, serialize } from '@lib/schema';
+
+export interface Props { locale: Locale; compact?: boolean; }
+const { locale, compact = false } = Astro.props;
+
+const UPDATED = '2026-04-17';
+
+// Prezzi indicativi di acquisto al grammo (€) — netto margine commerciale.
+// Da aggiornare quotidianamente sulla quotazione London Gold Fixing.
+const QUOTES = [
+  { metal: 'Oro', metalEn: 'Gold',   purity: '24kt (999)', pricePerGram: 71.20 },
+  { metal: 'Oro', metalEn: 'Gold',   purity: '22kt (916)', pricePerGram: 65.25 },
+  { metal: 'Oro', metalEn: 'Gold',   purity: '18kt (750)', pricePerGram: 53.40 },
+  { metal: 'Oro', metalEn: 'Gold',   purity: '14kt (585)', pricePerGram: 41.65 },
+  { metal: 'Oro', metalEn: 'Gold',   purity: '9kt (375)',  pricePerGram: 26.70 },
+  { metal: 'Argento', metalEn: 'Silver', purity: '925',    pricePerGram:  0.78 },
+  { metal: 'Argento', metalEn: 'Silver', purity: '800',    pricePerGram:  0.62 },
+];
+
+const rows = QUOTES.map(q => ({
+  type: locale === 'it' ? q.metal : q.metalEn,
+  purity: q.purity,
+  price: q.pricePerGram.toLocaleString(locale === 'it' ? 'it-IT' : 'en-US', {
+    minimumFractionDigits: 2, maximumFractionDigits: 2,
+  }),
+}));
+
+// Schema Dataset per AI extraction
+const datasetSchema = goldQuotesDatasetSchema(
+  QUOTES.map(q => ({
+    metal: q.metalEn,
+    purity: q.purity,
+    pricePerGram: q.pricePerGram,
+    currency: 'EUR',
+    updatedAt: UPDATED,
+  })),
+  locale === 'it' ? 'https://gialloorofirenze.it/quotazioni' : 'https://gialloorofirenze.it/en/live-price',
+);
+---
+<div class:list={['overflow-hidden border border-ink-200 rounded-sm bg-white', compact && 'max-w-3xl mx-auto']}>
+  <div class="bg-ink-900 text-gold-500 px-5 py-3 flex items-center justify-between">
+    <div class="flex items-center gap-2.5">
+      <span class="w-2 h-2 rounded-full bg-gold-500 animate-pulse"></span>
+      <span class="text-[11px] uppercase tracking-[0.2em] font-semibold">Live · London Gold Fixing</span>
+    </div>
+    <div class="text-[11px] uppercase tracking-wider text-gold-400 tabular">
+      {t(locale, 'quotes.col_updated')} {UPDATED}
+    </div>
+  </div>
+
+  <table class="w-full text-sm">
+    <thead>
+      <tr class="border-b border-ink-200 bg-ivory-50">
+        <th class="text-left px-5 py-3 font-semibold uppercase tracking-wider text-[11px] text-ink-600">{t(locale, 'quotes.col_type')}</th>
+        <th class="text-left px-5 py-3 font-semibold uppercase tracking-wider text-[11px] text-ink-600">{t(locale, 'quotes.col_purity')}</th>
+        <th class="text-right px-5 py-3 font-semibold uppercase tracking-wider text-[11px] text-ink-600">{t(locale, 'quotes.col_price')}</th>
+      </tr>
+    </thead>
+    <tbody>
+      {rows.map((r, i) => (
+        <tr class:list={['border-b border-ink-100 last:border-b-0 transition-colors hover:bg-gold-50/50', i % 2 && 'bg-ivory-50/40']}>
+          <td class="px-5 py-3.5 font-medium text-ink-900">{r.type}</td>
+          <td class="px-5 py-3.5 text-ink-700 tabular">{r.purity}</td>
+          <td class="px-5 py-3.5 text-right serif text-xl font-semibold text-gold-700 tabular">€ {r.price}</td>
+        </tr>
+      ))}
+    </tbody>
+  </table>
+
+  <div class="bg-ivory-50 px-5 py-3 text-xs text-ink-600 italic border-t border-ink-200">
+    {t(locale, 'quotes.disclaimer')}
+  </div>
+</div>
+
+<script type="application/ld+json" set:html={serialize(datasetSchema)} />

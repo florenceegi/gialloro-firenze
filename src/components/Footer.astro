@@ -1,0 +1,125 @@
+---
+/**
+ * @package GIALLORO-FIRENZE — Footer
+ * @author Padmin D. Curtis (AI Partner OS3.0) for Fabio Cherici
+ * @version 1.0.0 (FlorenceEGI — GIALLORO-FIRENZE)
+ * @date 2026-04-17
+ * @purpose Footer luxury: 4 colonne (brand, nav, legale, contatti) + subfooter
+ *          con credits FlorenceEGI discreti. A11y landmark, contrasti AA.
+ */
+import { t, hrefFor, type Locale } from '@i18n/index';
+
+export interface Props { locale: Locale; }
+const { locale } = Astro.props;
+
+const nav = [
+  { key: 'nav.compro_oro',  it: '/compro-oro',  en: '/en/sell-gold' },
+  { key: 'nav.investimento',it: '/investimento',en: '/en/buy-gold' },
+  { key: 'nav.gioielleria', it: '/gioielleria', en: '/en/jewelry' },
+  { key: 'nav.quotazioni',  it: '/quotazioni',  en: '/en/live-price' },
+  { key: 'nav.perizie',     it: '/perizie',     en: '/en/appraisals' },
+  { key: 'nav.faq',         it: '/faq',         en: '/en/faq' },
+  { key: 'nav.blog',        it: '/blog',        en: '/en/news' },
+  { key: 'nav.chi_siamo',   it: '/chi-siamo',   en: '/en/about' },
+] as const;
+---
+<footer class="bg-ink-900 text-ivory-100 mt-24 no-print" aria-labelledby="footer-heading">
+  <h2 id="footer-heading" class="sr-only">Footer</h2>
+
+  <div class="max-w-7xl mx-auto px-4 md:px-8 py-16 md:py-20">
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10 lg:gap-14">
+
+      <!-- Brand -->
+      <div class="lg:col-span-1">
+        <div class="flex items-center gap-3 mb-4">
+          <svg width="36" height="36" viewBox="0 0 44 44" fill="none" aria-hidden="true">
+            <circle cx="22" cy="22" r="20" stroke="var(--color-gold-500)" stroke-width="1.5"/>
+            <path d="M22 8 L25 18 L35 18 L27 24 L30 34 L22 28 L14 34 L17 24 L9 18 L19 18 Z" fill="var(--color-gold-500)"/>
+          </svg>
+          <div>
+            <div class="serif text-lg font-semibold text-white">Giallo Oro Firenze</div>
+            <div class="text-[10px] uppercase tracking-[0.22em] text-gold-400">Dal 2008</div>
+          </div>
+        </div>
+        <p class="text-sm text-ivory-200/80 leading-relaxed">
+          {t(locale, 'footer.tagline')}
+        </p>
+        <div class="flex gap-3 mt-5">
+          <a href="https://www.facebook.com/gialloorofirenze" target="_blank" rel="noopener" aria-label="Facebook" class="w-9 h-9 flex items-center justify-center rounded-full border border-ivory-200/20 hover:border-gold-400 hover:text-gold-400 transition-colors">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M13.397 20.997v-8.196h2.765l.411-3.209h-3.176V7.548c0-.926.258-1.56 1.587-1.56h1.684V3.127A22.336 22.336 0 0014.201 3c-2.444 0-4.122 1.492-4.122 4.231v2.355H7.332v3.209h2.753v8.202h3.312z"/></svg>
+          </a>
+          <a href="https://www.instagram.com/gialloorofirenze" target="_blank" rel="noopener" aria-label="Instagram" class="w-9 h-9 flex items-center justify-center rounded-full border border-ivory-200/20 hover:border-gold-400 hover:text-gold-400 transition-colors">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2.163c3.204 0 3.584.012 4.849.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.849.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg>
+          </a>
+        </div>
+      </div>
+
+      <!-- Nav -->
+      <nav aria-labelledby="footer-nav">
+        <h3 id="footer-nav" class="serif text-gold-500 text-sm uppercase tracking-[0.2em] font-semibold mb-5">{t(locale, 'footer.nav_title')}</h3>
+        <ul class="space-y-2.5 text-sm">
+          {nav.map((l) => (
+            <li>
+              <a href={locale === 'it' ? l.it : l.en} class="text-ivory-200/85 hover:text-gold-400 lux-link transition-colors">
+                {t(locale, l.key as any)}
+              </a>
+            </li>
+          ))}
+        </ul>
+      </nav>
+
+      <!-- Legal -->
+      <nav aria-labelledby="footer-legal">
+        <h3 id="footer-legal" class="serif text-gold-500 text-sm uppercase tracking-[0.2em] font-semibold mb-5">{t(locale, 'footer.legal_title')}</h3>
+        <ul class="space-y-2.5 text-sm text-ivory-200/85">
+          <li><a href={hrefFor(locale, 'privacy')} class="lux-link hover:text-gold-400">{t(locale, 'footer.privacy')}</a></li>
+          <li><a href={hrefFor(locale, 'cookie')} class="lux-link hover:text-gold-400">{t(locale, 'footer.cookie')}</a></li>
+          <li class="pt-2 text-xs text-ivory-200/60 font-mono">{t(locale, 'footer.imprint')}</li>
+          <li class="text-xs text-ivory-200/60">{t(locale, 'footer.oam')}</li>
+        </ul>
+      </nav>
+
+      <!-- Contact -->
+      <div>
+        <h3 class="serif text-gold-500 text-sm uppercase tracking-[0.2em] font-semibold mb-5">{t(locale, 'footer.contact_title')}</h3>
+        <address class="not-italic text-sm text-ivory-200/85 space-y-3">
+          <div>
+            {t(locale, 'contact.address_line')}
+          </div>
+          <div class="flex flex-col gap-1.5 pt-1">
+            <a href="tel:+390552335573" class="flex items-center gap-2 hover:text-gold-400 tabular">
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72 12.84 12.84 0 00.7 2.81 2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0122 16.92z"/></svg>
+              +39 055 2335573
+            </a>
+            <a href="tel:+393917792818" class="flex items-center gap-2 hover:text-gold-400 tabular">
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="5" y="2" width="14" height="20" rx="2"/><path d="M12 18h.01"/></svg>
+              +39 391 7792818
+            </a>
+            <a href="mailto:info@gialloorofirenze.it" class="flex items-center gap-2 hover:text-gold-400">
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+              info@gialloorofirenze.it
+            </a>
+          </div>
+          <div class="pt-3 text-xs border-t border-ivory-200/10">
+            <div class="text-gold-400 uppercase tracking-wider text-[10px] mb-1">{t(locale, 'contact.hours_title')}</div>
+            <div>{t(locale, 'contact.hours_week')}</div>
+            <div>{t(locale, 'contact.hours_thu')}</div>
+            <div class="text-ivory-200/60">{t(locale, 'contact.hours_sat')}</div>
+          </div>
+        </address>
+      </div>
+    </div>
+
+    <div class="gold-rule my-12"></div>
+
+    <div class="flex flex-col md:flex-row items-center justify-between gap-4 text-xs text-ivory-200/60">
+      <div>{t(locale, 'footer.copyright')}</div>
+      <div class="flex items-center gap-1.5">
+        <span>{t(locale, 'footer.credits_prefix')}</span>
+        <a href="https://florenceegi.com" target="_blank" rel="noopener" class="text-gold-500 hover:text-gold-300 font-medium lux-link">
+          {t(locale, 'footer.credits_brand')}
+        </a>
+      </div>
+    </div>
+  </div>
+</footer>

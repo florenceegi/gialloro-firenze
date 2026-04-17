@@ -1,0 +1,148 @@
+---
+/**
+ * @package GIALLORO-FIRENZE — Hero
+ * @author Padmin D. Curtis (AI Partner OS3.0) for Fabio Cherici
+ * @version 1.0.0 (FlorenceEGI — GIALLORO-FIRENZE)
+ * @date 2026-04-17
+ * @purpose Hero editoriale luxury: eyebrow + H1 split con accent gold,
+ *          subtitle answer-first (40 parole), CTA doppio, trust signals.
+ *          Sfondo: gradient ivory + texture sottile, parallax CSS-only.
+ */
+import { t, hrefFor, type Locale } from '@i18n/index';
+
+export interface Props { locale: Locale; }
+const { locale } = Astro.props;
+
+const contattiHref = locale === 'it' ? '/contatti' : '/en/contact';
+const quotazioniHref = locale === 'it' ? '/quotazioni' : '/en/live-price';
+---
+<section class="relative overflow-hidden bg-gradient-to-br from-ivory-50 via-ivory-100 to-gold-50/40 pt-10 md:pt-16 lg:pt-24 pb-16 md:pb-24 lg:pb-32">
+  <!-- Deco floreale/oro -->
+  <div class="absolute inset-0 pointer-events-none opacity-30" aria-hidden="true">
+    <svg class="absolute -top-20 -right-20 w-[540px] h-[540px]" viewBox="0 0 600 600" fill="none">
+      <defs>
+        <radialGradient id="h-grad" cx="50%" cy="50%" r="50%">
+          <stop offset="0%" stop-color="#d4af37" stop-opacity="0.22"/>
+          <stop offset="60%" stop-color="#d4af37" stop-opacity="0.06"/>
+          <stop offset="100%" stop-color="#d4af37" stop-opacity="0"/>
+        </radialGradient>
+      </defs>
+      <circle cx="300" cy="300" r="280" fill="url(#h-grad)"/>
+    </svg>
+    <svg class="absolute bottom-0 -left-40 w-[440px] h-[440px]" viewBox="0 0 500 500" fill="none">
+      <circle cx="250" cy="250" r="240" stroke="#d4af37" stroke-width="0.5" opacity="0.2" fill="none"/>
+      <circle cx="250" cy="250" r="180" stroke="#d4af37" stroke-width="0.5" opacity="0.15" fill="none"/>
+      <circle cx="250" cy="250" r="120" stroke="#d4af37" stroke-width="0.5" opacity="0.1" fill="none"/>
+    </svg>
+  </div>
+
+  <div class="relative max-w-7xl mx-auto px-4 md:px-8 grid lg:grid-cols-12 gap-8 lg:gap-16 items-center">
+    <!-- Left: copy -->
+    <div class="lg:col-span-7">
+      <!-- Eyebrow -->
+      <div class="inline-flex items-center gap-2 mb-6 pl-4 pr-4 py-1.5 border border-gold-400/50 rounded-full bg-white/70 backdrop-blur-sm">
+        <span class="w-1.5 h-1.5 rounded-full bg-gold-500 animate-pulse"></span>
+        <span class="text-[11px] uppercase tracking-[0.24em] text-ink-800 font-medium">
+          {t(locale, 'hero.eyebrow')}
+        </span>
+      </div>
+
+      <!-- H1 -->
+      <h1 class="serif text-5xl md:text-6xl lg:text-7xl xl:text-[5.5rem] leading-[0.98] tracking-tight mb-6">
+        <span class="block text-ink-900">{t(locale, 'hero.title_top')}</span>
+        <span class="block my-1">
+          <span class="relative inline-block">
+            <span class="italic text-gold-700">{t(locale, 'hero.title_accent')}</span>
+            <svg class="absolute -bottom-2 left-0 w-full h-4" viewBox="0 0 300 20" fill="none" aria-hidden="true" preserveAspectRatio="none">
+              <path d="M2 14 Q 75 4 150 10 T 298 10" stroke="#d4af37" stroke-width="2.5" stroke-linecap="round" fill="none"/>
+            </svg>
+          </span>
+        </span>
+        <span class="block text-ink-900">{t(locale, 'hero.title_bottom')}</span>
+      </h1>
+
+      <!-- Subtitle (answer-first, 40 word rule) -->
+      <p class="text-lg md:text-xl text-ink-600 leading-relaxed max-w-2xl mb-9">
+        {t(locale, 'hero.subtitle')}
+      </p>
+
+      <!-- CTA -->
+      <div class="flex flex-col sm:flex-row gap-3 sm:gap-4 mb-12">
+        <a href={contattiHref} class="btn-gold">{t(locale, 'hero.cta_primary')}
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
+        </a>
+        <a href={quotazioniHref} class="btn-ghost">{t(locale, 'hero.cta_secondary')}</a>
+      </div>
+
+      <!-- Trust row -->
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-3 md:gap-6 pt-8 border-t border-ink-200/60">
+        <div class="flex items-start gap-2.5">
+          <svg class="text-gold-600 mt-0.5 flex-shrink-0" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M22 11.08V12a10 10 0 11-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+          <span class="text-xs md:text-sm font-medium text-ink-800">{t(locale, 'hero.trust_oam')}</span>
+        </div>
+        <div class="flex items-start gap-2.5">
+          <svg class="text-gold-600 mt-0.5 flex-shrink-0" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+          <span class="text-xs md:text-sm font-medium text-ink-800">{t(locale, 'hero.trust_years')}</span>
+        </div>
+        <div class="flex items-start gap-2.5">
+          <svg class="text-gold-600 mt-0.5 flex-shrink-0" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+          <span class="text-xs md:text-sm font-medium text-ink-800">{t(locale, 'hero.trust_reviews')}</span>
+        </div>
+        <div class="flex items-start gap-2.5">
+          <svg class="text-gold-600 mt-0.5 flex-shrink-0" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="M2 10h20"/></svg>
+          <span class="text-xs md:text-sm font-medium text-ink-800">{t(locale, 'hero.trust_payment')}</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Right: art composition (SVG) -->
+    <div class="lg:col-span-5 relative hidden lg:block">
+      <div class="relative aspect-square max-w-lg mx-auto">
+        <!-- Frame -->
+        <div class="absolute inset-6 border border-gold-500/40 rounded-sm"></div>
+        <div class="absolute inset-0 border-2 border-gold-500 rounded-sm transform translate-x-3 translate-y-3"></div>
+
+        <!-- Card -->
+        <div class="absolute inset-0 bg-white rounded-sm shadow-gold-lg flex items-center justify-center overflow-hidden">
+          <svg viewBox="0 0 400 400" class="w-full h-full" aria-hidden="true">
+            <defs>
+              <linearGradient id="bar-grad" x1="0" y1="0" x2="1" y2="1">
+                <stop offset="0%" stop-color="#fef3c7"/>
+                <stop offset="45%" stop-color="#fcd34d"/>
+                <stop offset="70%" stop-color="#d4af37"/>
+                <stop offset="100%" stop-color="#92760f"/>
+              </linearGradient>
+              <linearGradient id="bar-shine" x1="0" y1="0" x2="1" y2="0">
+                <stop offset="0%" stop-color="rgba(255,255,255,0)"/>
+                <stop offset="50%" stop-color="rgba(255,255,255,0.5)"/>
+                <stop offset="100%" stop-color="rgba(255,255,255,0)"/>
+              </linearGradient>
+            </defs>
+            <!-- Background ring -->
+            <circle cx="200" cy="200" r="170" fill="none" stroke="#fef3c7" stroke-width="1"/>
+            <circle cx="200" cy="200" r="145" fill="none" stroke="#fcd34d" stroke-width="0.5" stroke-dasharray="2 6"/>
+            <!-- Bar -->
+            <g transform="translate(100,150) rotate(-8 100 50)">
+              <rect x="0" y="0" width="200" height="100" rx="4" fill="url(#bar-grad)"/>
+              <rect x="0" y="0" width="200" height="100" rx="4" fill="url(#bar-shine)" opacity="0.6"/>
+              <text x="100" y="38" text-anchor="middle" font-family="Inter" font-size="10" font-weight="700" fill="#3f3405" letter-spacing="2">FINE GOLD</text>
+              <text x="100" y="56" text-anchor="middle" font-family="Playfair Display" font-size="22" font-weight="700" fill="#3f3405">999.9</text>
+              <text x="100" y="75" text-anchor="middle" font-family="Inter" font-size="8" fill="#6b5608" letter-spacing="1.5">LBMA GOOD DELIVERY</text>
+              <text x="100" y="89" text-anchor="middle" font-family="Inter" font-size="7" fill="#6b5608" letter-spacing="1">100 g · Giallo Oro Firenze</text>
+            </g>
+            <!-- Coin -->
+            <g transform="translate(250,80)">
+              <circle cx="40" cy="40" r="38" fill="url(#bar-grad)" stroke="#92760f" stroke-width="1"/>
+              <circle cx="40" cy="40" r="32" fill="none" stroke="#92760f" stroke-width="0.5" stroke-dasharray="2 1"/>
+              <text x="40" y="45" text-anchor="middle" font-family="Playfair Display" font-size="14" font-weight="700" fill="#3f3405">22kt</text>
+            </g>
+            <g transform="translate(60,270)">
+              <circle cx="40" cy="40" r="34" fill="url(#bar-grad)" stroke="#92760f" stroke-width="1"/>
+              <text x="40" y="45" text-anchor="middle" font-family="Playfair Display" font-size="12" font-weight="700" fill="#3f3405">24kt</text>
+            </g>
+          </svg>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

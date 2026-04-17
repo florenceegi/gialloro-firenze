@@ -1,0 +1,8 @@
+{
+  "order": 2,
+  "category": "vendita",
+  "question_it": "Che documenti servono per vendere oro?",
+  "answer_it": "Per vendere oro in Italia serve un documento d'identità in corso di validità e il codice fiscale. La normativa OAM (Organismo Agenti e Mediatori) obbliga il banco metalli a registrare ogni transazione con identificazione del venditore. Lo scontrino d'acquisto originale non è obbligatorio, ma aiuta a certificare la provenienza. Il pagamento è sempre tracciato via bonifico bancario.",
+  "question_en": "What documents are required to sell gold?",
+  "answer_en": "To sell gold in Italy you need a valid ID and Italian tax code (codice fiscale). Italian OAM regulation requires the bullion desk to register every transaction with the seller's identification. The original purchase receipt is not mandatory but helps prove provenance. Payment is always made by traceable bank transfer."
+}

@@ -1,0 +1,671 @@
+{
+  "scraped_at": "2026-04-17T11:49:20.976Z",
+  "pages": [
+    {
+      "path": "/",
+      "assets_found": 64,
+      "new_unique": 64
+    },
+    {
+      "path": "/quotazione-oro/",
+      "assets_found": 7,
+      "new_unique": 1
+    },
+    {
+      "path": "/investire-in-oro/",
+      "assets_found": 11,
+      "new_unique": 5
+    },
+    {
+      "path": "/sterlina-in-oro/",
+      "assets_found": 15,
+      "new_unique": 9
+    },
+    {
+      "path": "/lingotti-in-oro/",
+      "assets_found": 10,
+      "new_unique": 4
+    },
+    {
+      "path": "/gioielleria/",
+      "assets_found": 18,
+      "new_unique": 12
+    },
+    {
+      "path": "/contattaci/",
+      "assets_found": 16,
+      "new_unique": 10
+    }
+  ],
+  "assets": [
+    {
+      "url": "https://www.gialloorofirenze.it/wp-content/uploads/2024/03/APPROVATO-Giallo-Oro-Firenze-NERO.png",
+      "file": "APPROVATO-Giallo-Oro-Firenze-NERO.png",
+      "bytes": 5249,
+      "status": "downloaded"
+    },
+    {
+      "url": "https://www.gialloorofirenze.it/wp-content/uploads/2024/03/APPROVATO-Giallo-Oro-Firenze-BIANCO.png",
+      "file": "APPROVATO-Giallo-Oro-Firenze-BIANCO.png",
+      "bytes": 6073,
+      "status": "downloaded"
+    },
+    {
+      "url": "https://www.gialloorofirenze.it/wp-content/uploads/2024/05/INVESTIRE-IN-ORO.jpg",
+      "file": "INVESTIRE-IN-ORO.jpg",
+      "bytes": 266211,
+      "status": "downloaded"
+    },
+    {
+      "url": "https://www.gialloorofirenze.it/wp-content/uploads/2024/03/ICO-Bancometalli.png",
+      "file": "ICO-Bancometalli.png",
+      "bytes": 5097,
+      "status": "downloaded"
+    },
+    {
+      "url": "https://www.gialloorofirenze.it/wp-content/uploads/2024/03/ICO-compro-oro.png",
+      "file": "ICO-compro-oro.png",
+      "bytes": 6110,
+      "status": "downloaded"
+    },
+    {
+      "url": "https://www.gialloorofirenze.it/wp-content/uploads/2024/03/ICO-gioielli.png",
+      "file": "ICO-gioielli.png",
+      "bytes": 7995,
+      "status": "downloaded"
+    },
+    {
+      "url": "https://www.gialloorofirenze.it/wp-content/uploads/2024/03/ICO-sterline.png",
+      "file": "ICO-sterline.png",
+      "bytes": 10576,
+      "status": "downloaded"
+    },
+    {
+      "url": "https://www.gialloorofirenze.it/wp-content/uploads/2024/03/ICO-lingotti.png",
+      "file": "ICO-lingotti.png",
+      "bytes": 6565,
+      "status": "downloaded"
+    },
+    {
+      "url": "https://www.gialloorofirenze.it/wp-content/uploads/2024/03/ICO-contatti.png",
+      "file": "ICO-contatti.png",
+      "bytes": 8909,
+      "status": "downloaded"
+    },
+    {
+      "url": "https://www.gialloorofirenze.it/wp-content/uploads/2026/01/Generate_an_image_202601141742.jpeg",
+      "file": "Generate_an_image_202601141742.jpeg",
+      "bytes": 244241,
+      "status": "downloaded"
+    },
+    {
+      "url": "https://www.gialloorofirenze.it/wp-content/uploads/2026/04/download-1-300x300.png",
+      "file": "download-1-300x300.png",
+      "bytes": 108718,
+      "status": "downloaded"
+    },
+    {
+      "url": "https://www.gialloorofirenze.it/wp-content/uploads/2026/04/Progetto-senza-titolo-18-1-240x300.png",
+      "file": "Progetto-senza-titolo-18-1-240x300.png",
+      "bytes": 104767,
+      "status": "downloaded"
+    },
+    {
+      "url": "https://www.gialloorofirenze.it/wp-content/uploads/2026/03/download-1-300x200.png",
+      "file": "download-1-300x200.png",
+      "bytes": 90238,
+      "status": "downloaded"
+    },
+    {
+      "url": "https://www.gialloorofirenze.it/wp-content/uploads/2026/02/download-300x300.png",
+      "file": "download-300x300.png",
+      "bytes": 141671,
+      "status": "downloaded"
+    },
+    {
+      "url": "https://www.gialloorofirenze.it/wp-content/uploads/2026/01/foto-blog-300x200.png",
+      "file": "foto-blog-300x200.png",
+      "bytes": 97176,
+      "status": "downloaded"
+    },
+    {
+      "url": "https://www.gialloorofirenze.it/wp-content/uploads/2025/12/Progetto-senza-titolo-6-200x300.png",
+      "file": "Progetto-senza-titolo-6-200x300.png",
+      "bytes": 15551,
+      "status": "downloaded"
+    },
+    {
+      "url": "https://www.gialloorofirenze.it/wp-content/uploads/2025/11/845bae12-bbf3-4732-8e77-be8eb471a5c6-200x300.jpg",
+      "file": "845bae12-bbf3-4732-8e77-be8eb471a5c6-200x300.jpg",
+      "bytes": 12355,
+      "status": "downloaded"
+    },
+    {
+      "url": "https://www.gialloorofirenze.it/wp-content/uploads/2025/10/eb8589ef-b7aa-48a8-a77c-3fb06303ca46-300x300.jpg",
+      "file": "eb8589ef-b7aa-48a8-a77c-3fb06303ca46-300x300.jpg",
+      "bytes": 20307,
+      "status": "downloaded"
+    },
+    {
+      "url": "https://www.gialloorofirenze.it/wp-content/uploads/2024/03/81CFBD36-C1DF-4D75-A2B9-14F6F24FB596-112w.webp",
+      "file": "81CFBD36-C1DF-4D75-A2B9-14F6F24FB596-112w.webp",
+      "bytes": 1962,
+      "status": "downloaded"
+    },
+    {
+      "url": "https://www.gialloorofirenze.it/wp-content/uploads/2024/03/logo-oam-1024x263-259w.webp",
+      "file": "logo-oam-1024x263-259w.webp",
+      "bytes": 5518,
+      "status": "downloaded"
+    },
+    {
+      "url": "https://www.gialloorofirenze.it/wp-content/uploads/2024/03/GORO2-113h.webp",
+      "file": "GORO2-113h.webp",
+      "bytes": 5882,
+      "status": "downloaded"
+    },
+    {
+      "url": "https://www.gialloorofirenze.it/wp-content/uploads/2024/03/ICO-Bancometalli-100x100.png",
+      "file": "ICO-Bancometalli-100x100.png",
+      "bytes": 6951,
+      "status": "downloaded"
+    },
+    {
+      "url": "https://www.gialloorofirenze.it/wp-content/uploads/2024/03/ICO-compro-oro-100x100.png",
+      "file": "ICO-compro-oro-100x100.png",
+      "bytes": 7496,
+      "status": "downloaded"
+    },
+    {
+      "url": "https://www.gialloorofirenze.it/wp-content/uploads/2024/03/ICO-gioielli-100x100.png",
+      "file": "ICO-gioielli-100x100.png",
+      "bytes": 10185,
+      "status": "downloaded"
+    },
+    {
+      "url": "https://www.gialloorofirenze.it/wp-content/uploads/2024/03/ICO-sterline-100x100.png",
+      "file": "ICO-sterline-100x100.png",
+      "bytes": 15443,
+      "status": "downloaded"
+    },
+    {
+      "url": "https://www.gialloorofirenze.it/wp-content/uploads/2024/03/ICO-lingotti-100x100.png",
+      "file": "ICO-lingotti-100x100.png",
+      "bytes": 10009,
+      "status": "downloaded"
+    },
+    {
+      "url": "https://www.gialloorofirenze.it/wp-content/uploads/2024/03/ICO-contatti-100x100.png",
+      "file": "ICO-contatti-100x100.png",
+      "bytes": 8043,
+      "status": "downloaded"
+    },
+    {
+      "url": "https://www.gialloorofirenze.it/wp-content/uploads/2026/04/download-1-150x150.png",
+      "file": "download-1-150x150.png",
+      "bytes": 29811,
+      "status": "downloaded"
+    },
+    {
+      "url": "https://www.gialloorofirenze.it/wp-content/uploads/2026/04/download-1-768x768.png",
+      "file": "download-1-768x768.png",
+      "bytes": 638827,
+      "status": "downloaded"
+    },
+    {
+      "url": "https://www.gialloorofirenze.it/wp-content/uploads/2026/04/download-1-600x600.png",
+      "file": "download-1-600x600.png",
+      "bytes": 403916,
+      "status": "downloaded"
+    },
+    {
+      "url": "https://www.gialloorofirenze.it/wp-content/uploads/2026/04/download-1-100x100.png",
+      "file": "download-1-100x100.png",
+      "bytes": 14069,
+      "status": "downloaded"
+    },
+    {
+      "url": "https://www.gialloorofirenze.it/wp-content/uploads/2026/04/download-1.png",
+      "file": "download-1.png",
+      "bytes": 1555177,
+      "status": "downloaded"
+    },
+    {
+      "url": "https://www.gialloorofirenze.it/wp-content/uploads/2026/04/Progetto-senza-titolo-18-1-819x1024.png",
+      "file": "Progetto-senza-titolo-18-1-819x1024.png",
+      "bytes": 988478,
+      "status": "downloaded"
+    },
+    {
+      "url": "https://www.gialloorofirenze.it/wp-content/uploads/2026/04/Progetto-senza-titolo-18-1-768x960.png",
+      "file": "Progetto-senza-titolo-18-1-768x960.png",
+      "bytes": 885039,
+      "status": "downloaded"
+    },
+    {
+      "url": "https://www.gialloorofirenze.it/wp-content/uploads/2026/04/Progetto-senza-titolo-18-1-600x750.png",
+      "file": "Progetto-senza-titolo-18-1-600x750.png",
+      "bytes": 574125,
+      "status": "downloaded"
+    },
+    {
+      "url": "https://www.gialloorofirenze.it/wp-content/uploads/2026/04/Progetto-senza-titolo-18-1.png",
+      "file": "Progetto-senza-titolo-18-1.png",
+      "bytes": 1720087,
+      "status": "downloaded"
+    },
+    {
+      "url": "https://www.gialloorofirenze.it/wp-content/uploads/2026/03/download-1-1024x683.png",
+      "file": "download-1-1024x683.png",
+      "bytes": 897320,
+      "status": "downloaded"
+    },
+    {
+      "url": "https://www.gialloorofirenze.it/wp-content/uploads/2026/03/download-1-768x512.png",
+      "file": "download-1-768x512.png",
+      "bytes": 521781,
+      "status": "downloaded"
+    },
+    {
+      "url": "https://www.gialloorofirenze.it/wp-content/uploads/2026/03/download-1-600x400.png",
+      "file": "download-1-600x400.png",
+      "bytes": 332935,
+      "status": "downloaded"
+    },
+    {
+      "url": "https://www.gialloorofirenze.it/wp-content/uploads/2026/03/download-1.png",
+      "file": "download-1.png",
+      "status": "skipped"
+    },
+    {
+      "url": "https://www.gialloorofirenze.it/wp-content/uploads/2026/02/download-150x150.png",
+      "file": "download-150x150.png",
+      "bytes": 42372,
+      "status": "downloaded"
+    },
+    {
+      "url": "https://www.gialloorofirenze.it/wp-content/uploads/2026/02/download-768x768.png",
+      "file": "download-768x768.png",
+      "bytes": 742770,
+      "status": "downloaded"
+    },
+    {
+      "url": "https://www.gialloorofirenze.it/wp-content/uploads/2026/02/download-600x600.png",
+      "file": "download-600x600.png",
+      "bytes": 479907,
+      "status": "downloaded"
+    },
+    {
+      "url": "https://www.gialloorofirenze.it/wp-content/uploads/2026/02/download-100x100.png",
+      "file": "download-100x100.png",
+      "bytes": 20385,
+      "status": "downloaded"
+    },
+    {
+      "url": "https://www.gialloorofirenze.it/wp-content/uploads/2026/02/download.png",
+      "file": "download.png",
+      "bytes": 2522406,
+      "status": "downloaded"
+    },
+    {
+      "url": "https://www.gialloorofirenze.it/wp-content/uploads/2026/01/foto-blog-1024x683.png",
+      "file": "foto-blog-1024x683.png",
+      "bytes": 1009876,
+      "status": "downloaded"
+    },
+    {
+      "url": "https://www.gialloorofirenze.it/wp-content/uploads/2026/01/foto-blog-768x512.png",
+      "file": "foto-blog-768x512.png",
+      "bytes": 567521,
+      "status": "downloaded"
+    },
+    {
+      "url": "https://www.gialloorofirenze.it/wp-content/uploads/2026/01/foto-blog-600x400.png",
+      "file": "foto-blog-600x400.png",
+      "bytes": 354461,
+      "status": "downloaded"
+    },
+    {
+      "url": "https://www.gialloorofirenze.it/wp-content/uploads/2026/01/foto-blog.png",
+      "file": "foto-blog.png",
+      "bytes": 3800163,
+      "status": "downloaded"
+    },
+    {
+      "url": "https://www.gialloorofirenze.it/wp-content/uploads/2025/12/Progetto-senza-titolo-6-683x1024.png",
+      "file": "Progetto-senza-titolo-6-683x1024.png",
+      "bytes": 111331,
+      "status": "downloaded"
+    },
+    {
+      "url": "https://www.gialloorofirenze.it/wp-content/uploads/2025/12/Progetto-senza-titolo-6-768x1152.png",
+      "file": "Progetto-senza-titolo-6-768x1152.png",
+      "bytes": 136831,
+      "status": "downloaded"
+    },
+    {
+      "url": "https://www.gialloorofirenze.it/wp-content/uploads/2025/12/Progetto-senza-titolo-6-600x900.png",
+      "file": "Progetto-senza-titolo-6-600x900.png",
+      "bytes": 88110,
+      "status": "downloaded"
+    },
+    {
+      "url": "https://www.gialloorofirenze.it/wp-content/uploads/2025/12/Progetto-senza-titolo-6.png",
+      "file": "Progetto-senza-titolo-6.png",
+      "bytes": 1111238,
+      "status": "downloaded"
+    },
+    {
+      "url": "https://www.gialloorofirenze.it/wp-content/uploads/2025/11/845bae12-bbf3-4732-8e77-be8eb471a5c6-683x1024.jpg",
+      "file": "845bae12-bbf3-4732-8e77-be8eb471a5c6-683x1024.jpg",
+      "bytes": 77433,
+      "status": "downloaded"
+    },
+    {
+      "url": "https://www.gialloorofirenze.it/wp-content/uploads/2025/11/845bae12-bbf3-4732-8e77-be8eb471a5c6-768x1152.jpg",
+      "file": "845bae12-bbf3-4732-8e77-be8eb471a5c6-768x1152.jpg",
+      "bytes": 92957,
+      "status": "downloaded"
+    },
+    {
+      "url": "https://www.gialloorofirenze.it/wp-content/uploads/2025/11/845bae12-bbf3-4732-8e77-be8eb471a5c6-600x900.jpg",
+      "file": "845bae12-bbf3-4732-8e77-be8eb471a5c6-600x900.jpg",
+      "bytes": 63644,
+      "status": "downloaded"
+    },
+    {
+      "url": "https://www.gialloorofirenze.it/wp-content/uploads/2025/11/845bae12-bbf3-4732-8e77-be8eb471a5c6.jpg",
+      "file": "845bae12-bbf3-4732-8e77-be8eb471a5c6.jpg",
+      "bytes": 151038,
+      "status": "downloaded"
+    },
+    {
+      "url": "https://www.gialloorofirenze.it/wp-content/uploads/2025/10/eb8589ef-b7aa-48a8-a77c-3fb06303ca46-150x150.jpg",
+      "file": "eb8589ef-b7aa-48a8-a77c-3fb06303ca46-150x150.jpg",
+      "bytes": 6624,
+      "status": "downloaded"
+    },
+    {
+      "url": "https://www.gialloorofirenze.it/wp-content/uploads/2025/10/eb8589ef-b7aa-48a8-a77c-3fb06303ca46-768x768.jpg",
+      "file": "eb8589ef-b7aa-48a8-a77c-3fb06303ca46-768x768.jpg",
+      "bytes": 93517,
+      "status": "downloaded"
+    },
+    {
+      "url": "https://www.gialloorofirenze.it/wp-content/uploads/2025/10/eb8589ef-b7aa-48a8-a77c-3fb06303ca46-600x600.jpg",
+      "file": "eb8589ef-b7aa-48a8-a77c-3fb06303ca46-600x600.jpg",
+      "bytes": 62445,
+      "status": "downloaded"
+    },
+    {
+      "url": "https://www.gialloorofirenze.it/wp-content/uploads/2025/10/eb8589ef-b7aa-48a8-a77c-3fb06303ca46-100x100.jpg",
+      "file": "eb8589ef-b7aa-48a8-a77c-3fb06303ca46-100x100.jpg",
+      "bytes": 3418,
+      "status": "downloaded"
+    },
+    {
+      "url": "https://www.gialloorofirenze.it/wp-content/uploads/2025/10/eb8589ef-b7aa-48a8-a77c-3fb06303ca46.jpg",
+      "file": "eb8589ef-b7aa-48a8-a77c-3fb06303ca46.jpg",
+      "bytes": 164250,
+      "status": "downloaded"
+    },
+    {
+      "url": "https://www.gialloorofirenze.it/wp-content/uploads/2024/03/81CFBD36-C1DF-4D75-A2B9-14F6F24FB596-112w-100x100.webp",
+      "file": "81CFBD36-C1DF-4D75-A2B9-14F6F24FB596-112w-100x100.webp",
+      "bytes": 1648,
+      "status": "downloaded"
+    },
+    {
+      "url": "https://www.gialloorofirenze.it/wp-content/uploads/2024/06/fondo-contatti-giallo-oro-1024x576.jpg",
+      "file": "fondo-contatti-giallo-oro-1024x576.jpg",
+      "bytes": 79266,
+      "status": "downloaded"
+    },
+    {
+      "url": "https://www.gialloorofirenze.it/wp-content/uploads/2024/03/oro-di-casa-1024x1024.jpg",
+      "file": "oro-di-casa-1024x1024.jpg",
+      "bytes": 47673,
+      "status": "downloaded"
+    },
+    {
+      "url": "https://www.gialloorofirenze.it/wp-content/uploads/2024/06/Progetto-senza-titolo-12.png",
+      "file": "Progetto-senza-titolo-12.png",
+      "bytes": 627542,
+      "status": "downloaded"
+    },
+    {
+      "url": "https://www.gialloorofirenze.it/wp-content/uploads/2024/06/6b18b1ec-c8c7-4478-9acd-805dc193bbf0.jpg",
+      "file": "6b18b1ec-c8c7-4478-9acd-805dc193bbf0.jpg",
+      "bytes": 42816,
+      "status": "downloaded"
+    },
+    {
+      "url": "https://www.gialloorofirenze.it/wp-content/uploads/2024/06/Progetto-senza-titolo-12-200x300.png",
+      "file": "Progetto-senza-titolo-12-200x300.png",
+      "bytes": 67985,
+      "status": "downloaded"
+    },
+    {
+      "url": "https://www.gialloorofirenze.it/wp-content/uploads/2024/06/6b18b1ec-c8c7-4478-9acd-805dc193bbf0-300x231.jpg",
+      "file": "6b18b1ec-c8c7-4478-9acd-805dc193bbf0-300x231.jpg",
+      "bytes": 15969,
+      "status": "downloaded"
+    },
+    {
+      "url": "https://www.gialloorofirenze.it/wp-content/uploads/2024/06/6b18b1ec-c8c7-4478-9acd-805dc193bbf0-600x461.jpg",
+      "file": "6b18b1ec-c8c7-4478-9acd-805dc193bbf0-600x461.jpg",
+      "bytes": 45598,
+      "status": "downloaded"
+    },
+    {
+      "url": "https://www.gialloorofirenze.it/wp-content/uploads/2025/01/Progetto-senza-titolo-22.png",
+      "file": "Progetto-senza-titolo-22.png",
+      "bytes": 892243,
+      "status": "downloaded"
+    },
+    {
+      "url": "https://www.gialloorofirenze.it/wp-content/uploads/2024/03/strlina-oro-02-1024x1024.jpg",
+      "file": "strlina-oro-02-1024x1024.jpg",
+      "bytes": 223568,
+      "status": "downloaded"
+    },
+    {
+      "url": "https://www.gialloorofirenze.it/wp-content/uploads/2025/01/Progetto-senza-titolo-22-184x300.png",
+      "file": "Progetto-senza-titolo-22-184x300.png",
+      "bytes": 106304,
+      "status": "downloaded"
+    },
+    {
+      "url": "https://www.gialloorofirenze.it/wp-content/uploads/2024/03/strlina-oro-02-300x300.jpg",
+      "file": "strlina-oro-02-300x300.jpg",
+      "bytes": 21416,
+      "status": "downloaded"
+    },
+    {
+      "url": "https://www.gialloorofirenze.it/wp-content/uploads/2024/03/strlina-oro-02-150x150.jpg",
+      "file": "strlina-oro-02-150x150.jpg",
+      "bytes": 6534,
+      "status": "downloaded"
+    },
+    {
+      "url": "https://www.gialloorofirenze.it/wp-content/uploads/2024/03/strlina-oro-02-768x768.jpg",
+      "file": "strlina-oro-02-768x768.jpg",
+      "bytes": 130367,
+      "status": "downloaded"
+    },
+    {
+      "url": "https://www.gialloorofirenze.it/wp-content/uploads/2024/03/strlina-oro-02-600x600.jpg",
+      "file": "strlina-oro-02-600x600.jpg",
+      "bytes": 81278,
+      "status": "downloaded"
+    },
+    {
+      "url": "https://www.gialloorofirenze.it/wp-content/uploads/2024/03/strlina-oro-02-100x100.jpg",
+      "file": "strlina-oro-02-100x100.jpg",
+      "bytes": 3960,
+      "status": "downloaded"
+    },
+    {
+      "url": "https://www.gialloorofirenze.it/wp-content/uploads/2024/03/strlina-oro-02.jpg",
+      "file": "strlina-oro-02.jpg",
+      "bytes": 266487,
+      "status": "downloaded"
+    },
+    {
+      "url": "https://www.gialloorofirenze.it/wp-content/uploads/2024/06/Progetto-senza-titolo-13.png",
+      "file": "Progetto-senza-titolo-13.png",
+      "bytes": 516035,
+      "status": "downloaded"
+    },
+    {
+      "url": "https://www.gialloorofirenze.it/wp-content/uploads/2024/03/oro-lingotti.jpg",
+      "file": "oro-lingotti.jpg",
+      "bytes": 111709,
+      "status": "downloaded"
+    },
+    {
+      "url": "https://www.gialloorofirenze.it/wp-content/uploads/2024/06/Progetto-senza-titolo-13-200x300.png",
+      "file": "Progetto-senza-titolo-13-200x300.png",
+      "bytes": 89893,
+      "status": "downloaded"
+    },
+    {
+      "url": "https://www.gialloorofirenze.it/wp-content/uploads/2024/03/oro-lingotti-200x300.jpg",
+      "file": "oro-lingotti-200x300.jpg",
+      "bytes": 20263,
+      "status": "downloaded"
+    },
+    {
+      "url": "https://www.gialloorofirenze.it/wp-content/uploads/2026/01/1.png",
+      "file": "1.png",
+      "bytes": 1070808,
+      "status": "downloaded"
+    },
+    {
+      "url": "https://www.gialloorofirenze.it/wp-content/uploads/2026/01/2-1.png",
+      "file": "2-1.png",
+      "bytes": 944328,
+      "status": "downloaded"
+    },
+    {
+      "url": "https://www.gialloorofirenze.it/wp-content/uploads/2026/01/1-300x300.png",
+      "file": "1-300x300.png",
+      "bytes": 137815,
+      "status": "downloaded"
+    },
+    {
+      "url": "https://www.gialloorofirenze.it/wp-content/uploads/2026/01/1-150x150.png",
+      "file": "1-150x150.png",
+      "bytes": 41027,
+      "status": "downloaded"
+    },
+    {
+      "url": "https://www.gialloorofirenze.it/wp-content/uploads/2026/01/1-768x768.png",
+      "file": "1-768x768.png",
+      "bytes": 645803,
+      "status": "downloaded"
+    },
+    {
+      "url": "https://www.gialloorofirenze.it/wp-content/uploads/2026/01/1-600x600.png",
+      "file": "1-600x600.png",
+      "bytes": 436079,
+      "status": "downloaded"
+    },
+    {
+      "url": "https://www.gialloorofirenze.it/wp-content/uploads/2026/01/1-100x100.png",
+      "file": "1-100x100.png",
+      "bytes": 19787,
+      "status": "downloaded"
+    },
+    {
+      "url": "https://www.gialloorofirenze.it/wp-content/uploads/2026/01/2-1-300x300.png",
+      "file": "2-1-300x300.png",
+      "bytes": 124807,
+      "status": "downloaded"
+    },
+    {
+      "url": "https://www.gialloorofirenze.it/wp-content/uploads/2026/01/2-1-150x150.png",
+      "file": "2-1-150x150.png",
+      "bytes": 38434,
+      "status": "downloaded"
+    },
+    {
+      "url": "https://www.gialloorofirenze.it/wp-content/uploads/2026/01/2-1-768x768.png",
+      "file": "2-1-768x768.png",
+      "bytes": 574533,
+      "status": "downloaded"
+    },
+    {
+      "url": "https://www.gialloorofirenze.it/wp-content/uploads/2026/01/2-1-600x600.png",
+      "file": "2-1-600x600.png",
+      "bytes": 390895,
+      "status": "downloaded"
+    },
+    {
+      "url": "https://www.gialloorofirenze.it/wp-content/uploads/2026/01/2-1-100x100.png",
+      "file": "2-1-100x100.png",
+      "bytes": 18996,
+      "status": "downloaded"
+    },
+    {
+      "url": "https://www.gialloorofirenze.it/wp-content/uploads/2026/01/Progetto-senza-titolo-1-1-1024x241.png",
+      "file": "Progetto-senza-titolo-1-1-1024x241.png",
+      "bytes": 335896,
+      "status": "downloaded"
+    },
+    {
+      "url": "https://www.gialloorofirenze.it/wp-content/uploads/2024/05/Logo-per-contattaci.png",
+      "file": "Logo-per-contattaci.png",
+      "bytes": 92573,
+      "status": "downloaded"
+    },
+    {
+      "url": "https://www.gialloorofirenze.it/wp-content/uploads/2026/01/Progetto-senza-titolo-1-1-300x71.png",
+      "file": "Progetto-senza-titolo-1-1-300x71.png",
+      "bytes": 39855,
+      "status": "downloaded"
+    },
+    {
+      "url": "https://www.gialloorofirenze.it/wp-content/uploads/2026/01/Progetto-senza-titolo-1-1-768x181.png",
+      "file": "Progetto-senza-titolo-1-1-768x181.png",
+      "bytes": 205345,
+      "status": "downloaded"
+    },
+    {
+      "url": "https://www.gialloorofirenze.it/wp-content/uploads/2026/01/Progetto-senza-titolo-1-1-1536x361.png",
+      "file": "Progetto-senza-titolo-1-1-1536x361.png",
+      "bytes": 652716,
+      "status": "downloaded"
+    },
+    {
+      "url": "https://www.gialloorofirenze.it/wp-content/uploads/2026/01/Progetto-senza-titolo-1-1-2048x482.png",
+      "file": "Progetto-senza-titolo-1-1-2048x482.png",
+      "bytes": 1022225,
+      "status": "downloaded"
+    },
+    {
+      "url": "https://www.gialloorofirenze.it/wp-content/uploads/2026/01/Progetto-senza-titolo-1-1-600x141.png",
+      "file": "Progetto-senza-titolo-1-1-600x141.png",
+      "bytes": 133397,
+      "status": "downloaded"
+    },
+    {
+      "url": "https://www.gialloorofirenze.it/wp-content/uploads/2024/05/Logo-per-contattaci-300x107.png",
+      "file": "Logo-per-contattaci-300x107.png",
+      "bytes": 18831,
+      "status": "downloaded"
+    },
+    {
+      "url": "https://www.gialloorofirenze.it/wp-content/uploads/2024/05/Logo-per-contattaci-768x273.png",
+      "file": "Logo-per-contattaci-768x273.png",
+      "bytes": 64914,
+      "status": "downloaded"
+    },
+    {
+      "url": "https://www.gialloorofirenze.it/wp-content/uploads/2024/05/Logo-per-contattaci-600x213.png",
+      "file": "Logo-per-contattaci-600x213.png",
+      "bytes": 46603,
+      "status": "downloaded"
+    }
+  ]
+}

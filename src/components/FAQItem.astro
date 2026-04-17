@@ -1,0 +1,27 @@
+---
+/**
+ * @package GIALLORO-FIRENZE — FAQ Item
+ * @author Padmin D. Curtis (AI Partner OS3.0) for Fabio Cherici
+ * @version 1.0.0 (FlorenceEGI — GIALLORO-FIRENZE)
+ * @date 2026-04-17
+ * @purpose Disclosure accessibile per singola FAQ — usa <details>/<summary> nativi
+ *          (zero JS, WCAG AA, SEO-friendly). Schema.org FAQPage gestito dal parent.
+ */
+export interface Props { question: string; }
+const { question } = Astro.props;
+---
+<details class="group border-b border-ink-200 py-5 last:border-b-0 transition-colors">
+  <summary class="flex items-start justify-between gap-6 cursor-pointer list-none outline-none">
+    <span class="serif text-lg md:text-xl font-semibold text-ink-900 group-hover:text-gold-700 transition-colors pr-4">
+      {question}
+    </span>
+    <span class="flex-shrink-0 w-8 h-8 rounded-full bg-ivory-100 group-hover:bg-gold-500 group-open:bg-gold-500 flex items-center justify-center transition-all duration-300">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" class="text-ink-800 group-hover:text-ink-900 group-open:text-ink-900 transition-transform duration-300 group-open:rotate-45" aria-hidden="true">
+        <path d="M12 5v14M5 12h14"/>
+      </svg>
+    </span>
+  </summary>
+  <div class="pt-4 text-ink-600 leading-relaxed text-base md:text-[17px] max-w-4xl">
+    <slot />
+  </div>
+</details>
