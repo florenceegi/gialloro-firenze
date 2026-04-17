@@ -15,6 +15,7 @@ const { locale } = Astro.props;
 const nav = [
   { key: 'nav.compro_oro',  it: '/compro-oro',  en: '/en/sell-gold' },
   { key: 'nav.investimento',it: '/investimento',en: '/en/buy-gold' },
+  { key: 'nav.sterline',    it: '/sterline',    en: '/en/sovereigns' },
   { key: 'nav.gioielleria', it: '/gioielleria', en: '/en/jewelry' },
   { key: 'nav.quotazioni',  it: '/quotazioni',  en: '/en/live-price' },
   { key: 'nav.perizie',     it: '/perizie',     en: '/en/appraisals' },
@@ -111,6 +112,24 @@ const nav = [
     </div>
 
     <div class="gold-rule my-12"></div>
+
+    <!-- Compliance strip: Banca d'Italia + OAM + GORO marchio -->
+    <section aria-labelledby="footer-compliance" class="mb-10">
+      <h3 id="footer-compliance" class="sr-only">{t(locale, 'footer.compliance_title')}</h3>
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-10 items-center justify-items-center">
+        <div class="bg-white/95 rounded-md px-5 py-4 flex items-center justify-center w-full max-w-[220px] h-24">
+          <img src="/logos/banca-italia.svg" alt={t(locale, 'footer.logo_bdi_alt')} width="90" height="100" loading="lazy" decoding="async" class="h-full w-auto" />
+        </div>
+        <div class="bg-white/95 rounded-md px-5 py-4 flex items-center justify-center w-full max-w-[260px] h-24">
+          <img src="/logos/oam.webp" alt={t(locale, 'footer.logo_oam_alt')} width="240" height="62" loading="lazy" decoding="async" class="max-h-14 w-auto" />
+        </div>
+        <div class="bg-white/95 rounded-md px-5 py-4 flex items-center justify-center w-full max-w-[220px] h-24">
+          <img src="/logos/goro.webp" alt={t(locale, 'footer.logo_goro_alt')} width="113" height="113" loading="lazy" decoding="async" class="max-h-16 w-auto" />
+        </div>
+      </div>
+    </section>
+
+    <div class="gold-rule mb-10"></div>
 
     <div class="flex flex-col md:flex-row items-center justify-between gap-4 text-xs text-ivory-200/60">
       <div>{t(locale, 'footer.copyright')}</div>

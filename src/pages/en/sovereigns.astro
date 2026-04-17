@@ -1,0 +1,188 @@
+---
+/**
+ * @package GIALLORO-FIRENZE — Sovereigns EN
+ * @author Padmin D. Curtis (AI Partner OS3.0) for Fabio Cherici
+ * @version 1.0.0 (FlorenceEGI — GIALLORO-FIRENZE)
+ * @date 2026-04-17
+ * @purpose Dedicated Gold Sovereign page EN: hero, tech specs, 4-monarchs history,
+ *          why invest, buy CTA. AEO answer-first + Service schema.
+ */
+import Base from '@layouts/Base.astro';
+import SectionHeading from '@components/SectionHeading.astro';
+import { t, hrefFor } from '@i18n/index';
+import { breadcrumbSchema, serviceSchema } from '@lib/schema';
+
+const locale = 'en' as const;
+const path = '/en/sovereigns';
+
+const schemas = [
+  breadcrumbSchema([
+    { name: t(locale, 'nav.home'), url: 'https://gialloorofirenze.it/en' },
+    { name: t(locale, 'nav.investimento'), url: 'https://gialloorofirenze.it/en/buy-gold' },
+    { name: t(locale, 'nav.sterline'), url: 'https://gialloorofirenze.it/en/sovereigns' },
+  ]),
+  serviceSchema({
+    name: 'Gold Sovereign buying and selling',
+    description: t(locale, 'sterline.answer'),
+    serviceType: 'Gold Sovereign Dealing',
+    url: 'https://gialloorofirenze.it/en/sovereigns',
+  }),
+];
+
+const title = 'Gold Sovereign · Buy and sell in Florence';
+const description = t(locale, 'sterline.answer');
+
+const specs = [
+  { l: t(locale, 'sterline.spec_weight'),    v: t(locale, 'sterline.spec_weight_v') },
+  { l: t(locale, 'sterline.spec_fine'),      v: t(locale, 'sterline.spec_fine_v') },
+  { l: t(locale, 'sterline.spec_diameter'),  v: t(locale, 'sterline.spec_diameter_v') },
+  { l: t(locale, 'sterline.spec_thickness'), v: t(locale, 'sterline.spec_thickness_v') },
+  { l: t(locale, 'sterline.spec_purity'),    v: t(locale, 'sterline.spec_purity_v') },
+  { l: t(locale, 'sterline.spec_issuer'),    v: t(locale, 'sterline.spec_issuer_v') },
+];
+
+const monarchs = [
+  { n: t(locale, 'sterline.m1_name'), y: t(locale, 'sterline.m1_years'), d: t(locale, 'sterline.m1_desc') },
+  { n: t(locale, 'sterline.m2_name'), y: t(locale, 'sterline.m2_years'), d: t(locale, 'sterline.m2_desc') },
+  { n: t(locale, 'sterline.m3_name'), y: t(locale, 'sterline.m3_years'), d: t(locale, 'sterline.m3_desc') },
+  { n: t(locale, 'sterline.m4_name'), y: t(locale, 'sterline.m4_years'), d: t(locale, 'sterline.m4_desc') },
+];
+
+const why = [
+  { t: t(locale, 'sterline.why_1_t'), d: t(locale, 'sterline.why_1_d') },
+  { t: t(locale, 'sterline.why_2_t'), d: t(locale, 'sterline.why_2_d') },
+  { t: t(locale, 'sterline.why_3_t'), d: t(locale, 'sterline.why_3_d') },
+  { t: t(locale, 'sterline.why_4_t'), d: t(locale, 'sterline.why_4_d') },
+];
+---
+<Base locale={locale} path={path} title={title} description={description} schema={schemas}>
+
+  <section class="relative overflow-hidden pt-20 md:pt-28 pb-16 md:pb-20 bg-gradient-to-br from-ivory-50 via-gold-50/40 to-ivory-100">
+    <div class="max-w-6xl mx-auto px-4 md:px-8 relative z-10">
+      <nav aria-label="Breadcrumb" class="mb-8 text-sm text-ink-500">
+        <ol class="flex items-center gap-2 flex-wrap">
+          <li><a href={hrefFor(locale, '')} class="hover:text-gold-700">{t(locale, 'nav.home')}</a></li>
+          <li aria-hidden="true">/</li>
+          <li><a href={hrefFor(locale, 'buy-gold')} class="hover:text-gold-700">{t(locale, 'nav.investimento')}</a></li>
+          <li aria-hidden="true">/</li>
+          <li class="text-ink-800 font-medium">{t(locale, 'nav.sterline')}</li>
+        </ol>
+      </nav>
+
+      <div class="grid md:grid-cols-5 gap-10 lg:gap-14 items-center">
+        <div class="md:col-span-3 reveal reveal-up">
+          <div class="inline-flex items-center gap-2 px-3 py-1.5 bg-gold-500/10 text-gold-800 border border-gold-300/60 rounded-full text-[11px] uppercase tracking-[0.22em] font-semibold mb-6">
+            <span class="w-1.5 h-1.5 rounded-full bg-gold-500 animate-pulse"></span>
+            {t(locale, 'sterline.eyebrow')}
+          </div>
+          <h1 class="serif text-5xl md:text-6xl lg:text-7xl text-ink-900 leading-[1.05] mb-5">
+            {t(locale, 'sterline.title')}
+          </h1>
+          <p class="text-xl text-ink-700 leading-relaxed mb-4">
+            {t(locale, 'sterline.subtitle')}
+          </p>
+          <p class="text-[16px] text-ink-600 leading-relaxed mb-8 max-w-2xl">
+            {t(locale, 'sterline.answer')}
+          </p>
+          <div class="flex flex-col sm:flex-row gap-3">
+            <a href={hrefFor(locale, 'contact')} class="btn-gold btn-magnetic">{t(locale, 'cta.appointment')}</a>
+            <a href={hrefFor(locale, 'live-price')} class="btn-ghost">{t(locale, 'hero.cta_secondary')}</a>
+          </div>
+        </div>
+
+        <div class="md:col-span-2 reveal reveal-scale">
+          <div class="relative aspect-square max-w-md mx-auto">
+            <div class="absolute inset-0 rounded-full bg-gradient-to-br from-gold-400/40 via-gold-200/20 to-transparent blur-3xl"></div>
+            <div class="relative w-full h-full rounded-full overflow-hidden shadow-gold-xl border-4 border-gold-400/40 card-tilt">
+              <img src="/images/sterline/sterlina-hero.jpg" alt="Queen Victoria Gold Sovereign" width="600" height="600" loading="eager" class="w-full h-full object-cover" />
+            </div>
+            <div class="absolute -bottom-4 -right-4 bg-ink-900 text-gold-500 px-5 py-3 rounded-sm shadow-gold-md">
+              <div class="text-[10px] uppercase tracking-[0.2em] text-gold-400">22kt</div>
+              <div class="serif text-xl font-semibold tabular">7.32 g fine</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="py-16 md:py-20 bg-white">
+    <div class="max-w-6xl mx-auto px-4 md:px-8">
+      <SectionHeading as="h2" eyebrow="Technical specs" title={t(locale, 'sterline.specs_title')} />
+      <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4 md:gap-5 mt-10">
+        {specs.map((s) => (
+          <div class="reveal reveal-up border border-ink-200 bg-ivory-50 px-5 py-6 text-center hover:border-gold-400 hover:bg-gold-50/40 transition-colors">
+            <div class="text-[10px] uppercase tracking-[0.22em] text-ink-500 font-semibold mb-2">{s.l}</div>
+            <div class="serif text-2xl text-ink-900 tabular font-semibold">{s.v}</div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="py-16 md:py-24 bg-gradient-to-b from-ivory-50 to-white">
+    <div class="max-w-6xl mx-auto px-4 md:px-8">
+      <SectionHeading as="h2" eyebrow="History" title={t(locale, 'sterline.history_title')} subtitle={t(locale, 'sterline.history_intro')} />
+
+      <div class="relative mt-16">
+        <div class="hidden md:block absolute left-1/2 top-0 bottom-0 w-px bg-gradient-to-b from-gold-300 via-gold-400 to-gold-300 -translate-x-1/2" aria-hidden="true"></div>
+
+        <div class="space-y-10 md:space-y-16">
+          {monarchs.map((m, i) => (
+            <div class:list={['reveal grid md:grid-cols-2 gap-6 md:gap-12 items-center', i % 2 === 0 ? 'reveal-left' : 'reveal-right']}>
+              <div class:list={[i % 2 === 0 ? 'md:text-right md:pr-12' : 'md:col-start-2 md:pl-12']}>
+                <div class="text-[11px] uppercase tracking-[0.25em] text-gold-700 font-semibold mb-2">{m.y}</div>
+                <h3 class="serif text-3xl md:text-4xl text-ink-900 mb-3">{m.n}</h3>
+                <p class="text-ink-600 leading-relaxed text-[15.5px]">{m.d}</p>
+              </div>
+              <div class:list={['hidden md:flex items-center justify-center relative', i % 2 === 0 ? 'md:col-start-2' : 'md:col-start-1 md:row-start-1']}>
+                <div class="absolute left-1/2 top-1/2 w-5 h-5 rounded-full bg-gold-500 -translate-x-1/2 -translate-y-1/2 ring-4 ring-ivory-50 z-10"></div>
+                <svg width="80" height="80" viewBox="0 0 100 100" aria-hidden="true" class="text-gold-600 opacity-40">
+                  <circle cx="50" cy="50" r="44" fill="none" stroke="currentColor" stroke-width="1.2"/>
+                  <circle cx="50" cy="50" r="38" fill="none" stroke="currentColor" stroke-width="0.6"/>
+                  <text x="50" y="56" text-anchor="middle" font-family="Georgia, serif" font-size="14" fill="currentColor" font-weight="700">{i + 1}</text>
+                </svg>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="py-16 md:py-20 bg-ink-900 text-ivory-100 relative overflow-hidden">
+    <div class="absolute inset-0 opacity-30 pointer-events-none">
+      <div class="absolute top-0 left-1/4 w-96 h-96 rounded-full bg-gold-500/20 blur-3xl"></div>
+      <div class="absolute bottom-0 right-1/4 w-96 h-96 rounded-full bg-gold-600/15 blur-3xl"></div>
+    </div>
+    <div class="max-w-6xl mx-auto px-4 md:px-8 relative z-10">
+      <div class="text-center mb-12">
+        <div class="text-[11px] uppercase tracking-[0.25em] text-gold-400 font-semibold mb-3">Investment</div>
+        <h2 class="serif text-4xl md:text-5xl text-white mb-4">{t(locale, 'sterline.why_title')}</h2>
+      </div>
+      <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+        {why.map((w, i) => (
+          <div class="reveal reveal-up border border-ivory-200/15 bg-ink-800/60 backdrop-blur-sm p-7 hover:border-gold-400 transition-colors">
+            <div class="serif text-4xl text-gold-500 mb-4 tabular">0{i + 1}</div>
+            <h3 class="serif text-xl text-white mb-3">{w.t}</h3>
+            <p class="text-ivory-200/80 text-[14.5px] leading-relaxed">{w.d}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="py-16 md:py-20 bg-gradient-to-br from-ivory-50 to-gold-50/40">
+    <div class="max-w-4xl mx-auto px-4 md:px-8 text-center">
+      <h2 class="serif text-4xl md:text-5xl text-ink-900 mb-4">{t(locale, 'sterline.buy_title')}</h2>
+      <p class="text-lg text-ink-600 mb-8 max-w-2xl mx-auto">{t(locale, 'sterline.buy_text')}</p>
+      <div class="flex flex-col sm:flex-row justify-center gap-3 mb-10">
+        <a href={hrefFor(locale, 'contact')} class="btn-gold btn-magnetic">{t(locale, 'cta.appointment')}</a>
+        <a href="tel:+390552335573" class="btn-ghost">{t(locale, 'cta.call')}</a>
+        <a href="https://wa.me/393917792818" target="_blank" rel="noopener" class="btn-ghost">{t(locale, 'cta.whatsapp')}</a>
+      </div>
+      <p class="text-xs text-ink-500 max-w-xl mx-auto leading-relaxed">{t(locale, 'sterline.price_disclaimer')}</p>
+    </div>
+  </section>
+
+</Base>

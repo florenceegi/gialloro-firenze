@@ -47,6 +47,7 @@ export const ROUTES_IT_TO_EN: Record<string, string> = {
   '/': '/en',
   '/compro-oro': '/en/sell-gold',
   '/investimento': '/en/buy-gold',
+  '/sterline': '/en/sovereigns',
   '/gioielleria': '/en/jewelry',
   '/quotazioni': '/en/live-price',
   '/perizie': '/en/appraisals',
