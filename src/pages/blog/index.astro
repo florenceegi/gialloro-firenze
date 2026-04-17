@@ -1,22 +1,21 @@
 ---
 /**
- * @package GIALLORO-FIRENZE — Blog index IT
+ * @package GIALLORO-FIRENZE — Blog index IT (live CMS)
  * @author Padmin D. Curtis (AI Partner OS3.0) for Fabio Cherici
- * @version 1.0.0 (FlorenceEGI — GIALLORO-FIRENZE)
- * @date 2026-04-17
- * @purpose Lista articoli blog IT. Empty-state se nessun post. Ordine data desc.
+ * @version 2.0.0 (FlorenceEGI — GIALLORO-FIRENZE)
+ * @date 2026-04-18
+ * @purpose Lista articoli blog IT — SSR live da CMS Laravel (/api/v1/blog).
  */
 import Base from '@layouts/Base.astro';
 import SectionHeading from '@components/SectionHeading.astro';
 import { t, hrefFor } from '@i18n/index';
 import { breadcrumbSchema } from '@lib/schema';
-import { getCollection } from 'astro:content';
+import { fetchBlogList, formatDate } from '@lib/cms';
 
 const locale = 'it' as const;
 const path = '/blog';
 
-const posts = (await getCollection('blog', (e) => e.data.locale === 'it' && !e.data.draft))
-  .sort((a, b) => b.data.datePublished.getTime() - a.data.datePublished.getTime());
+const posts = await fetchBlogList(locale);
 
 const schemas = [
   breadcrumbSchema([
@@ -55,13 +54,19 @@ const description = t(locale, 'blog.subtitle');
         <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
           {posts.map((p) => (
             <a href={`/blog/${p.slug}`} class="card-lux p-0 overflow-hidden group">
-              <div class="aspect-[16/10] bg-ivory-100 overflow-hidden">
-                <img src={p.data.cover} alt={p.data.coverAlt} width="600" height="375" loading="lazy" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
-              </div>
+              {p.featured_image && (
+                <div class="aspect-[16/10] bg-ivory-100 overflow-hidden">
+                  <img src={p.featured_image} alt={p.title} width="600" height="375" loading="lazy" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
+                </div>
+              )}
               <div class="p-6">
-                <time datetime={p.data.datePublished.toISOString()} class="text-xs uppercase tracking-widest text-gold-700 font-semibold">{p.data.datePublished.toLocaleDateString('it-IT', { day: '2-digit', month: 'long', year: 'numeric' })}</time>
-                <h2 class="serif text-xl text-ink-900 mt-2 mb-3 group-hover:text-gold-700 transition-colors">{p.data.title}</h2>
-                <p class="text-ink-600 text-[14.5px] leading-relaxed">{p.data.description}</p>
+                {p.published_at && (
+                  <time datetime={p.published_at} class="text-xs uppercase tracking-widest text-gold-700 font-semibold">
+                    {formatDate(p.published_at, locale)}
+                  </time>
+                )}
+                <h2 class="serif text-xl text-ink-900 mt-2 mb-3 group-hover:text-gold-700 transition-colors">{p.title}</h2>
+                {p.excerpt && <p class="text-ink-600 text-[14.5px] leading-relaxed">{p.excerpt}</p>}
               </div>
             </a>
           ))}

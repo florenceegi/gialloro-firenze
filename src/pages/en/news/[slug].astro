@@ -1,49 +1,49 @@
 ---
 /**
- * @package GIALLORO-FIRENZE — Blog post EN
+ * @package GIALLORO-FIRENZE — Blog post EN (live CMS)
  * @author Padmin D. Curtis (AI Partner OS3.0) for Fabio Cherici
- * @version 1.0.0 (FlorenceEGI — GIALLORO-FIRENZE)
- * @date 2026-04-17
- * @purpose Dynamic EN blog post renderer. SSG getStaticPaths on en entries !draft.
- *          BlogPosting + breadcrumb schemas. Editorial prose typography.
+ * @version 2.0.0 (FlorenceEGI — GIALLORO-FIRENZE)
+ * @date 2026-04-18
+ * @purpose EN blog post — SSR live from CMS Laravel (/api/v1/blog/{slug}?locale=en).
  */
 import Base from '@layouts/Base.astro';
 import { t, hrefFor } from '@i18n/index';
 import { breadcrumbSchema, blogPostingSchema } from '@lib/schema';
-import { getCollection, type CollectionEntry } from 'astro:content';
-
-export async function getStaticPaths() {
-  const posts = await getCollection('blog', (e) => e.data.locale === 'en' && !e.data.draft);
-  return posts.map((p) => ({ params: { slug: p.slug }, props: { post: p } }));
-}
-
-interface Props { post: CollectionEntry<'blog'>; }
-const { post } = Astro.props;
-const { Content } = await post.render();
+import { fetchBlogBySlug, formatDate } from '@lib/cms';
+import { marked } from 'marked';
 
 const locale = 'en' as const;
+const { slug } = Astro.params;
+
+if (!slug) return Astro.redirect('/en/news');
+
+const post = await fetchBlogBySlug(slug, locale);
+
+if (!post) return new Response('Not Found', { status: 404 });
+
 const path = `/en/news/${post.slug}`;
 const url = `https://gialloorofirenze.it${path}`;
+const contentHtml = post.content_md ? marked.parse(post.content_md) : '';
 
 const schemas = [
   breadcrumbSchema([
     { name: t(locale, 'nav.home'), url: 'https://gialloorofirenze.it/en' },
     { name: t(locale, 'nav.blog'), url: 'https://gialloorofirenze.it/en/news' },
-    { name: post.data.title, url },
+    { name: post.title, url },
   ]),
   blogPostingSchema({
-    title: post.data.title,
-    description: post.data.description,
+    title: post.title,
+    description: post.excerpt ?? '',
     url,
-    image: `https://gialloorofirenze.it${post.data.cover}`,
-    datePublished: post.data.datePublished.toISOString(),
-    dateModified: post.data.dateModified?.toISOString(),
-    authorName: post.data.author,
+    image: post.featured_image ? `https://gialloorofirenze.it${post.featured_image}` : 'https://gialloorofirenze.it/og-default.jpg',
+    datePublished: post.published_at ?? post.created_at,
+    dateModified: post.updated_at,
+    authorName: 'Giallo Oro Firenze',
     locale: 'en',
   }),
 ];
 ---
-<Base locale={locale} path={path} title={post.data.title} description={post.data.description} schema={schemas} ogImage={post.data.cover} ogImageAlt={post.data.coverAlt}>
+<Base locale={locale} path={path} title={post.meta_title ?? post.title} description={post.meta_description ?? post.excerpt ?? ''} schema={schemas} ogImage={post.featured_image ?? undefined}>
 
   <article>
     <header class="pt-20 md:pt-28 pb-10 bg-gradient-to-br from-ivory-50 to-gold-50/30">
@@ -54,31 +54,27 @@ const schemas = [
             <li aria-hidden="true">/</li>
             <li><a href={hrefFor(locale, 'news')} class="hover:text-gold-700">{t(locale, 'nav.blog')}</a></li>
             <li aria-hidden="true">/</li>
-            <li class="text-ink-800 font-medium line-clamp-1">{post.data.title}</li>
+            <li class="text-ink-800 font-medium line-clamp-1">{post.title}</li>
           </ol>
         </nav>
-        <div class="text-[11px] uppercase tracking-[0.25em] text-gold-700 font-semibold mb-4">
-          <time datetime={post.data.datePublished.toISOString()}>
-            {post.data.datePublished.toLocaleDateString('en-US', { day: '2-digit', month: 'long', year: 'numeric' })}
-          </time>
-          <span class="mx-2 text-ink-300">·</span>
-          <span>{post.data.author}</span>
-        </div>
-        <h1 class="serif text-4xl md:text-5xl lg:text-6xl text-ink-900 leading-tight mb-6">{post.data.title}</h1>
-        <p class="text-xl text-ink-700 leading-relaxed">{post.data.description}</p>
+        {post.published_at && (
+          <div class="text-[11px] uppercase tracking-[0.25em] text-gold-700 font-semibold mb-4">
+            <time datetime={post.published_at}>{formatDate(post.published_at, locale)}</time>
+          </div>
+        )}
+        <h1 class="serif text-4xl md:text-5xl lg:text-6xl text-ink-900 leading-tight mb-6">{post.title}</h1>
+        {post.excerpt && <p class="text-xl text-ink-700 leading-relaxed">{post.excerpt}</p>}
       </div>
     </header>
 
-    {post.data.cover && (
+    {post.featured_image && (
       <div class="max-w-4xl mx-auto px-4 md:px-8 -mt-2 mb-10">
-        <img src={post.data.cover} alt={post.data.coverAlt} width="1200" height="675" loading="eager" class="w-full aspect-[16/9] object-cover rounded-sm shadow-gold-md" />
+        <img src={post.featured_image} alt={post.title} width="1200" height="675" loading="eager" class="w-full aspect-[16/9] object-cover rounded-sm shadow-gold-md" />
       </div>
     )}
 
     <div class="max-w-3xl mx-auto px-4 md:px-8 pb-20">
-      <div class="prose-lux">
-        <Content />
-      </div>
+      <div class="prose-lux" set:html={contentHtml}></div>
 
       <div class="gold-rule my-12"></div>
 

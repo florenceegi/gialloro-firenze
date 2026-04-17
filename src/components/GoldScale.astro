@@ -1,0 +1,373 @@
+---
+/**
+ * @package GIALLORO-FIRENZE — GoldScale (Hero interattivo)
+ * @author Padmin D. Curtis (AI Partner OS3.0) for Fabio Cherici
+ * @version 1.0.0 (FlorenceEGI — GIALLORO-FIRENZE)
+ * @date 2026-04-18
+ * @purpose Hero WOW: bilancia digitale live. Il sito È il banco metalli.
+ *          Slider peso × carato → EUR real-time. Fonte: CMS /api/v1/gold/price.
+ *          Nessun altro gioielliere al mondo ha questo.
+ */
+import { t, hrefFor, type Locale } from '@i18n/index';
+
+export interface Props { locale: Locale; }
+const { locale } = Astro.props;
+
+const contattiHref = locale === 'it' ? '/contatti' : '/en/contact';
+
+const copy = {
+  it: {
+    eyebrow: 'Quotazione live · Banco Metalli Firenze',
+    title_a: 'Pesa il tuo oro.',
+    title_b: 'Sapere quanto vale',
+    title_c: 'prima di uscire di casa.',
+    subtitle: 'Calcolo basato sulla quotazione internazionale dell\'oro aggiornata ogni 5 minuti. Valore indicativo del riacquisto; la perizia in sede conferma il prezzo finale.',
+    weight: 'Peso',
+    grams: 'grammi',
+    carat: 'Titolo',
+    presets: 'Preset comuni',
+    presets_items: [
+      { label: 'Sterlina', grams: 7.98, carat: '22kt' },
+      { label: 'Marengo', grams: 6.45, carat: '22kt' },
+      { label: 'Anello', grams: 4, carat: '18kt' },
+      { label: 'Catena 50cm', grams: 12, carat: '18kt' },
+      { label: 'Bracciale', grams: 20, carat: '18kt' },
+    ],
+    result_label: 'Ricevi oggi',
+    result_hint: 'Valore di riacquisto indicativo',
+    cta: 'Prenota ritiro in sede',
+    quote: 'Quotazione oro',
+    source: 'Fonte: mercato spot internazionale',
+    updated: 'aggiornata',
+    seconds_ago: 'sec fa',
+    minutes_ago: 'min fa',
+    now: 'adesso',
+  },
+  en: {
+    eyebrow: 'Live quote · Gold Dealer Florence',
+    title_a: 'Weigh your gold.',
+    title_b: 'Know what it\'s worth',
+    title_c: 'before leaving home.',
+    subtitle: 'Calculation based on the international gold price refreshed every 5 minutes. Indicative buyback value; the in-store appraisal confirms the final price.',
+    weight: 'Weight',
+    grams: 'grams',
+    carat: 'Purity',
+    presets: 'Common presets',
+    presets_items: [
+      { label: 'Sovereign', grams: 7.98, carat: '22kt' },
+      { label: 'Marengo', grams: 6.45, carat: '22kt' },
+      { label: 'Ring', grams: 4, carat: '18kt' },
+      { label: '50cm chain', grams: 12, carat: '18kt' },
+      { label: 'Bracelet', grams: 20, carat: '18kt' },
+    ],
+    result_label: 'You receive today',
+    result_hint: 'Indicative buyback value',
+    cta: 'Book in-store pickup',
+    quote: 'Gold spot',
+    source: 'Source: international spot market',
+    updated: 'updated',
+    seconds_ago: 'sec ago',
+    minutes_ago: 'min ago',
+    now: 'now',
+  },
+};
+
+const c = copy[locale];
+const presetsJson = JSON.stringify(c.presets_items);
+const labelsJson = JSON.stringify({
+  seconds_ago: c.seconds_ago,
+  minutes_ago: c.minutes_ago,
+  now: c.now,
+});
+---
+<section id="gold-scale-hero" class="relative overflow-hidden bg-gradient-to-br from-ink-950 via-ink-900 to-ink-950 text-ivory-50 min-h-[92vh] flex items-center py-20 md:py-24">
+
+  <!-- Ambient gold glow -->
+  <div class="absolute inset-0 pointer-events-none opacity-70" aria-hidden="true">
+    <div class="absolute -top-40 -right-40 w-[700px] h-[700px] rounded-full blur-3xl" style="background: radial-gradient(circle, rgba(212,175,55,0.22) 0%, rgba(212,175,55,0.08) 40%, transparent 70%);"></div>
+    <div class="absolute -bottom-40 -left-40 w-[600px] h-[600px] rounded-full blur-3xl" style="background: radial-gradient(circle, rgba(212,175,55,0.16) 0%, rgba(212,175,55,0.04) 40%, transparent 70%);"></div>
+  </div>
+
+  <!-- Florentine pattern decoration (subtle) -->
+  <div class="absolute inset-0 pointer-events-none opacity-[0.04]" aria-hidden="true"
+       style="background-image: radial-gradient(circle at 50% 50%, #d4af37 1px, transparent 1px); background-size: 40px 40px;"></div>
+
+  <div class="relative max-w-7xl mx-auto px-4 md:px-6 lg:px-8 w-full">
+    <div class="grid lg:grid-cols-[1.1fr_1fr] gap-10 lg:gap-16 items-center">
+
+      <!-- LEFT: editorial copy -->
+      <div class="order-2 lg:order-1">
+        <div class="flex items-center gap-3 mb-6">
+          <span class="flex items-center gap-2 text-[11px] uppercase tracking-[0.28em] text-gold-400 font-semibold">
+            <span class="relative flex h-2 w-2">
+              <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-gold-400 opacity-75"></span>
+              <span class="relative inline-flex rounded-full h-2 w-2 bg-gold-500"></span>
+            </span>
+            {c.eyebrow}
+          </span>
+        </div>
+
+        <h1 class="serif text-4xl md:text-5xl lg:text-6xl xl:text-7xl leading-[1.05] mb-8 tracking-tight">
+          <span class="block text-gold-400 italic">{c.title_a}</span>
+          <span class="block mt-2">{c.title_b}</span>
+          <span class="block text-ivory-100/70">{c.title_c}</span>
+        </h1>
+
+        <p class="text-lg md:text-xl text-ivory-100/80 leading-relaxed max-w-xl mb-10">
+          {c.subtitle}
+        </p>
+
+        <!-- Live ticker -->
+        <div class="inline-flex items-center gap-3 px-5 py-3 bg-ink-800/60 border border-gold-700/30 rounded-sm backdrop-blur-sm" data-ticker>
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="text-gold-400" aria-hidden="true"><path d="M12 2v4M12 18v4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M2 12h4M18 12h4M4.93 19.07l2.83-2.83M16.24 7.76l2.83-2.83"/></svg>
+          <div class="text-sm">
+            <span class="text-ivory-100/60">{c.quote}:</span>
+            <span class="text-gold-300 font-semibold ml-1" data-spot>—</span>
+            <span class="text-ivory-100/40 text-xs ml-2" data-updated>—</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- RIGHT: interactive scale -->
+      <div class="order-1 lg:order-2">
+        <div class="relative bg-gradient-to-br from-ink-800/90 to-ink-900/90 backdrop-blur-md border border-gold-700/30 rounded-sm p-6 md:p-8 shadow-2xl">
+
+          <!-- Scale icon decoration -->
+          <div class="flex items-center justify-center mb-6" aria-hidden="true">
+            <svg width="64" height="64" viewBox="0 0 64 64" fill="none" class="text-gold-500">
+              <path d="M32 8 L32 56" stroke="currentColor" stroke-width="1.5"/>
+              <path d="M20 56 L44 56" stroke="currentColor" stroke-width="1.5"/>
+              <ellipse cx="32" cy="8" rx="3" ry="3" fill="currentColor"/>
+              <path d="M32 16 L12 28 M32 16 L52 28" stroke="currentColor" stroke-width="1.5"/>
+              <path d="M4 28 Q12 42 20 28 M44 28 Q52 42 60 28" stroke="currentColor" stroke-width="1.5" fill="none"/>
+              <path d="M4 28 L20 28" stroke="currentColor" stroke-width="1.5"/>
+              <path d="M44 28 L60 28" stroke="currentColor" stroke-width="1.5"/>
+            </svg>
+          </div>
+
+          <!-- Result (big, animated) -->
+          <div class="text-center mb-8 pb-8 border-b border-gold-700/20">
+            <div class="text-[10px] uppercase tracking-[0.28em] text-ivory-100/50 mb-2">{c.result_label}</div>
+            <div class="serif text-5xl md:text-6xl font-semibold text-gold-300 tabular-nums tracking-tight" data-result>€ —</div>
+            <div class="text-xs text-ivory-100/40 mt-3 italic">{c.result_hint}</div>
+          </div>
+
+          <!-- Weight slider -->
+          <div class="mb-6">
+            <div class="flex items-center justify-between mb-3">
+              <label for="weight-input" class="text-[11px] uppercase tracking-[0.22em] text-ivory-100/60 font-medium">{c.weight}</label>
+              <div class="flex items-baseline gap-1">
+                <input id="weight-input" type="number" min="0.1" max="1000" step="0.1" value="10"
+                       class="w-20 bg-transparent border-b border-gold-700/40 text-right serif text-2xl text-gold-300 focus:outline-none focus:border-gold-400 tabular-nums"
+                       data-weight-input>
+                <span class="text-xs text-ivory-100/50">{c.grams}</span>
+              </div>
+            </div>
+            <input type="range" min="0.1" max="500" step="0.1" value="10"
+                   class="gold-slider w-full" data-weight-slider aria-label={c.weight}>
+            <div class="flex justify-between text-[10px] text-ivory-100/30 mt-1 font-mono">
+              <span>0.1g</span><span>250g</span><span>500g</span>
+            </div>
+          </div>
+
+          <!-- Carat selector -->
+          <div class="mb-6">
+            <div class="text-[11px] uppercase tracking-[0.22em] text-ivory-100/60 font-medium mb-3">{c.carat}</div>
+            <div class="grid grid-cols-4 gap-2" role="radiogroup" aria-label={c.carat}>
+              {['24kt','22kt','18kt','14kt'].map((k) => (
+                <button type="button" role="radio" aria-checked={k === '18kt' ? 'true' : 'false'} data-carat={k}
+                  class:list={[
+                    'py-2.5 text-sm font-medium rounded-sm border transition-all',
+                    k === '18kt'
+                      ? 'bg-gold-500 text-ink-900 border-gold-500'
+                      : 'bg-transparent text-ivory-100/70 border-gold-700/30 hover:border-gold-500 hover:text-gold-300',
+                  ]}>
+                  {k}
+                </button>
+              ))}
+            </div>
+          </div>
+
+          <!-- Presets -->
+          <div class="mb-8">
+            <div class="text-[11px] uppercase tracking-[0.22em] text-ivory-100/60 font-medium mb-3">{c.presets}</div>
+            <div class="flex flex-wrap gap-2">
+              {c.presets_items.map((p) => (
+                <button type="button" data-preset-grams={p.grams} data-preset-carat={p.carat}
+                  class="px-3 py-1.5 text-xs rounded-full border border-gold-700/30 text-ivory-100/70 hover:border-gold-500 hover:text-gold-300 transition-colors">
+                  {p.label}
+                </button>
+              ))}
+            </div>
+          </div>
+
+          <!-- CTA -->
+          <a href={contattiHref} class="block w-full text-center px-6 py-4 bg-gold-500 hover:bg-gold-400 text-ink-900 font-semibold uppercase tracking-[0.18em] text-sm rounded-sm transition-colors">
+            {c.cta}
+          </a>
+
+          <div class="text-[10px] text-ivory-100/30 text-center mt-4 italic">{c.source}</div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<style>
+  .gold-slider {
+    -webkit-appearance: none;
+    appearance: none;
+    height: 4px;
+    background: linear-gradient(to right, var(--color-gold-500) 0%, var(--color-gold-500) var(--val, 2%), rgba(212,175,55,0.15) var(--val, 2%), rgba(212,175,55,0.15) 100%);
+    border-radius: 999px;
+    outline: none;
+    cursor: pointer;
+  }
+  .gold-slider::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 22px;
+    height: 22px;
+    border-radius: 50%;
+    background: radial-gradient(circle at 30% 30%, #f5d57a, #d4af37 60%, #a07d1b 100%);
+    border: 2px solid #fff;
+    box-shadow: 0 2px 10px rgba(212,175,55,0.5);
+    cursor: grab;
+    transition: transform 150ms;
+  }
+  .gold-slider::-webkit-slider-thumb:active { cursor: grabbing; transform: scale(1.15); }
+  .gold-slider::-moz-range-thumb {
+    width: 22px; height: 22px; border-radius: 50%;
+    background: radial-gradient(circle at 30% 30%, #f5d57a, #d4af37 60%, #a07d1b 100%);
+    border: 2px solid #fff;
+    box-shadow: 0 2px 10px rgba(212,175,55,0.5);
+    cursor: grab;
+  }
+  [data-result] {
+    transition: color 250ms;
+  }
+  [data-result].pulse { animation: goldPulse 400ms ease-out; }
+  @keyframes goldPulse {
+    0% { transform: scale(1); color: var(--color-gold-300); }
+    50% { transform: scale(1.04); color: var(--color-gold-200); }
+    100% { transform: scale(1); color: var(--color-gold-300); }
+  }
+</style>
+
+<script is:inline define:vars={{ API_URL: import.meta.env.PUBLIC_CMS_API_URL || '/api/gold-proxy', LABELS: labelsJson }}>
+(function () {
+  const labels = JSON.parse(LABELS);
+  const root = document.getElementById('gold-scale-hero');
+  if (!root) return;
+
+  const weightSlider = root.querySelector('[data-weight-slider]');
+  const weightInput  = root.querySelector('[data-weight-input]');
+  const resultEl     = root.querySelector('[data-result]');
+  const spotEl       = root.querySelector('[data-spot]');
+  const updatedEl    = root.querySelector('[data-updated]');
+  const caratBtns    = root.querySelectorAll('[data-carat]');
+  const presetBtns   = root.querySelectorAll('[data-preset-grams]');
+
+  let state = { weight: 10, carat: '18kt', data: null, updatedAt: null };
+
+  function fmtEur(n) {
+    return new Intl.NumberFormat('it-IT', { style: 'currency', currency: 'EUR', maximumFractionDigits: 2 }).format(n);
+  }
+
+  function timeAgo(iso) {
+    if (!iso) return '';
+    const diff = Math.floor((Date.now() - new Date(iso).getTime()) / 1000);
+    if (diff < 5) return labels.now;
+    if (diff < 60) return `${diff} ${labels.seconds_ago}`;
+    return `${Math.floor(diff / 60)} ${labels.minutes_ago}`;
+  }
+
+  function recalc() {
+    if (!state.data || !state.data.carats[state.carat]) return;
+    const perGram = state.data.carats[state.carat].buyback_eur_gram;
+    const total = Math.max(0, state.weight) * perGram;
+    resultEl.textContent = fmtEur(total);
+    resultEl.classList.remove('pulse');
+    void resultEl.offsetWidth;
+    resultEl.classList.add('pulse');
+  }
+
+  function updateTicker() {
+    if (!state.data) return;
+    spotEl.textContent = fmtEur(state.data.eur_per_gram_24kt) + '/g · 24kt';
+    updatedEl.textContent = `· ${labels.updated ?? ''} ${timeAgo(state.data.updated_at)}`.trim();
+  }
+
+  function updateSliderFill() {
+    const v = Number(weightSlider.value);
+    const max = Number(weightSlider.max);
+    const pct = Math.min(100, (v / max) * 100);
+    weightSlider.style.setProperty('--val', `${pct}%`);
+  }
+
+  weightSlider.addEventListener('input', () => {
+    state.weight = Number(weightSlider.value);
+    weightInput.value = state.weight;
+    updateSliderFill();
+    recalc();
+  });
+  weightInput.addEventListener('input', () => {
+    state.weight = Math.max(0, Number(weightInput.value) || 0);
+    if (state.weight <= Number(weightSlider.max)) weightSlider.value = String(state.weight);
+    updateSliderFill();
+    recalc();
+  });
+  caratBtns.forEach((b) => b.addEventListener('click', () => {
+    state.carat = b.getAttribute('data-carat');
+    caratBtns.forEach((x) => {
+      const active = x === b;
+      x.setAttribute('aria-checked', String(active));
+      x.classList.toggle('bg-gold-500', active);
+      x.classList.toggle('text-ink-900', active);
+      x.classList.toggle('border-gold-500', active);
+      x.classList.toggle('bg-transparent', !active);
+      x.classList.toggle('text-ivory-100/70', !active);
+      x.classList.toggle('border-gold-700/30', !active);
+    });
+    recalc();
+  }));
+  presetBtns.forEach((b) => b.addEventListener('click', () => {
+    const g = Number(b.getAttribute('data-preset-grams'));
+    const k = b.getAttribute('data-preset-carat');
+    state.weight = g; state.carat = k;
+    weightInput.value = g; weightSlider.value = String(Math.min(g, Number(weightSlider.max)));
+    caratBtns.forEach((x) => {
+      const active = x.getAttribute('data-carat') === k;
+      x.setAttribute('aria-checked', String(active));
+      x.classList.toggle('bg-gold-500', active);
+      x.classList.toggle('text-ink-900', active);
+      x.classList.toggle('border-gold-500', active);
+      x.classList.toggle('bg-transparent', !active);
+      x.classList.toggle('text-ivory-100/70', !active);
+      x.classList.toggle('border-gold-700/30', !active);
+    });
+    updateSliderFill();
+    recalc();
+  }));
+
+  async function loadPrice() {
+    try {
+      const res = await fetch(API_URL, { headers: { Accept: 'application/json' } });
+      if (!res.ok) throw new Error('HTTP ' + res.status);
+      const json = await res.json();
+      state.data = json.data;
+      updateTicker();
+      recalc();
+    } catch (e) {
+      spotEl.textContent = '—';
+      updatedEl.textContent = 'offline';
+    }
+  }
+
+  updateSliderFill();
+  loadPrice();
+  setInterval(loadPrice, 5 * 60 * 1000);
+  setInterval(updateTicker, 15 * 1000);
+})();
+</script>

@@ -7,7 +7,7 @@
  * @purpose EN home mirror. Same structure as IT, i18n-switched, English section headings.
  */
 import Base from '@layouts/Base.astro';
-import Hero from '@components/Hero.astro';
+import GoldScale from '@components/GoldScale.astro';
 import SectionHeading from '@components/SectionHeading.astro';
 import ServiceCard from '@components/ServiceCard.astro';
 import FAQItem from '@components/FAQItem.astro';
@@ -36,7 +36,7 @@ const description = t(locale, 'meta.description_default');
 ---
 <Base locale={locale} path={path} title={title} description={description} schema={schemas}>
 
-  <Hero locale={locale} />
+  <GoldScale locale={locale} />
 
   <section class="py-20 md:py-28 bg-white">
     <div class="max-w-7xl mx-auto px-4 md:px-8">

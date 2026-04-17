@@ -1,11 +1,11 @@
 ---
 /**
- * @package GIALLORO-FIRENZE — Nav
+ * @package GIALLORO-FIRENZE — Nav (elegant v2)
  * @author Padmin D. Curtis (AI Partner OS3.0) for Fabio Cherici
- * @version 1.0.0 (FlorenceEGI — GIALLORO-FIRENZE)
- * @date 2026-04-17
- * @purpose Navigazione principale sticky luxury: logo, 10 link, lang switcher,
- *          mobile burger con panel full-screen. A11y: aria-expanded, aria-current.
+ * @version 2.0.0 (FlorenceEGI — GIALLORO-FIRENZE)
+ * @date 2026-04-18
+ * @purpose Navigazione luxury 2-row: utility bar (top, slim) + main (logo/nav/cta).
+ *          Respiro tipografico, mobile burger full-screen. A11y: aria-expanded, aria-current.
  */
 import { t, hrefFor, altLocale, alternateUrl, type Locale } from '@i18n/index';
 
@@ -29,62 +29,85 @@ const homeHref = hrefFor(locale, '/');
 const altHref = alternateUrl(locale, path);
 const alt = altLocale(locale);
 ---
-<header class="site-header sticky top-0 z-50 bg-ivory-50/92 backdrop-blur-md border-b border-ink-200/60 no-print">
-  <div class="max-w-7xl mx-auto px-4 md:px-6 lg:px-8">
-    <div class="h-16 md:h-20 flex items-center justify-between gap-4">
+<header class="site-header sticky top-0 z-50 no-print">
 
-      <!-- Logo -->
-      <a href={homeHref} class="flex items-center gap-3 group" aria-label={t(locale, 'meta.brand')}>
-        <svg width="34" height="34" viewBox="0 0 44 44" fill="none" aria-hidden="true" class="transition-transform group-hover:rotate-[-4deg] duration-500">
-          <circle cx="22" cy="22" r="20" stroke="var(--color-gold-500)" stroke-width="1.5" fill="var(--color-gold-50)"/>
-          <path d="M22 8 L25 18 L35 18 L27 24 L30 34 L22 28 L14 34 L17 24 L9 18 L19 18 Z" fill="var(--color-gold-500)" stroke="var(--color-gold-700)" stroke-width="0.5" stroke-linejoin="round"/>
-        </svg>
-        <div class="leading-tight">
-          <div class="serif text-base md:text-lg font-semibold tracking-tight">Giallo Oro Firenze</div>
-          <div class="text-[10px] md:text-[11px] uppercase tracking-[0.18em] text-ink-600">Banco Metalli · Gioielleria</div>
-        </div>
-      </a>
-
-      <!-- Desktop nav -->
-      <nav class="hidden lg:flex items-center gap-1" aria-label="Primary">
-        {links.map((l) => {
-          const href = locale === 'it' ? l.it : l.en;
-          const active = path === href;
-          return (
-            <a
-              href={href}
-              aria-current={active ? 'page' : undefined}
-              class:list={[
-                'px-3 py-2 text-[13px] font-medium tracking-wide transition-colors',
-                active ? 'text-gold-700' : 'text-ink-800 hover:text-gold-700',
-              ]}
-            >
-              {t(locale, l.key as any)}
-            </a>
-          );
-        })}
-      </nav>
-
-      <!-- Right cluster -->
-      <div class="flex items-center gap-2 md:gap-3">
-        <a href={altHref} hreflang={alt === 'it' ? 'it-IT' : 'en-US'} class="hidden md:inline-flex items-center gap-1.5 px-2.5 py-1.5 text-[11px] uppercase tracking-[0.2em] font-semibold text-ink-600 hover:text-gold-700 border border-ink-200 hover:border-gold-400 rounded-sm transition-colors">
-          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3a14 14 0 010 18M12 3a14 14 0 000 18"/></svg>
-          {t(locale, 'nav.lang_switch')}
+  <!-- Utility bar (top, slim) -->
+  <div class="hidden md:block bg-ink-900 text-ivory-50 border-b border-gold-700/40">
+    <div class="max-w-7xl mx-auto px-6 lg:px-8 h-9 flex items-center justify-between text-[11px] uppercase tracking-[0.22em]">
+      <div class="flex items-center gap-6">
+        <a href="tel:+390552335573" class="flex items-center gap-2 text-ivory-100 hover:text-gold-300 transition-colors">
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72 12.84 12.84 0 00.7 2.81 2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0122 16.92z"/></svg>
+          <span>055 2335573</span>
         </a>
-        <a href="tel:+390552335573" class="hidden md:inline-flex items-center gap-2 text-[13px] font-semibold text-ink-800 hover:text-gold-700">
-          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72 12.84 12.84 0 00.7 2.81 2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0122 16.92z"/></svg>
-          055 2335573
+        <span class="hidden lg:inline text-ivory-100/60">Lun–Sab · 9:30–13:00 · 15:30–19:30</span>
+      </div>
+      <div class="flex items-center gap-4">
+        <a href="https://wa.me/393917792818" target="_blank" rel="noopener" class="hidden lg:flex items-center gap-2 text-ivory-100 hover:text-gold-300 transition-colors">
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.6 14.2c-.3-.2-1.8-.9-2.1-1-.3-.1-.5-.2-.7.1-.2.3-.8 1-.9 1.2-.2.2-.3.2-.6.1-.3-.2-1.3-.5-2.4-1.5-.9-.8-1.5-1.8-1.7-2.1-.2-.3 0-.5.1-.6.1-.1.3-.3.4-.5.1-.2.2-.3.3-.5.1-.2 0-.4 0-.5-.1-.1-.7-1.7-1-2.3-.3-.6-.5-.5-.7-.5h-.6c-.2 0-.5.1-.8.4-.3.3-1 1-1 2.4 0 1.4 1 2.8 1.2 3 .1.2 2 3.1 4.9 4.3.7.3 1.2.5 1.6.6.7.2 1.3.2 1.8.1.5-.1 1.7-.7 2-1.4.3-.7.3-1.2.2-1.4-.1-.1-.3-.2-.6-.4zM12 2a10 10 0 00-8.6 15.1L2 22l5-1.3A10 10 0 1012 2z"/></svg>
+          <span>WhatsApp</span>
         </a>
-        <a href={hrefFor(locale, locale === 'it' ? 'contatti' : 'en/contact')} class="btn-gold !py-2.5 !px-5 text-[11px] md:text-xs">
-          {t(locale, 'cta.appointment')}
+        <a href={altHref} hreflang={alt === 'it' ? 'it-IT' : 'en-US'} class="flex items-center gap-1.5 text-ivory-100 hover:text-gold-300 transition-colors" aria-label={t(locale, 'nav.lang_switch')}>
+          <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3a14 14 0 010 18M12 3a14 14 0 000 18"/></svg>
+          <span>{alt === 'en' ? 'English' : 'Italiano'}</span>
         </a>
-
-        <!-- Burger (mobile) -->
-        <button type="button" class="lg:hidden w-10 h-10 inline-flex items-center justify-center rounded border border-ink-200 text-ink-900" aria-expanded="false" aria-controls="mobile-panel" aria-label={t(locale, 'nav.menu_open')} data-mobile-toggle>
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><path d="M3 6h18M3 12h18M3 18h18"/></svg>
-        </button>
       </div>
     </div>
+  </div>
+
+  <!-- Main row -->
+  <div class="bg-ivory-50/95 backdrop-blur-md border-b border-ink-200/60">
+    <div class="max-w-7xl mx-auto px-4 md:px-6 lg:px-8">
+      <div class="h-16 md:h-20 flex items-center justify-between gap-6">
+
+        <!-- Logo -->
+        <a href={homeHref} class="flex items-center gap-3 group shrink-0" aria-label={t(locale, 'meta.brand')}>
+          <svg width="38" height="38" viewBox="0 0 44 44" fill="none" aria-hidden="true" class="transition-transform group-hover:rotate-[-4deg] duration-500 shrink-0">
+            <circle cx="22" cy="22" r="20" stroke="var(--color-gold-500)" stroke-width="1.5" fill="var(--color-gold-50)"/>
+            <path d="M22 8 L25 18 L35 18 L27 24 L30 34 L22 28 L14 34 L17 24 L9 18 L19 18 Z" fill="var(--color-gold-500)" stroke="var(--color-gold-700)" stroke-width="0.5" stroke-linejoin="round"/>
+          </svg>
+          <div class="leading-tight whitespace-nowrap">
+            <div class="serif text-lg md:text-xl font-semibold tracking-tight text-ink-900">Giallo Oro Firenze</div>
+            <div class="hidden sm:block text-[10px] md:text-[11px] uppercase tracking-[0.22em] text-gold-700 font-medium mt-0.5">Banco Metalli · Gioielleria</div>
+          </div>
+        </a>
+
+        <!-- Desktop nav -->
+        <nav class="hidden lg:flex items-center" aria-label="Primary">
+          {links.map((l, i) => {
+            const href = locale === 'it' ? l.it : l.en;
+            const active = path === href;
+            return (
+              <a
+                href={href}
+                aria-current={active ? 'page' : undefined}
+                class:list={[
+                  'relative px-3 py-2 text-[12.5px] font-medium tracking-[0.04em] transition-colors',
+                  active ? 'text-gold-700' : 'text-ink-800 hover:text-gold-700',
+                ]}
+              >
+                {t(locale, l.key as any)}
+                {active && <span class="absolute bottom-0 left-1/2 -translate-x-1/2 w-6 h-[2px] bg-gold-500"></span>}
+              </a>
+            );
+          })}
+        </nav>
+
+        <!-- CTA + burger -->
+        <div class="flex items-center gap-3 shrink-0">
+          <a href={hrefFor(locale, locale === 'it' ? 'contatti' : 'en/contact')} class="btn-gold !py-2.5 !px-5 text-[11px] uppercase tracking-[0.18em]">
+            {t(locale, 'cta.appointment')}
+          </a>
+
+          <!-- Burger (mobile) -->
+          <button type="button" class="lg:hidden w-10 h-10 inline-flex items-center justify-center rounded border border-ink-200 text-ink-900 hover:border-gold-400 transition-colors" aria-expanded="false" aria-controls="mobile-panel" aria-label={t(locale, 'nav.menu_open')} data-mobile-toggle>
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M3 6h18M3 12h18M3 18h18"/></svg>
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Gold rule accent -->
+    <div class="h-[1px] bg-gradient-to-r from-transparent via-gold-400/40 to-transparent"></div>
   </div>
 
   <!-- Mobile panel -->
