@@ -10,22 +10,32 @@
 import Base from '@layouts/Base.astro';
 import SectionHeading from '@components/SectionHeading.astro';
 import { t, hrefFor } from '@i18n/index';
-import { breadcrumbSchema, serviceSchema } from '@lib/schema';
+import { breadcrumbSchema, serviceSchema, productSchema } from '@lib/schema';
 
 const locale = 'en' as const;
 const path = '/en/sovereigns';
+const pageUrl = 'https://gialloorofirenze.it/en/sovereigns';
 
 const schemas = [
   breadcrumbSchema([
     { name: t(locale, 'nav.home'), url: 'https://gialloorofirenze.it/en' },
     { name: t(locale, 'nav.investimento'), url: 'https://gialloorofirenze.it/en/buy-gold' },
-    { name: t(locale, 'nav.sterline'), url: 'https://gialloorofirenze.it/en/sovereigns' },
+    { name: t(locale, 'nav.sterline'), url: pageUrl },
   ]),
   serviceSchema({
     name: 'Gold Sovereign buying and selling',
     description: t(locale, 'sterline.answer'),
     serviceType: 'Gold Sovereign Dealing',
-    url: 'https://gialloorofirenze.it/en/sovereigns',
+    url: pageUrl,
+  }),
+  productSchema({
+    name: 'Gold Sovereign',
+    description: t(locale, 'sterline.answer'),
+    url: pageUrl,
+    image: 'https://gialloorofirenze.it/images/sterline/gold-sovereign.jpg',
+    category: 'Numismatics · Investment gold',
+    material: 'Gold 22kt (916/1000) · 7.32g fine gold',
+    locale,
   }),
 ];
 

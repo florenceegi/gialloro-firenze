@@ -1,7 +1,11 @@
 User-agent: *
 Allow: /
+Disallow: /cookie/
+Disallow: /privacy/
+Disallow: /en/cookie/
+Disallow: /en/privacy/
 
-# AI crawlers (allow per AEO/GEO 2026 strategy)
+# AI crawlers (explicitly allowed per AEO/GEO 2026 strategy — SSOT deroga)
 User-agent: GPTBot
 Allow: /
 

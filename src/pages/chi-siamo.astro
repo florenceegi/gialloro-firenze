@@ -9,16 +9,24 @@
 import Base from '@layouts/Base.astro';
 import SectionHeading from '@components/SectionHeading.astro';
 import { t, hrefFor } from '@i18n/index';
-import { breadcrumbSchema } from '@lib/schema';
+import { breadcrumbSchema, aboutPageSchema, organizationSchema } from '@lib/schema';
 
 const locale = 'it' as const;
 const path = '/chi-siamo';
+const pageUrl = 'https://gialloorofirenze.it/chi-siamo';
 
 const schemas = [
   breadcrumbSchema([
     { name: t(locale, 'nav.home'), url: 'https://gialloorofirenze.it/' },
-    { name: t(locale, 'nav.chi_siamo'), url: 'https://gialloorofirenze.it/chi-siamo' },
+    { name: t(locale, 'nav.chi_siamo'), url: pageUrl },
   ]),
+  aboutPageSchema({
+    url: pageUrl,
+    name: t(locale, 'chi_siamo.title'),
+    description: t(locale, 'chi_siamo.answer'),
+    locale,
+  }),
+  organizationSchema(),
 ];
 
 const title = 'Chi siamo · Giallo Oro Firenze · Banco metalli iscritto OAM';

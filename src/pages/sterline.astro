@@ -10,22 +10,32 @@
 import Base from '@layouts/Base.astro';
 import SectionHeading from '@components/SectionHeading.astro';
 import { t, hrefFor } from '@i18n/index';
-import { breadcrumbSchema, serviceSchema } from '@lib/schema';
+import { breadcrumbSchema, serviceSchema, productSchema } from '@lib/schema';
 
 const locale = 'it' as const;
 const path = '/sterline';
+const pageUrl = 'https://gialloorofirenze.it/sterline';
 
 const schemas = [
   breadcrumbSchema([
     { name: t(locale, 'nav.home'), url: 'https://gialloorofirenze.it/' },
     { name: t(locale, 'nav.investimento'), url: 'https://gialloorofirenze.it/investimento' },
-    { name: t(locale, 'nav.sterline'), url: 'https://gialloorofirenze.it/sterline' },
+    { name: t(locale, 'nav.sterline'), url: pageUrl },
   ]),
   serviceSchema({
     name: 'Acquisto e vendita Sterline Oro',
     description: t(locale, 'sterline.answer'),
     serviceType: 'Gold Sovereign Dealing',
-    url: 'https://gialloorofirenze.it/sterline',
+    url: pageUrl,
+  }),
+  productSchema({
+    name: 'Sterlina Oro (Gold Sovereign)',
+    description: t(locale, 'sterline.answer'),
+    url: pageUrl,
+    image: 'https://gialloorofirenze.it/images/sterline/gold-sovereign.jpg',
+    category: 'Numismatica · Oro da investimento',
+    material: 'Oro 22kt (916/1000) · 7.32g oro fino',
+    locale,
   }),
 ];
 

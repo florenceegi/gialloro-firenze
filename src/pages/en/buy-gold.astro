@@ -9,21 +9,31 @@
 import Base from '@layouts/Base.astro';
 import SectionHeading from '@components/SectionHeading.astro';
 import { t, hrefFor } from '@i18n/index';
-import { breadcrumbSchema, serviceSchema } from '@lib/schema';
+import { breadcrumbSchema, serviceSchema, productSchema } from '@lib/schema';
 
 const locale = 'en' as const;
 const path = '/en/buy-gold';
+const pageUrl = 'https://gialloorofirenze.it/en/buy-gold';
 
 const schemas = [
   breadcrumbSchema([
     { name: t(locale, 'nav.home'), url: 'https://gialloorofirenze.it/en' },
-    { name: t(locale, 'nav.investimento'), url: 'https://gialloorofirenze.it/en/buy-gold' },
+    { name: t(locale, 'nav.investimento'), url: pageUrl },
   ]),
   serviceSchema({
     name: 'Investment gold sales',
     description: t(locale, 'investimento.answer'),
     serviceType: 'Investment Gold Sales',
-    areaServed: 'Italy',
+    url: pageUrl,
+  }),
+  productSchema({
+    name: 'Investment gold · LBMA bars and Sovereigns',
+    description: t(locale, 'investimento.answer'),
+    url: pageUrl,
+    image: 'https://gialloorofirenze.it/images/investimento/oro-investimento.jpg',
+    category: 'Investment gold · VAT-exempt art. 19-sexies DPR 633/72',
+    material: 'Fine gold ≥995/1000 (LBMA bars) · Gold 916/1000 (22kt sovereigns)',
+    locale,
   }),
 ];
 

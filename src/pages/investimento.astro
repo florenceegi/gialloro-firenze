@@ -10,21 +10,31 @@
 import Base from '@layouts/Base.astro';
 import SectionHeading from '@components/SectionHeading.astro';
 import { t, hrefFor } from '@i18n/index';
-import { breadcrumbSchema, serviceSchema } from '@lib/schema';
+import { breadcrumbSchema, serviceSchema, productSchema } from '@lib/schema';
 
 const locale = 'it' as const;
 const path = '/investimento';
+const pageUrl = 'https://gialloorofirenze.it/investimento';
 
 const schemas = [
   breadcrumbSchema([
     { name: t(locale, 'nav.home'), url: 'https://gialloorofirenze.it/' },
-    { name: t(locale, 'nav.investimento'), url: 'https://gialloorofirenze.it/investimento' },
+    { name: t(locale, 'nav.investimento'), url: pageUrl },
   ]),
   serviceSchema({
     name: 'Vendita oro da investimento',
     description: t(locale, 'investimento.answer'),
     serviceType: 'Investment Gold Sales',
-    areaServed: 'Firenze, Toscana, Italia',
+    url: pageUrl,
+  }),
+  productSchema({
+    name: 'Oro da investimento · Sterline e Lingotti LBMA',
+    description: t(locale, 'investimento.answer'),
+    url: pageUrl,
+    image: 'https://gialloorofirenze.it/images/investimento/oro-investimento.jpg',
+    category: 'Oro da investimento · IVA esente art. 19-sexies DPR 633/72',
+    material: 'Oro fino ≥995/1000 (lingotti LBMA) · Oro 916/1000 (sterline 22kt)',
+    locale,
   }),
 ];
 

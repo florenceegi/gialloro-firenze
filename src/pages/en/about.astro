@@ -9,16 +9,24 @@
 import Base from '@layouts/Base.astro';
 import SectionHeading from '@components/SectionHeading.astro';
 import { t, hrefFor } from '@i18n/index';
-import { breadcrumbSchema } from '@lib/schema';
+import { breadcrumbSchema, aboutPageSchema, organizationSchema } from '@lib/schema';
 
 const locale = 'en' as const;
 const path = '/en/about';
+const pageUrl = 'https://gialloorofirenze.it/en/about';
 
 const schemas = [
   breadcrumbSchema([
     { name: t(locale, 'nav.home'), url: 'https://gialloorofirenze.it/en' },
-    { name: t(locale, 'nav.chi_siamo'), url: 'https://gialloorofirenze.it/en/about' },
+    { name: t(locale, 'nav.chi_siamo'), url: pageUrl },
   ]),
+  aboutPageSchema({
+    url: pageUrl,
+    name: t(locale, 'chi_siamo.title'),
+    description: t(locale, 'chi_siamo.answer'),
+    locale,
+  }),
+  organizationSchema(),
 ];
 
 const title = 'About · Giallo Oro Firenze · OAM-registered gold dealer';

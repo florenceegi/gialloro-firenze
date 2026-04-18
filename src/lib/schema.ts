@@ -164,6 +164,85 @@ export function blogPostingSchema(m: BlogMeta): SchemaObject {
   };
 }
 
+/** AboutPage per la pagina chi-siamo — entity-centric SEO */
+export interface AboutPageMeta {
+  url: string;
+  name: string;
+  description: string;
+  locale: 'it' | 'en';
+}
+export function aboutPageSchema(m: AboutPageMeta): SchemaObject {
+  return {
+    '@context': 'https://schema.org',
+    '@type': 'AboutPage',
+    '@id': `${m.url}#aboutpage`,
+    url: m.url,
+    name: m.name,
+    description: m.description,
+    inLanguage: m.locale === 'it' ? 'it-IT' : 'en-US',
+    isPartOf: { '@id': `${BUSINESS.url}/#website` },
+    about: { '@id': BUSINESS.id },
+    mainEntity: { '@id': BUSINESS.id },
+  };
+}
+
+/** Organization — identita legale separata da LocalBusiness, per E-E-A-T */
+export function organizationSchema(): SchemaObject {
+  return {
+    '@context': 'https://schema.org',
+    '@type': 'Organization',
+    '@id': `${BUSINESS.url}/#organization`,
+    name: BUSINESS.name,
+    legalName: BUSINESS.legalName,
+    url: BUSINESS.url,
+    logo: BUSINESS.logo,
+    vatID: BUSINESS.vatId,
+    email: BUSINESS.email,
+    telephone: BUSINESS.telephone,
+    address: { '@type': 'PostalAddress', ...BUSINESS.address },
+    sameAs: BUSINESS.sameAs,
+    foundingDate: '2008',
+    areaServed: { '@type': 'City', name: 'Firenze' },
+  };
+}
+
+/** Product — per pagine vendita (sterline, lingotti) */
+export interface ProductMeta {
+  name: string;
+  description: string;
+  url: string;
+  image: string;
+  category: string;
+  material?: string;
+  locale: 'it' | 'en';
+  priceRange?: { min: number; max: number; currency: string };
+}
+export function productSchema(p: ProductMeta): SchemaObject {
+  const base: SchemaObject = {
+    '@context': 'https://schema.org',
+    '@type': 'Product',
+    name: p.name,
+    description: p.description,
+    url: p.url,
+    image: p.image,
+    category: p.category,
+    brand: { '@id': BUSINESS.id },
+    ...(p.material && { material: p.material }),
+    inLanguage: p.locale === 'it' ? 'it-IT' : 'en-US',
+  };
+  if (p.priceRange) {
+    base.offers = {
+      '@type': 'AggregateOffer',
+      priceCurrency: p.priceRange.currency,
+      lowPrice: p.priceRange.min,
+      highPrice: p.priceRange.max,
+      availability: 'https://schema.org/InStock',
+      seller: { '@id': BUSINESS.id },
+    };
+  }
+  return base;
+}
+
 /** Offer/Service per sezioni servizio (Compro Oro, Perizie, ...) */
 export interface ServiceSchema {
   name: string;
