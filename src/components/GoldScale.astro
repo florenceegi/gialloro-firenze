@@ -25,6 +25,8 @@ const copy = {
     weight: 'Peso',
     grams: 'grammi',
     carat: 'Titolo',
+    carat_legend: 'Titolo (carati) dell\'oro',
+    weight_slider_label: 'Peso dell\'oro in grammi',
     presets: 'Preset comuni',
     presets_items: [
       { label: 'Sterlina', grams: 7.98, carat: '22kt' },
@@ -35,6 +37,7 @@ const copy = {
     ],
     result_label: 'Ricevi oggi',
     result_hint: 'Valore di riacquisto indicativo',
+    result_aria_prefix: 'Valore di riacquisto stimato',
     cta: 'Prenota ritiro in sede',
     quote: 'Quotazione oro',
     source: 'Fonte: mercato spot internazionale',
@@ -52,6 +55,8 @@ const copy = {
     weight: 'Weight',
     grams: 'grams',
     carat: 'Purity',
+    carat_legend: 'Gold purity (karats)',
+    weight_slider_label: 'Gold weight in grams',
     presets: 'Common presets',
     presets_items: [
       { label: 'Sovereign', grams: 7.98, carat: '22kt' },
@@ -62,6 +67,7 @@ const copy = {
     ],
     result_label: 'You receive today',
     result_hint: 'Indicative buyback value',
+    result_aria_prefix: 'Estimated buyback value',
     cta: 'Book in-store pickup',
     quote: 'Gold spot',
     source: 'Source: international spot market',
@@ -78,6 +84,8 @@ const labelsJson = JSON.stringify({
   seconds_ago: c.seconds_ago,
   minutes_ago: c.minutes_ago,
   now: c.now,
+  result_aria_prefix: c.result_aria_prefix,
+  grams: c.grams,
 });
 ---
 <section id="gold-scale-hero" class="relative overflow-hidden bg-gradient-to-br from-ink-950 via-ink-900 to-ink-950 text-ivory-50 min-h-[92vh] flex items-center py-20 md:py-24">
@@ -145,10 +153,17 @@ const labelsJson = JSON.stringify({
             </svg>
           </div>
 
-          <!-- Result (big, animated) -->
+          <!-- Result (big, animated, live region for screen readers) -->
           <div class="text-center mb-8 pb-8 border-b border-gold-700/20">
-            <div class="text-[10px] uppercase tracking-[0.28em] text-ivory-100/50 mb-2">{c.result_label}</div>
-            <div class="serif text-5xl md:text-6xl font-semibold text-gold-300 tabular-nums tracking-tight" data-result>€ —</div>
+            <div class="text-[10px] uppercase tracking-[0.28em] text-ivory-100/50 mb-2" id="gs-result-label">{c.result_label}</div>
+            <div
+              class="serif text-5xl md:text-6xl font-semibold text-gold-300 tabular-nums tracking-tight"
+              data-result
+              role="status"
+              aria-live="polite"
+              aria-atomic="true"
+              aria-labelledby="gs-result-label"
+            >€ —</div>
             <div class="text-xs text-ivory-100/40 mt-3 italic">{c.result_hint}</div>
           </div>
 
@@ -159,25 +174,36 @@ const labelsJson = JSON.stringify({
               <div class="flex items-baseline gap-1">
                 <input id="weight-input" type="number" min="0.1" max="1000" step="0.1" value="10"
                        class="w-20 bg-transparent border-b border-gold-700/40 text-right serif text-2xl text-gold-300 focus:outline-none focus:border-gold-400 tabular-nums"
-                       data-weight-input>
-                <span class="text-xs text-ivory-100/50">{c.grams}</span>
+                       data-weight-input
+                       aria-label={c.weight_slider_label}>
+                <span class="text-xs text-ivory-100/50" aria-hidden="true">{c.grams}</span>
               </div>
             </div>
             <input type="range" min="0.1" max="500" step="0.1" value="10"
-                   class="gold-slider w-full" data-weight-slider aria-label={c.weight}>
-            <div class="flex justify-between text-[10px] text-ivory-100/30 mt-1 font-mono">
+                   class="gold-slider w-full"
+                   data-weight-slider
+                   aria-label={c.weight_slider_label}
+                   aria-valuemin="0.1"
+                   aria-valuemax="500"
+                   aria-valuenow="10"
+                   aria-valuetext={`10 ${c.grams}`}>
+            <div class="flex justify-between text-[10px] text-ivory-100/30 mt-1 font-mono" aria-hidden="true">
               <span>0.1g</span><span>250g</span><span>500g</span>
             </div>
           </div>
 
-          <!-- Carat selector -->
-          <div class="mb-6">
-            <div class="text-[11px] uppercase tracking-[0.22em] text-ivory-100/60 font-medium mb-3">{c.carat}</div>
-            <div class="grid grid-cols-4 gap-2" role="radiogroup" aria-label={c.carat}>
+          <!-- Carat selector (fieldset + legend for native semantic grouping) -->
+          <fieldset class="mb-6 border-0 p-0 m-0">
+            <legend class="text-[11px] uppercase tracking-[0.22em] text-ivory-100/60 font-medium mb-3 p-0">{c.carat_legend}</legend>
+            <div class="grid grid-cols-4 gap-2" role="radiogroup" aria-label={c.carat_legend} data-carat-group>
               {['24kt','22kt','18kt','14kt'].map((k) => (
-                <button type="button" role="radio" aria-checked={k === '18kt' ? 'true' : 'false'} data-carat={k}
+                <button type="button"
+                  role="radio"
+                  aria-checked={k === '18kt' ? 'true' : 'false'}
+                  tabindex={k === '18kt' ? '0' : '-1'}
+                  data-carat={k}
                   class:list={[
-                    'py-2.5 text-sm font-medium rounded-sm border transition-all',
+                    'py-2.5 text-sm font-medium rounded-sm border transition-all focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-gold-400',
                     k === '18kt'
                       ? 'bg-gold-500 text-ink-900 border-gold-500'
                       : 'bg-transparent text-ivory-100/70 border-gold-700/30 hover:border-gold-500 hover:text-gold-300',
@@ -186,7 +212,7 @@ const labelsJson = JSON.stringify({
                 </button>
               ))}
             </div>
-          </div>
+          </fieldset>
 
           <!-- Presets -->
           <div class="mb-8">
@@ -287,7 +313,12 @@ const labelsJson = JSON.stringify({
     if (!state.data || !state.data.carats[state.carat]) return;
     const perGram = state.data.carats[state.carat].buyback_eur_gram;
     const total = Math.max(0, state.weight) * perGram;
-    resultEl.textContent = fmtEur(total);
+    const formatted = fmtEur(total);
+    resultEl.textContent = formatted;
+    resultEl.setAttribute(
+      'aria-label',
+      `${labels.result_aria_prefix}: ${formatted} — ${state.weight} ${labels.grams}, ${state.carat}`
+    );
     resultEl.classList.remove('pulse');
     void resultEl.offsetWidth;
     resultEl.classList.add('pulse');
@@ -306,49 +337,73 @@ const labelsJson = JSON.stringify({
     weightSlider.style.setProperty('--val', `${pct}%`);
   }
 
+  function syncSliderAria() {
+    const v = Number(weightSlider.value);
+    weightSlider.setAttribute('aria-valuenow', String(v));
+    weightSlider.setAttribute('aria-valuetext', `${v} ${labels.grams}`);
+  }
+
+  function setCarat(targetBtn, focusAfter) {
+    const k = targetBtn.getAttribute('data-carat');
+    state.carat = k;
+    caratBtns.forEach((x) => {
+      const active = x === targetBtn;
+      x.setAttribute('aria-checked', String(active));
+      x.setAttribute('tabindex', active ? '0' : '-1');
+      x.classList.toggle('bg-gold-500', active);
+      x.classList.toggle('text-ink-900', active);
+      x.classList.toggle('border-gold-500', active);
+      x.classList.toggle('bg-transparent', !active);
+      x.classList.toggle('text-ivory-100/70', !active);
+      x.classList.toggle('border-gold-700/30', !active);
+    });
+    if (focusAfter) targetBtn.focus();
+    recalc();
+  }
+
   weightSlider.addEventListener('input', () => {
     state.weight = Number(weightSlider.value);
     weightInput.value = state.weight;
+    syncSliderAria();
     updateSliderFill();
     recalc();
   });
   weightInput.addEventListener('input', () => {
     state.weight = Math.max(0, Number(weightInput.value) || 0);
-    if (state.weight <= Number(weightSlider.max)) weightSlider.value = String(state.weight);
+    if (state.weight <= Number(weightSlider.max)) {
+      weightSlider.value = String(state.weight);
+      syncSliderAria();
+    }
     updateSliderFill();
     recalc();
   });
-  caratBtns.forEach((b) => b.addEventListener('click', () => {
-    state.carat = b.getAttribute('data-carat');
-    caratBtns.forEach((x) => {
-      const active = x === b;
-      x.setAttribute('aria-checked', String(active));
-      x.classList.toggle('bg-gold-500', active);
-      x.classList.toggle('text-ink-900', active);
-      x.classList.toggle('border-gold-500', active);
-      x.classList.toggle('bg-transparent', !active);
-      x.classList.toggle('text-ivory-100/70', !active);
-      x.classList.toggle('border-gold-700/30', !active);
+
+  const caratArr = Array.from(caratBtns);
+  caratBtns.forEach((b, idx) => {
+    b.addEventListener('click', () => setCarat(b, false));
+    b.addEventListener('keydown', (e) => {
+      let next = -1;
+      if (e.key === 'ArrowRight' || e.key === 'ArrowDown') next = (idx + 1) % caratArr.length;
+      else if (e.key === 'ArrowLeft' || e.key === 'ArrowUp') next = (idx - 1 + caratArr.length) % caratArr.length;
+      else if (e.key === 'Home') next = 0;
+      else if (e.key === 'End') next = caratArr.length - 1;
+      if (next >= 0) {
+        e.preventDefault();
+        setCarat(caratArr[next], true);
+      }
     });
-    recalc();
-  }));
+  });
+
   presetBtns.forEach((b) => b.addEventListener('click', () => {
     const g = Number(b.getAttribute('data-preset-grams'));
     const k = b.getAttribute('data-preset-carat');
-    state.weight = g; state.carat = k;
-    weightInput.value = g; weightSlider.value = String(Math.min(g, Number(weightSlider.max)));
-    caratBtns.forEach((x) => {
-      const active = x.getAttribute('data-carat') === k;
-      x.setAttribute('aria-checked', String(active));
-      x.classList.toggle('bg-gold-500', active);
-      x.classList.toggle('text-ink-900', active);
-      x.classList.toggle('border-gold-500', active);
-      x.classList.toggle('bg-transparent', !active);
-      x.classList.toggle('text-ivory-100/70', !active);
-      x.classList.toggle('border-gold-700/30', !active);
-    });
+    state.weight = g;
+    weightInput.value = g;
+    weightSlider.value = String(Math.min(g, Number(weightSlider.max)));
+    const caratBtn = caratArr.find((x) => x.getAttribute('data-carat') === k);
+    if (caratBtn) setCarat(caratBtn, false); else recalc();
+    syncSliderAria();
     updateSliderFill();
-    recalc();
   }));
 
   async function loadPrice() {
@@ -365,6 +420,7 @@ const labelsJson = JSON.stringify({
     }
   }
 
+  syncSliderAria();
   updateSliderFill();
   loadPrice();
   setInterval(loadPrice, 5 * 60 * 1000);
