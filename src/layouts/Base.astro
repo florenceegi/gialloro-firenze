@@ -24,6 +24,7 @@ export interface Props {
   ogImageAlt?: string;
   schema?: SchemaObject | SchemaObject[];
   noindex?: boolean;
+  preloadImage?: { href: string; imagesrcset?: string; imagesizes?: string };
 }
 
 const {
@@ -35,6 +36,7 @@ const {
   ogImageAlt,
   schema,
   noindex = false,
+  preloadImage,
 } = Astro.props;
 
 const site = Astro.site?.toString().replace(/\/$/, '') ?? 'https://gialloorofirenze.it';
@@ -96,9 +98,24 @@ const allSchemas = [...baseSchemas, ...pageSchemas];
   <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
   <link rel="manifest" href="/manifest.webmanifest" />
 
-  {/* Preconnect fonts — self-hosted quindi preload WOFF2 invece che preconnect */}
-  <link rel="preload" as="font" type="font/woff2" href="https://fonts.gstatic.com/s/cormorantgaramond/v16/co3YmX5slCNuHLi8bLeY9MK7whWMhyjYrEPjmVQl.woff2" crossorigin />
-  <link rel="preload" as="font" type="font/woff2" href="https://fonts.gstatic.com/s/inter/v18/UcC73FwrK3iLTeHuS_nVMrMxCp50SjIa2JL7SUc.woff2" crossorigin />
+  {/* LCP image preload (per-page) */}
+  {preloadImage && (
+    <link
+      rel="preload"
+      as="image"
+      href={preloadImage.href}
+      imagesrcset={preloadImage.imagesrcset}
+      imagesizes={preloadImage.imagesizes}
+      fetchpriority="high"
+    />
+  )}
+
+  {/* Fonts — Google Fonts CSS v2 async (no render-blocking) */}
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Inter:wght@400;500;600;700&display=swap" />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Inter:wght@400;500;600;700&display=swap" media="print" onload="this.media='all'" />
+  <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Inter:wght@400;500;600;700&display=swap" /></noscript>
 
   {/* Schema.org JSON-LD (array) */}
   {allSchemas.map((s) => (

@@ -409,12 +409,21 @@ const labelsJson = JSON.stringify({
   async function loadPrice() {
     try {
       const res = await fetch(API_URL, { headers: { Accept: 'application/json' } });
-      if (!res.ok) throw new Error('HTTP ' + res.status);
+      if (!res.ok) {
+        spotEl.textContent = '—';
+        updatedEl.textContent = 'offline';
+        return;
+      }
       const json = await res.json();
+      if (!json || !json.data) {
+        spotEl.textContent = '—';
+        updatedEl.textContent = 'offline';
+        return;
+      }
       state.data = json.data;
       updateTicker();
       recalc();
-    } catch (e) {
+    } catch {
       spotEl.textContent = '—';
       updatedEl.textContent = 'offline';
     }

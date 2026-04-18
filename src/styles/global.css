@@ -16,8 +16,8 @@
   --color-gold-400: #fbbf24;
   --color-gold-500: #d4af37;  /* gold signature */
   --color-gold-600: #b8941f;
-  --color-gold-700: #92760f;
-  --color-gold-800: #6b5608;
+  --color-gold-700: #7a5f0a;  /* WCAG AA 5.85:1 su ivory-50 */
+  --color-gold-800: #5a4707;  /* WCAG AAA 7.9:1 */
   --color-gold-900: #3f3405;
 
   --color-ink-50:   #fafaf9;
@@ -53,21 +53,7 @@
   --radius-brand: 2px;
 }
 
-/* Fonts self-host via Google Fonts (preload in Base layout) */
-@font-face {
-  font-family: "Cormorant Garamond";
-  font-style: normal;
-  font-weight: 300 700;
-  font-display: swap;
-  src: url("https://fonts.gstatic.com/s/cormorantgaramond/v16/co3YmX5slCNuHLi8bLeY9MK7whWMhyjYrEPjmVQl.woff2") format("woff2");
-}
-@font-face {
-  font-family: "Inter";
-  font-style: normal;
-  font-weight: 100 900;
-  font-display: swap;
-  src: url("https://fonts.gstatic.com/s/inter/v18/UcC73FwrK3iLTeHuS_nVMrMxCp50SjIa2JL7SUc.woff2") format("woff2");
-}
+/* Fonts — caricati via Google Fonts CSS v2 API in Base.astro (no @font-face custom) */
 
 /* Base reset luxury */
 html {

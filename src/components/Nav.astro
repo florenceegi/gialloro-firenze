@@ -60,7 +60,7 @@ const alt = altLocale(locale);
       <div class="h-16 md:h-20 flex items-center justify-between gap-6">
 
         <!-- Logo -->
-        <a href={homeHref} class="flex items-center gap-3 group shrink-0" aria-label={t(locale, 'meta.brand')}>
+        <a href={homeHref} class="flex items-center gap-3 group shrink-0">
           <svg width="38" height="38" viewBox="0 0 44 44" fill="none" aria-hidden="true" class="transition-transform group-hover:rotate-[-4deg] duration-500 shrink-0">
             <circle cx="22" cy="22" r="20" stroke="var(--color-gold-500)" stroke-width="1.5" fill="var(--color-gold-50)"/>
             <path d="M22 8 L25 18 L35 18 L27 24 L30 34 L22 28 L14 34 L17 24 L9 18 L19 18 Z" fill="var(--color-gold-500)" stroke="var(--color-gold-700)" stroke-width="0.5" stroke-linejoin="round"/>
@@ -94,7 +94,7 @@ const alt = altLocale(locale);
 
         <!-- CTA + burger -->
         <div class="flex items-center gap-3 shrink-0">
-          <a href={hrefFor(locale, locale === 'it' ? 'contatti' : 'en/contact')} class="btn-gold !py-2.5 !px-5 text-[11px] uppercase tracking-[0.18em]">
+          <a href={hrefFor(locale, locale === 'it' ? 'contatti' : 'contact')} class="btn-gold !py-2.5 !px-5 text-[11px] uppercase tracking-[0.18em]">
             {t(locale, 'cta.appointment')}
           </a>
 
@@ -110,8 +110,8 @@ const alt = altLocale(locale);
     <div class="h-[1px] bg-gradient-to-r from-transparent via-gold-400/40 to-transparent"></div>
   </div>
 
-  <!-- Mobile panel -->
-  <div id="mobile-panel" class="lg:hidden fixed inset-0 top-16 bg-ivory-50 z-40 translate-x-full transition-transform duration-300 ease-out" aria-hidden="true" data-mobile-panel>
+  <!-- Mobile panel (inert when closed: blocks focus + screen reader) -->
+  <div id="mobile-panel" class="lg:hidden fixed inset-0 top-16 bg-ivory-50 z-40 translate-x-full transition-transform duration-300 ease-out" inert data-mobile-panel>
     <div class="p-6 flex flex-col gap-1 max-h-[calc(100vh-4rem)] overflow-y-auto">
       {links.map((l) => {
         const href = locale === 'it' ? l.it : l.en;
@@ -142,7 +142,8 @@ const alt = altLocale(locale);
     btn.addEventListener('click', () => {
       const open = panel.classList.toggle('translate-x-full') === false;
       btn.setAttribute('aria-expanded', String(open));
-      panel.setAttribute('aria-hidden', String(!open));
+      if (open) panel.removeAttribute('inert');
+      else panel.setAttribute('inert', '');
       document.body.style.overflow = open ? 'hidden' : '';
     });
   })();

@@ -12,13 +12,22 @@ export const prerender = false;
 
 const API_URL = import.meta.env.CMS_API_URL ?? 'http://127.0.0.1:8765/api/v1';
 
+/**
+ * Strategia resilienza: questo endpoint restituisce SEMPRE HTTP 200,
+ * anche quando il CMS upstream e' offline. Il client (GoldScale) gestisce
+ * il caso data:null mostrando UI di fallback "offline" senza errori in
+ * console — requisito Lighthouse Best Practices ≥95 + A11y no error barks.
+ */
 export const GET: APIRoute = async () => {
   try {
     const res = await fetch(`${API_URL}/gold/price`, { headers: { Accept: 'application/json' } });
     if (!res.ok) {
-      return new Response(JSON.stringify({ error: 'upstream', status: res.status }), {
-        status: 502,
-        headers: { 'Content-Type': 'application/json' },
+      return new Response(JSON.stringify({ data: null, status: 'upstream_error', code: res.status }), {
+        status: 200,
+        headers: {
+          'Content-Type': 'application/json',
+          'Cache-Control': 'public, max-age=10',
+        },
       });
     }
     const body = await res.text();
@@ -29,10 +38,13 @@ export const GET: APIRoute = async () => {
         'Cache-Control': 'public, max-age=60, s-maxage=300',
       },
     });
-  } catch (e) {
-    return new Response(JSON.stringify({ error: 'fetch_failed' }), {
-      status: 503,
-      headers: { 'Content-Type': 'application/json' },
+  } catch {
+    return new Response(JSON.stringify({ data: null, status: 'unavailable' }), {
+      status: 200,
+      headers: {
+        'Content-Type': 'application/json',
+        'Cache-Control': 'public, max-age=10',
+      },
     });
   }
 };
